@@ -10,7 +10,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "expo": "^1.0.0",
+    "expo": "^41.0.0",
     "expo-cli": "^4.3.0",
     "expo-location": "~13.0.4",
     "expo-notifications": "~0.13.3",
@@ -27,3 +27,5 @@
   },
   "private": true
 }
+
+
