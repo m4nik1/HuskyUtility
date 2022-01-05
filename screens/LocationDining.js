@@ -32,7 +32,7 @@ const LocationDining = () => {
     
     return (
         <View>
-            <MapView style={styles.map} region={mapRegion} />
+            <MapView style={styles.map} />
         </View>
     )
 }

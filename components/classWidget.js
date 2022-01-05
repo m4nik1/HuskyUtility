@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 
-import { View, Text, ScrollView, StyleSheet, FlatList } from "react-native";
-import { TouchableWithoutFeedback } from "react-native-web";
+import { View, Text, ScrollView, StyleSheet, FlatList, TouchableWithoutFeedback } from "react-native";
 import Card from "../components/Card";
+import { classItems } from "../data/classData";
 
 const ClassHomeWidget = props => {
-
-
 
     return (
         <View>
@@ -14,10 +12,21 @@ const ClassHomeWidget = props => {
                 <View style={styles.nameView}>
                     <Text style={styles.classTitle}>Today's Classes: </Text>
                 </View>
-                <View style={styles.classListView}>
-                    <Text>Class Name</Text>
-                    <Text style={styles.classTime}>5:30pm - 2:30pm</Text>
-                </View>
+                <FlatList
+                    style={styles.listView}
+                    keyExtractor={item => item.id}
+                    data={classItems}
+                    renderItem={itemData => (
+                        <ClassCard
+                            hour={itemData.item.hour}
+                            minute={itemData.item.minute}
+                            ClassName={itemData.item.className}
+                            Time={itemData.item.time}
+                            prof={itemData.item.profName}
+                            location={itemData.item.location}
+                        />
+                    )}
+                />
             </Card>
             <TouchableWithoutFeedback onPress={props.screenNavi}>
                 <Card style={styles.diningCard}>

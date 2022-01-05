@@ -8,7 +8,7 @@ import LocationDining from './screens/LocationDining';
 export default function App() {
   return (
     <View style={styles.container}>
-      <LocationDining />
+      <Home2 />
     </View>
   );
 }
