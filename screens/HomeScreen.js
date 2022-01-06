@@ -21,26 +21,28 @@ const Home = props => {
 
     if(props.shouldRengar) {
         return (
-            <View style={styles.classContainer}>
-                <View style={styles.titleAndBtn}>
-                    <Button title="back" />
-                    <Text style={styles.title}>Classes</Text>
+            <View>
+                <View style={styles.backBtn}>
+                    <Button title="back" onPress={() => props.changeScreen("home")} />
                 </View>
-                <FlatList
-                    keyExtractor={item => item.id}
-                    style={styles.scrollView}
-                    data={data}
-                    renderItem={itemData => (
-                        <ClassCard
-                            hour={itemData.item.hour}
-                            minute={itemData.item.minute}
-                            ClassName={itemData.item.className}
-                            Time={itemData.item.time}
-                            prof={itemData.item.profName}
-                            location={itemData.item.location}
-                        />
-                    )}
-                />
+                <View style={styles.classContainer}>
+                    <Text style={styles.title}>Classes</Text>
+                    <FlatList
+                        keyExtractor={item => item.id}
+                        style={styles.scrollView}
+                        data={data}
+                        renderItem={itemData => (
+                            <ClassCard
+                                hour={itemData.item.hour}
+                                minute={itemData.item.minute}
+                                ClassName={itemData.item.className}
+                                Time={itemData.item.time}
+                                prof={itemData.item.profName}
+                                location={itemData.item.location}
+                            />
+                        )}
+                    />
+                </View>
             </View>
         )
     }
@@ -57,9 +59,9 @@ const styles = StyleSheet.create({
         flexDirection:"column"
     },
     classContainer:{
-        flex:1,
-        alignItems:"center",
-        alignContent:"center",
+        alignContent: "center",
+        alignItems: "center",
+        height: "100%"
     },
     title: {
         alignItems:"center",
@@ -70,9 +72,8 @@ const styles = StyleSheet.create({
     scrollView: {
         width: "100%"
     },
-    titleAndBtn: {
-        flex: 1,
-        flexDirection: "row"
+    backBtn: {
+        marginRight: 300
     }
 })
 
