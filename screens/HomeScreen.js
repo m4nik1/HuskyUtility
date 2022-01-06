@@ -8,11 +8,9 @@ import { classItems } from "../data/classData";
 
 const Home = props => {
 
-    const current_day = moment().format('dddd');
     const currentMinutes = moment().format("mm");
-    const currentHour = moment().format("hh")
 
-    const [day, changeDay] = useState(current_day);
+    const [day, changeDay] = useState(props.current_day);
     const [data, changeData] = useState();
 
     useEffect(() => {

@@ -15,7 +15,7 @@ const Home2 = props => {
     if(props.shouldRengar) {
         return (
             <View>
-                <ClassHomeWidget screenRequest={(screen2) => screenCallback(screen2)} />
+                <ClassHomeWidget day={props.currentDay} screenRequest={(screen2) => screenCallback(screen2)} />
             </View> 
             
         )

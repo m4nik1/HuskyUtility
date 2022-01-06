@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 
 import { View, Text, ScrollView, StyleSheet, FlatList, Pressable } from "react-native";
 import Card from "../components/Card";
+import moment from "moment";
 import { classItems } from "../data/classData";
 
 const ClassHomeWidget = props => {
+
+    const [day, changeDay] = useState(props.day);
 
     return (
         <Pressable onPress={() => props.screenRequest("classes")}>
@@ -15,7 +18,7 @@ const ClassHomeWidget = props => {
                 <FlatList
                     keyExtractor={item => item.id}
                     style={styles.listView}
-                    data={classItems["Wednesday"]}
+                    data={classItems[day]}
                     renderItem={itemData => (
                         <View style={styles.classListView}>
                             <Text>{itemData.item.className}</Text>
