@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { View, Text, ScrollView, StyleSheet, FlatList } from "react-native";
+import { View, Text, ScrollView, StyleSheet, FlatList, Button } from "react-native";
 import moment from "moment";
 import ClassCard from "../components/Class";
 import { classItems } from "../data/classData";
@@ -22,7 +22,10 @@ const Home = props => {
     if(props.shouldRengar) {
         return (
             <View style={styles.classContainer}>
-                <Text style={styles.title}>Classes</Text>
+                <View style={styles.titleAndBtn}>
+                    <Button title="back" />
+                    <Text style={styles.title}>Classes</Text>
+                </View>
                 <FlatList
                     keyExtractor={item => item.id}
                     style={styles.scrollView}
@@ -66,6 +69,10 @@ const styles = StyleSheet.create({
     },
     scrollView: {
         width: "100%"
+    },
+    titleAndBtn: {
+        flex: 1,
+        flexDirection: "row"
     }
 })
 
