@@ -6,7 +6,7 @@ import ClassCard from "../components/Class";
 import { classItems } from "../data/classData";
 
 
-const Home = () => {
+const Home = props => {
 
     const current_day = moment().format('dddd');
     const currentMinutes = moment().format("mm");
@@ -19,26 +19,33 @@ const Home = () => {
         changeData(classItems[day])
     }, [currentMinutes])
 
-    return (
-        <View style={styles.classContainer}>
-            <Text style={styles.title}>Classes</Text>
-            <FlatList
-                keyExtractor={item => item.id}
-                style={styles.scrollView}
-                data={data}
-                renderItem={itemData => (
-                    <ClassCard
-                        hour={itemData.item.hour}
-                        minute={itemData.item.minute}
-                        ClassName={itemData.item.className}
-                        Time={itemData.item.time}
-                        prof={itemData.item.profName}
-                        location={itemData.item.location}
-                    />
-                )}
-            />
-        </View>
-    )
+    if(props.shouldRengar) {
+        return (
+            <View style={styles.classContainer}>
+                <Text style={styles.title}>Classes</Text>
+                <FlatList
+                    keyExtractor={item => item.id}
+                    style={styles.scrollView}
+                    data={data}
+                    renderItem={itemData => (
+                        <ClassCard
+                            hour={itemData.item.hour}
+                            minute={itemData.item.minute}
+                            ClassName={itemData.item.className}
+                            Time={itemData.item.time}
+                            prof={itemData.item.profName}
+                            location={itemData.item.location}
+                        />
+                    )}
+                />
+            </View>
+        )
+    }
+    else {
+        return(
+          null
+        );
+    }
 }
 
 const styles = StyleSheet.create({
