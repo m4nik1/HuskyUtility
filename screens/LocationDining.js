@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 
-import {View, StyleSheet, Dimensions, Text} from "react-native"
+import {View, StyleSheet, Dimensions, Text, Alert} from "react-native"
 import * as Location from "expo-location";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import moment from "moment";
@@ -26,7 +26,15 @@ const LocationDining = () => {
         }
 
         let location = await Location.getCurrentPositionAsync({})
-        console.log(location)
+        const lat = location["coords"]["latitude"];
+        const long = location["coords"]["longitude"]
+        const currentRegion = {
+            latitude: lat,
+            longitude: long,
+            latitudeDelta: .009,
+            longitudeDelta: .009
+        }
+        setMapRegion(currentRegion)
     }
 
     useEffect(() => {
@@ -38,7 +46,7 @@ const LocationDining = () => {
             <MapView 
                 style={styles.map} 
                 provider={PROVIDER_GOOGLE}
-                // region={mapRegion}
+                region={mapRegion}
                 followsUserLocation={true}
                 zoomEnabled={true}
                 showsUserLocation={true}
