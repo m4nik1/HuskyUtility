@@ -11,11 +11,14 @@ const LocationDining = () => {
     const[errorMsg, setErrorMsg] = useState(null);
     const [mapRegion, setMapRegion] = useState();
 
-    let location2 = {
-        latitude: 23.259933,
-        longitude: 77.412613,
-        latitudeDelta: 0.009,
-        longitudeDelta: 0.009
+    const NWCoords = {
+        latitude: 41.81150,
+        longitude: -72.25972
+    }
+
+    const putnameCoords = {
+        latitude: 41.80541791743974,
+        longitude: -72.2588591845334
     }
 
     async function getCurrentLocation() {
@@ -26,13 +29,13 @@ const LocationDining = () => {
         }
 
         let location = await Location.getCurrentPositionAsync({})
-        const lat = location["coords"]["latitude"];
+        const lat = location["coords"]["latitude"]; // these are current location values
         const long = location["coords"]["longitude"]
         const currentRegion = {
-            latitude: lat,
-            longitude: long,
-            latitudeDelta: .009,
-            longitudeDelta: .009
+            latitude: 41.806705735400755, 
+            longitude: -72.25275337289247,
+            latitudeDelta: .01,
+            longitudeDelta: .01
         }
         setMapRegion(currentRegion)
     }
@@ -50,9 +53,17 @@ const LocationDining = () => {
                 followsUserLocation={true}
                 zoomEnabled={true}
                 showsUserLocation={true}
+            >
+                <MapView.Marker
+                    coordinate={NWCoords}
+                    title={"Northwest Dining hall"}            
+                 />
+                <MapView.Marker
+                    coordinate={putnameCoords}
+                    title={"Putnam Dining hall"}            
+                 />
 
-
-            />
+            </MapView>
         </View>
     )
 }
