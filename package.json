@@ -22,7 +22,7 @@
         "react": "^17.0.1",
         "react-dom": "17.0.1",
         "react-native": "^0.66.4",
-        "react-native-maps": "0.28.1",
+        "react-native-maps": "^0.28.1",
         "react-native-web": "0.17.1"
     },
     "devDependencies": {
