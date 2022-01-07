@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react"
 
-import {View, StyleSheet, Dimensions, Text, Alert} from "react-native"
+import { Image, View, StyleSheet, Dimensions, Text, Alert} from "react-native"
 import * as Location from "expo-location";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import moment from "moment";
+import { TouchableWithoutFeedback } from "react-native-web";
+import dining from "../assets/dining_icon.png"
+import ModalDining from "../components/diningHallModal";
 
 
 
 const LocationDining = () => {
-    const[errorMsg, setErrorMsg] = useState(null);
+
+
     const [mapRegion, setMapRegion] = useState();
 
     const NWCoords = {
@@ -53,16 +57,27 @@ const LocationDining = () => {
                 followsUserLocation={true}
                 zoomEnabled={true}
                 showsUserLocation={true}
+                           
             >
                 <MapView.Marker
                     coordinate={NWCoords}
-                    title={"Northwest Dining hall"}            
-                 />
+                    title={"Northwest Dining hall"}
+                    description={"Dining Hall"}  
+                    onPress={() => console.log('awesome')}          
+                >
+                    <TouchableWithoutFeedback onPress={() => console.log("Awesome")}>
+                        <Image source={dining} />
+                    </TouchableWithoutFeedback>
+                </MapView.Marker>
                 <MapView.Marker
                     coordinate={putnameCoords}
-                    title={"Putnam Dining hall"}            
-                 />
-
+                    title={"Putnam Dining hall"} 
+                    description={"Dining Hall"}           
+                 >
+                    <TouchableWithoutFeedback onPress={() => alert.alert("Awesome")}>
+                        <Image source={dining} />
+                    </TouchableWithoutFeedback>
+                 </MapView.Marker>
             </MapView>
         </View>
     )

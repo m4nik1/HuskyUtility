@@ -18,14 +18,14 @@ export default function App() {
   }
 
   return (
-    // <SafeAreaView style={styles.container}>
-    //   <Home current_day={day} shouldRengar={screen === "classes"} changeScreen={(screen2) => {changeScreen(screen2)}} />
-    //   <Home2 currentDay={day} shouldRengar={screen === "home"} changeScreen={(screen2) => {changeScreen(screen2)}} />
-    // </SafeAreaView>
+    <SafeAreaView style={styles.container}>
+      <Home current_day={day} shouldRengar={screen === "classes"} changeScreen={(screen2) => {changeScreen(screen2)}} />
+      <Home2 currentDay={day} shouldRengar={screen === "home"} changeScreen={(screen2) => {changeScreen(screen2)}} />
+    </SafeAreaView>
 
-    <View>
-      <LocationDining />
-    </View>
+    // <View>
+    //   <LocationDining />
+    // </View>
   );
 }
 
