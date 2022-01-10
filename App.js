@@ -20,16 +20,16 @@ export default function App() {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Home current_day={day} shouldRengar={screen === "classes"} changeScreen={(screen2) => {changeScreen(screen2)}} />
-      <Home2 currentDay={day} shouldRengar={screen === "home"} changeScreen={(screen2) => {changeScreen(screen2)}} />
-      <Button title='Show Modal' onPress={() => setModal(true)} />
-      <ModalDining isVisible={modal} modalCancel={() => setModal(false)} />
-    </SafeAreaView>
+    // <SafeAreaView style={styles.container}>
+    //   <Home current_day={day} shouldRengar={screen === "classes"} changeScreen={(screen2) => {changeScreen(screen2)}} />
+    //   <Home2 currentDay={day} shouldRengar={screen === "home"} changeScreen={(screen2) => {changeScreen(screen2)}} />
+    //   <Button title='Show Modal' onPress={() => setModal(true)} />
+    //   <ModalDining isVisible={modal} modalCancel={() => setModal(false)} />
+    // </SafeAreaView>
 
-    // <View>
-    //   <LocationDining />
-    // </View>
+    <View>
+      <LocationDining />
+    </View>
   );
 }
 

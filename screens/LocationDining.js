@@ -7,6 +7,7 @@ import moment from "moment";
 import { TouchableWithoutFeedback } from "react-native-web";
 import dining from "../assets/dining_icon.png"
 import ModalDining from "../components/diningHallModal";
+import DiningMarker from "../components/diningMarker";
 
 
 
@@ -14,6 +15,7 @@ const LocationDining = () => {
 
 
     const [mapRegion, setMapRegion] = useState();
+    const [modal, setModal] = useState(false)
 
     const NWCoords = {
         latitude: 41.81150,
@@ -24,6 +26,8 @@ const LocationDining = () => {
         latitude: 41.80541791743974,
         longitude: -72.2588591845334
     }
+
+    
 
     async function getCurrentLocation() {
         const { status } = await Location.requestForegroundPermissionsAsync()
@@ -59,16 +63,19 @@ const LocationDining = () => {
                 showsUserLocation={true}
                            
             >
-                <MapView.Marker
-                    coordinate={NWCoords}
-                    title={"Northwest Dining hall"}
+                {/* <MapView.Marker coordinate={NWCoords} title={"Northwest Dining hall"}
                     description={"Dining Hall"}  
-                    onPress={() => console.log('awesome')}          
+                    onPress={() => setModal(true)}          
                 >
-                    <TouchableWithoutFeedback onPress={() => console.log("Awesome")}>
-                        <Image source={dining} />
-                    </TouchableWithoutFeedback>
-                </MapView.Marker>
+                    <Image source={dining} />
+                    <ModalDining isVisible={modal} modalCancel={() => setModal(false)} />
+                </MapView.Marker> */}
+                <DiningMarker diningCoords={NWCoords} diningTitle="Northwest Dining hall" >
+                    <Image source={dining} />
+                    {/* <ModalDining isVisible={modal} modalCancel={() => setModal(false)} /> */}
+                </DiningMarker>
+
+
                 <MapView.Marker
                     coordinate={putnameCoords}
                     title={"Putnam Dining hall"} 
@@ -82,6 +89,8 @@ const LocationDining = () => {
         </View>
     )
 }
+
+
 
 const styles = StyleSheet.create({
     map: {

@@ -21,6 +21,7 @@ const ModalDining = props => {
             </View>
         );
     }
+    
     else {
         return (
             null
@@ -35,3 +36,4 @@ const styles= StyleSheet.create({
 })
 
 export default ModalDining;
+
