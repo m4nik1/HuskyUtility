@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 
 import { Image, View, StyleSheet, Dimensions, Text, Alert} from "react-native"
 import * as Location from "expo-location";
-import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
+import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import moment from "moment";
 import { TouchableWithoutFeedback } from "react-native-web";
 import dining from "../assets/dining_icon.png"
@@ -22,7 +22,9 @@ const LocationDining = () => {
         longitude: -72.25972
     }
 
-    const putnameCoords = {
+    const markerImage = <Image source={dining} />;
+
+    const putnamCoords = {
         latitude: 41.80541791743974,
         longitude: -72.2588591845334
     }
@@ -63,21 +65,14 @@ const LocationDining = () => {
                 showsUserLocation={true}
                            
             >
-                {/* <MapView.Marker coordinate={NWCoords} title={"Northwest Dining hall"}
-                    description={"Dining Hall"}  
-                    onPress={() => setModal(true)}          
-                >
-                    <Image source={dining} />
-                    <ModalDining isVisible={modal} modalCancel={() => setModal(false)} />
-                </MapView.Marker> */}
-                <DiningMarker diningCoords={NWCoords} diningTitle="Northwest Dining hall" >
-                    <Image source={dining} />
-                    {/* <ModalDining isVisible={modal} modalCancel={() => setModal(false)} /> */}
-                </DiningMarker>
+               <Marker onPress={() => setModal(true)} title={"Northwest Dining hall"} coordinate={NWCoords} description={"Dining hall"}>
+                   {markerImage}
+                   <ModalDining isVisible={modal} modalCancel={() => modalSet(false)} />
+                </Marker>
 
 
                 <MapView.Marker
-                    coordinate={putnameCoords}
+                    coordinate={putnamCoords}
                     title={"Putnam Dining hall"} 
                     description={"Dining Hall"}           
                  >

@@ -11,7 +11,7 @@ const ModalDining = props => {
     if(props.isVisible) {
         return (
             <View>
-                <Modal animationType="slide" visible={props.isVisible} transparent={true}>
+                <Modal animationType="slide" visible={props.isVisible} transparent={true}> 
                     <Card style={styles.modalView}>
                         <Text>Dining Hall Title</Text>
                         <Text>Menu</Text>
