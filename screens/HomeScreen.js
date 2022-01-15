@@ -37,6 +37,7 @@ const Home = props => {
                                 Time={itemData.item.time}
                                 prof={itemData.item.profName}
                                 location={itemData.item.location}
+                                mode={itemData.item.mode}
                             />
                         )}
                     />
@@ -73,6 +74,7 @@ const styles = StyleSheet.create({
         width: "100%"
     },
     backBtn: {
+        marginTop: 50,
         marginRight: 300
     }
 })

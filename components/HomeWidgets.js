@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 
 import { View, Text, ScrollView, StyleSheet, FlatList, Pressable } from "react-native";
-import Card from "../components/Card";
+import Card from "./Card";
 import moment from "moment";
 import { classItems } from "../data/classData";
 
-const ClassHomeWidget = props => {
+const HomeWidgets = props => {
 
     const [day, changeDay] = useState(props.day);
 
     return (
-        <Pressable onPress={() => props.screenRequest("classes")}>
+        <Pressable onPress={() => props.screenRequest(props.screen)}>
             <Card style={styles.classCard}>
                 <View style={styles.nameView}>
-                    <Text style={styles.classTitle}>Today's Classes: </Text>
+                    <Text style={styles.classTitle}>{props.title}</Text>
                 </View>
                 <FlatList
                     keyExtractor={item => item.id}
@@ -42,7 +42,9 @@ const styles = StyleSheet.create({
         width:"80%",
         height: 200,
         marginTop: 70,
-        marginLeft: 20,
+        marginLeft: 40,
+        alignContent: 'center',
+        alignItems: 'center'
     },
     nameView: {
         alignItems: "center",
@@ -70,4 +72,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default ClassHomeWidget;
+export default HomeWidgets;

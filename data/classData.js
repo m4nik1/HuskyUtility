@@ -9,5 +9,5 @@ export const classItems = {
     Thursday: [{ className: "Stats 3025Q", time:"9:30am - 10:45am", profName: "Emmy Karim", location:"ARJ 143", hour: 9, minute: 30 }, 
                { className:"CSE 3666", time:"2:00pm - 3:15pm", profName: "Caiwen Ding", location:"UTEB 175", hour: 2, minute: 0 },
                { className:"CSE 3500", time:"3:30pm - 4:45pm", profName:"Derek Aguiar", location:"CAST 212", hour: 3, minute: 30}],
-    Sunday: [{ className:"Test class", time:"8:30pm - 9:30pm", profName: "Manik Soomro", location:"ITE 134", hour: 8, minute: 30 }]
+    Saturday: [{ className:"Test class", time:"8:30pm - 9:30pm", profName: "Manik Soomro", location:"ITE 134", hour: 8, minute: 30, mode: "Online" }]
 }

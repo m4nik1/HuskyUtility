@@ -53,7 +53,7 @@ const ClassCard = props => {
         {props.children}
         <Text>{props.ClassName}</Text>
         { duration ? timeLeft : otherTimeLeft}
-        {/* { timeLeft } */}
+        <Text style={(props.mode === "Online") ? {color: "#91c950"} : {color:"black"}}>{props.mode}</Text>
         <Text style={styles.timeText}>{props.Time}</Text>
         <Text style={styles.profText}>{props.prof}</Text>
         <View style={styles.locationText}>
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 20,
     width: 330,
-    height: 100,
+    height: 130,
     marginTop: 50,
     alignContent:"center",
     marginLeft: 20
@@ -89,7 +89,10 @@ const styles = StyleSheet.create({
     marginLeft: 190,
     color: "green",
     fontSize: 12
-  }
+  },
+  locationText: {
+    marginBottom: 30
+  },
 })
 
 export default ClassCard;

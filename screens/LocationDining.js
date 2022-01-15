@@ -7,14 +7,15 @@ import moment from "moment";
 import { TouchableWithoutFeedback } from "react-native-web";
 import dining from "../assets/dining_icon.png"
 import ModalDining from "../components/diningHallModal";
-import DiningMarker from "../components/diningMarker";
 
 
 
-const LocationDining = () => {
+
+const LocationDining = props => {
 
 
     const [mapRegion, setMapRegion] = useState();
+    const [diningModalTitle, setTitle] = useState();
     const [modal, setModal] = useState(false)
 
     const NWCoords = {
@@ -50,39 +51,52 @@ const LocationDining = () => {
         setMapRegion(currentRegion)
     }
 
+    function modalSet(state, name) {
+        setModal(state)
+        setTitle(name)
+    }
+
     useEffect(() => {
         getCurrentLocation();
     }, [])
-    
-    return (
-        <View>
-            <MapView 
-                style={styles.map} 
-                provider={PROVIDER_GOOGLE}
-                region={mapRegion}
-                followsUserLocation={true}
-                zoomEnabled={true}
-                showsUserLocation={true}
-                           
-            >
-               <Marker onPress={() => setModal(true)} title={"Northwest Dining hall"} coordinate={NWCoords} description={"Dining hall"}>
-                   {markerImage}
-                   <ModalDining isVisible={modal} modalCancel={() => modalSet(false)} />
-                </Marker>
 
 
-                <MapView.Marker
-                    coordinate={putnamCoords}
-                    title={"Putnam Dining hall"} 
-                    description={"Dining Hall"}           
-                 >
-                    <TouchableWithoutFeedback onPress={() => alert.alert("Awesome")}>
-                        <Image source={dining} />
-                    </TouchableWithoutFeedback>
-                 </MapView.Marker>
-            </MapView>
-        </View>
-    )
+
+    if(props.shouldRengar) {
+        return (
+            <View>
+                <MapView 
+                    style={styles.map}
+                    region={mapRegion}
+                    // followsUserLocation={true}
+                    // zoomEnabled={true}
+                    // showsUserLocation={true}
+                            
+                >
+                <Marker onPress={() => modalSet(true, "Northwest Dining hall")} title={"Northwest Dining hall"} coordinate={NWCoords} description={"Dining hall"}>
+                    {markerImage}
+                    </Marker>
+
+
+                    <MapView.Marker
+                        coordinate={putnamCoords}
+                        title={"Putnam Dining hall"} 
+                        description={"Dining Hall"}           
+                    >
+                        <TouchableWithoutFeedback onPress={() => alert.alert("Awesome")}>
+                            <Image source={dining} />
+                        </TouchableWithoutFeedback>
+                    </MapView.Marker>
+                </MapView>
+                <ModalDining title={diningModalTitle} isVisible={modal} modalCancel={(bool) => modalSet(bool)} />
+            </View>
+        )
+    }
+    else {
+        return (
+            null
+        )
+    }
 }
 
 

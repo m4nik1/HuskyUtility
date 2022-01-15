@@ -1,32 +1,24 @@
 import React, { useEffect, useState } from "react";
 
 import { View, Text, ScrollView, StyleSheet, FlatList } from "react-native";
-import ClassHomeWidget from "../components/classWidget"
+import HomeWidgets from "./HomeWidgets"
 import { classItems } from "../data/classData";
 
-const Home2 = props => {
+const ClassesCard = props => {
 
     const [data, changeData] = useState(classItems);
 
     const screenCallback = (screen) => {
         props.changeScreen(screen)
     }
-
-    if(props.shouldRengar) {
         return (
             <View>
-                <ClassHomeWidget day={props.currentDay} screenRequest={(screen2) => screenCallback(screen2)} />
+                <HomeWidgets title={"Today's Classes: "} screen="classes" day={props.currentDay} screenRequest={(screen2) => screenCallback(screen2)} />
             </View> 
             
         )
-    }
-    else {
-        return(
-            null
-        );
-    }
 }
 
 const styles = StyleSheet.create({})
 
-export default Home2;
+export default ClassesCard;
