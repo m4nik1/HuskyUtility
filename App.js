@@ -6,6 +6,7 @@ import moment from "moment";
 import LocationDining from './screens/LocationDining';
 import ClassHomeWidget from './components/HomeWidgets';
 import LocationCard from './components/LocationCard';
+import DiningHallStatus from './data/UConnDining/DiningHallStatus';
 
 export default function App() {
 
@@ -26,6 +27,7 @@ export default function App() {
       <LocationDining shouldRengar={screen === "Dining"} />
       <ClassesCard currentDay={day} shouldRengar={screen === "home"} changeScreen={(screen2) => {changeScreen(screen2)}} />
       <LocationCard currentDay={day} changeScreen={(screen2) => {changeScreen(screen2)}} />
+      <DiningHallStatus />
     </View>
 
     // <View>

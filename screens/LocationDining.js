@@ -68,13 +68,14 @@ const LocationDining = props => {
                 <MapView 
                     style={styles.map}
                     region={mapRegion}
+                    // For now its disabled for IOS purposes
                     // followsUserLocation={true}
                     // zoomEnabled={true}
                     // showsUserLocation={true}
                             
                 >
-                <Marker onPress={() => modalSet(true, "Northwest Dining hall")} title={"Northwest Dining hall"} coordinate={NWCoords} description={"Dining hall"}>
-                    {markerImage}
+                    <Marker onPress={() => modalSet(true, "Northwest Dining hall")} title={"Northwest Dining hall"} coordinate={NWCoords} description={"Dining hall"}>
+                        {markerImage}
                     </Marker>
 
 
