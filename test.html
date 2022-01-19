@@ -1,0 +1,252 @@
+
+
+<!-- The following is required by Aurora Information Systems, DO NOT MODIFY OR REMOVE -->
+   <!-- fieldfilt.aspx, Version 3.1.0  -->
+<!-- End of Aurora Information Systems Required Text -->
+
+<!-- The following is required by Aurora Information Systems, DO NOT MODIFY OR REMOVE -->
+   <!-- nauserdata.aspx, Version 3.0  -->
+<!-- End of Aurora Information Systems Required Text --> 
+
+<html>
+<head>
+<title>This Week's Menus</title>
+<link rel="stylesheet" href="foodpro_web_ina.css" type="text/css">
+</head>
+<SCRIPT LANGUAGE=JAVASCRIPT>
+
+var popImg = null
+var popDiag = null
+var curHeight = null
+var curWidth = null
+var popTop = null
+var popLeft = null
+
+function openPopImg(picName,windowWidth,windowHeight) {
+  closePopImg();
+  curHeight=screen.availHeight;
+  curWidth=screen.availWidth;
+  popTop = 75;
+  popLeft = eval(curWidth - windowWidth - 25);
+  popImg=window.open(picName, '_new', "toolbar=no,scrollbars=no,resizable=yes,top=" + popTop + ",left=" + popLeft + ",width=" + (parseInt(windowWidth)+0) + ",height=" + (parseInt(windowHeight)+0));
+}
+function closePopImg(){
+  if(navigator.appName != "Microsoft Internet Explorer" || parseInt(navigator.appVersion) >= 4) if(popImg != null) if(!popImg.closed) popImg.close()
+}
+function setStatus(msg){
+  status = msg;
+  return true;
+}
+
+var newWindowOptions = null
+var newWindowTop = null
+var newWindowLeft = null
+
+function openDescWin(descText, dispName) {  
+  if(descText=="")
+  {     
+     closeDescWin()
+  }
+  else
+  {
+     closeDescWin();
+     newWindowTop = screen.height - (screen.height * 0.75) - 80;
+     newWindowLeft = screen.width - 310;
+     newWindowOptions = "toolbar=no,width=375,height=125,top=" + newWindowTop + ",left=" + newWindowLeft + ",alwaysRaised=yes";     
+     popDiag=window.open("", "Recipe_Desc", newWindowOptions);
+     descText = descText.replace("~","'");
+     dispName = dispName.replace("~","'"); 
+     popDiag.document.write("<html><head><title>" + dispName + "</title><link rel='stylesheet' href='foodpro_web_ina.css' type='text/css'></head><body><div class='shortmenuproddesc'>" + descText + "</div></body></html>");
+  }
+}
+function closeDescWin(){   
+   if(navigator.appName != "Microsoft Internet Explorer" || parseInt(navigator.appVersion) >= 4) if(popDiag != null) if(!popDiag.closed) popDiag.close();
+}
+</SCRIPT>
+
+<body class="shortmenubody" onUnload="closePopImg();">
+  <table width="100%" border="0" cellpadding="0" cellspacing="10">
+    <tr>
+      <td colspan="2" class="headbody"><center>
+  <table class="headcontainer">
+    <tr>
+      <td align="right" width=20% rowspan="2">
+        <img src="logo.gif" height="119" width="170" alt="Logo">
+      </td>
+      <td align="center" valign="top">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td>
+              <div class="headsysname">UCONN Dining Services</div>
+              <div class="headtitle">This Week's Menus</div>
+              <div class="headlocation">Buckley Dining Hall</div><br>
+            </td>
+
+            <td align="center" valign="top">
+              <form action="search.aspx" method="post">
+                <input type="hidden" name="Action" value="SEARCH">
+                <input type="hidden" name="strCurSearchLocs" value="03[*]Buckley Dining Hall">
+                <input type="hidden" name="strCurSearchDays" value="1/18/2022">
+                <div class="searchtext">Find Your Favorite Food...<div>
+                <div class="searchtext"><input type="text" name="strCurKeywords" value=""><input type="submit" value="Search"></div>
+                <div class="searchlink"><a href="search.aspx">[Advanced Search]</a></div>
+              </form>
+            </td>
+
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="right">
+
+	<SCRIPT>
+	  function clearFilters() {
+             var curMenuhref = location.href;
+	     document.cookie = "SavedAllergens=;Path=/;"
+             document.cookie = "SavedWebCodes=;Path=/;"
+             document.cookie = "SavedIngredients=;Path=/;"
+	     document.location.href="?action=clearfilters&sName=UCONN+Dining+Services&locationNum=03&locationName=Buckley+Dining+Hall&naFlag=1&WeeksMenus=This+Week%27s+Menus&myaction=read&dtdate=1%2f18%2f2022";        
+             parent.frames[2].location.href = curMenuhref;
+	}
+	</SCRIPT>
+
+<a href='#' onClick='javascript:window.open("allergenfilter.aspx?strcurlocationnum=03","AllergenFilter","width=650,height=450,location=no,status=no,toolbar=yes,scrollbars=yes,resizable=yes")'><span class='allergenfilterinclinks'>Set Filters</span></a>
+
+<!-- The following is required by Aurora Information Systems, DO NOT MODIFY OR REMOVE -->
+   <!-- allergenfilterinc.aspx, Version 2.9  -->
+<!-- End of Aurora Information Systems Required Text -->  </div></td>
+    </tr>          
+  </table>
+</center>
+
+<!-- The following is required by Aurora Information Systems, DO NOT MODIFY OR REMOVE -->
+   <!-- head.aspx, Version 2.6  -->
+<!-- End of Aurora Information Systems Required Text -->
+        
+       
+
+
+
+
+          
+     
+        </td>
+    </tr>
+    <tr>
+      <td width="16%" valign="top" class="datebody">
+  <table border="0"  align="center" width=95% cellspacing="0" cellpadding="0">
+    <tr>
+      <td><div class="dateselectheader">Select a date:</div></td>
+    </tr> 
+    
+    <tr>
+      <td align="left">
+        <span class='datechevrons'>&raquo;&nbsp;</span><span class='dateselections'><a href="shortmenu.aspx?sName=UCONN+Dining+Services&locationNum=03&locationName=Buckley+Dining+Hall&naFlag=1&WeeksMenus=This+Week%27s+Menus&myaction=read&dtdate=1%2f17%2f2022" onMouseOver="window.status = 'Select a date.'; return true;" onMouseOut="window.status= ' ';">Monday, January 17</a></span>
+
+      </td>    
+    </tr>
+    
+    <tr>
+      <td align="left">
+        <span class='datechevrons'>&raquo;&nbsp;</span><span class='dateselections'><a href="shortmenu.aspx?sName=UCONN+Dining+Services&locationNum=03&locationName=Buckley+Dining+Hall&naFlag=1&WeeksMenus=This+Week%27s+Menus&myaction=read&dtdate=1%2f18%2f2022" onMouseOver="window.status = 'Select a date.'; return true;" onMouseOut="window.status= ' ';">Tuesday, January 18</a></span>
+
+      </td>    
+    </tr>
+    
+    <tr>
+      <td align="left">
+        <span class='datechevrons'>&raquo;&nbsp;</span><span class='dateselections'><a href="shortmenu.aspx?sName=UCONN+Dining+Services&locationNum=03&locationName=Buckley+Dining+Hall&naFlag=1&WeeksMenus=This+Week%27s+Menus&myaction=read&dtdate=1%2f19%2f2022" onMouseOver="window.status = 'Select a date.'; return true;" onMouseOut="window.status= ' ';">Wednesday, January 19</a></span>
+
+      </td>    
+    </tr>
+    
+    <tr>
+      <td align="left">
+        <span class='datechevrons'>&raquo;&nbsp;</span><span class='dateselections'><a href="shortmenu.aspx?sName=UCONN+Dining+Services&locationNum=03&locationName=Buckley+Dining+Hall&naFlag=1&WeeksMenus=This+Week%27s+Menus&myaction=read&dtdate=1%2f20%2f2022" onMouseOver="window.status = 'Select a date.'; return true;" onMouseOut="window.status= ' ';">Thursday, January 20</a></span>
+
+      </td>    
+    </tr>
+    
+    <tr>
+      <td align="left">
+        <span class='datechevrons'>&raquo;&nbsp;</span><span class='dateselections'><a href="shortmenu.aspx?sName=UCONN+Dining+Services&locationNum=03&locationName=Buckley+Dining+Hall&naFlag=1&WeeksMenus=This+Week%27s+Menus&myaction=read&dtdate=1%2f21%2f2022" onMouseOver="window.status = 'Select a date.'; return true;" onMouseOut="window.status= ' ';">Friday, January 21</a></span>
+
+      </td>    
+    </tr>
+    
+    <tr>
+      <td align="left">
+        <span class='datechevrons'>&raquo;&nbsp;</span><span class='dateselections'><a href="shortmenu.aspx?sName=UCONN+Dining+Services&locationNum=03&locationName=Buckley+Dining+Hall&naFlag=1&WeeksMenus=This+Week%27s+Menus&myaction=read&dtdate=1%2f22%2f2022" onMouseOver="window.status = 'Select a date.'; return true;" onMouseOut="window.status= ' ';">Saturday, January 22</a></span>
+
+      </td>    
+    </tr>
+    
+    <tr>
+      <td align="left">
+        <span class='datechevrons'>&raquo;&nbsp;</span><span class='dateselections'><a href="shortmenu.aspx?sName=UCONN+Dining+Services&locationNum=03&locationName=Buckley+Dining+Hall&naFlag=1&WeeksMenus=This+Week%27s+Menus&myaction=read&dtdate=1%2f23%2f2022" onMouseOver="window.status = 'Select a date.'; return true;" onMouseOut="window.status= ' ';">Sunday, January 23</a></span>
+
+      </td>    
+    </tr>
+    
+    <tr>
+      <td align="left">
+        <span class='datechevrons'>&raquo;&nbsp;</span><span class='dateselections'><a href="shortmenu.aspx?sName=UCONN+Dining+Services&locationNum=03&locationName=Buckley+Dining+Hall&naFlag=1&WeeksMenus=This+Week%27s+Menus&myaction=read&dtdate=1%2f24%2f2022" onMouseOver="window.status = 'Select a date.'; return true;" onMouseOut="window.status= ' ';">Monday, January 24</a></span>
+
+      </td>    
+    </tr>
+    
+  </table>
+  
+      <br>
+      <table class="datelegendcontainer">
+        <tr><td><div class="datelegendheader">Legend</div></td></tr>
+        <tr><td align="left"><span class='datelegendicons'><span style='color: #000000'><img src=LegendImages/nuts.gif alt='' width='16' height='16'>=Contains Nuts</span></span></td></tr><tr><td align="left"><span class='datelegendicons'><span style='color: #000000'><img src=LegendImages/vegetarian.gif alt='' width='16' height='16'>=Vegetarian</span></span></td></tr><tr><td align="left"><span class='datelegendicons'><span style='color: #000000'><img src=LegendImages/vegan.gif alt='' width='16' height='16'>=Vegan</span></span></td></tr><tr><td align="left"><span class='datelegendicons'><span style='color: #000000'><img src=LegendImages/glutenfree.gif alt='' width='16' height='16'>=Gluten Friendly: Items prepared without gluten ingredients.</span></span></td></tr><tr><td align="left"><span class='datelegendicons'><span style='color: #000000'><img src=LegendImages/sodium.gif alt='' width='16' height='16'>=Less Sodium: These menu items contain less than 500mg of sodium per serving.</span></span></td></tr><tr><td align="left"><span class='datelegendicons'><span style='color: #000000'><img src=LegendImages/smartcheck.gif alt='' width='16' height='16'>=Smart Check: An entrée that is <35% kcal from fat, <10% kcal from sat fat kcal, < 700mg sodium, >9.5gm protein or contains salmon, nuts/seeds, or avocados. Or  a veg entree that has >3g of fiber.</span></span></td></tr><tr><td align="left"><span class='datelegendicons'><span style='color: #000000'><img src=LegendImages/nogarlicandonions.gif alt='' width='16' height='16'>=A vegetarian or vegan entree offfered at lunch or dinner that does not contain onions or garlic.</span></span></td></tr>
+      </table>
+      
+<!-- The following is required by Aurora Information Systems, DO NOT MODIFY OR REMOVE -->
+   <!-- date.aspx, Version 2.6  -->
+<!-- End of Aurora Information Systems Required Text --> </td>
+      <td width="84%" valign="top">      
+        <div class="shortmenutitle">Menus for Tuesday, January 18, 2022</div>          
+          
+            <br>
+            <table align="center" border="0" width=60%>
+              <tr>
+                <td><div class="shortmenuinstructs">No Data Available</div></td>
+              </tr>
+            </table>
+          
+            <table width=100% border="0" align="center"> 
+              <tr>    
+                <td><div class="shortmenufooter">Menu choices are suject to availability.</div></td>
+              </tr>
+            </table>
+          
+        <!-- The following is required by Aurora Information Systems -- DO NOT MODIFY OR REMOVE -->
+          <br>
+          <div class="poweredbyfoodpro">Powered by FoodPro<SUP>&#174;</SUP></div>
+        <!-- End of Aurora Information Systems Required Text -->
+          <form>
+          <table align="center" border="0" width=80%>
+            <tr>
+              <td align="center">
+                <input type="button" value="Return to Location Selection" onClick="top.location.href='https://dining.uconn.edu/nutrition/';"> 
+              </td>
+              
+                <td align="left">
+                  <input type="button" value="Back to Dining Services" onClick="top.location.href='http://www.dining.uconn.edu/';">
+                </td>
+              
+            </tr>
+          </table>
+          </form>          
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+
+<!-- The following is required by Aurora Information Systems, DO NOT MODIFY OR REMOVE -->
+   <!-- shortmenu.aspx, Version 3.1.0  -->
+<!-- End of Aurora Information Systems Required Text --> 

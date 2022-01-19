@@ -1,17 +1,15 @@
 import React, { useEffect } from 'react'
-
+import * as cheerio from 'cheerio'
+import axios from "axios"
 import { Image, View, StyleSheet, Dimensions, Text, Alert, Button} from "react-native"
 
 const DiningHallStatus = () => {
-    const baseURL = "http://nutritionanalysis.dds.uconn.edu/shortmenu.aspx?sName=UCONN+Dining+Services&locationNum=15&locationName=Northwest+Marketplace&naFlag=1"
+    const baseURL = ""
 
     async function fetchHtmlData() {
-        await fetch(baseURL)
-            .then(response => {
-                console.log(response.json())
-            })
-            .then(data => {
-                console.log(data)
+        axios.get(baseURL)
+            .then(res => {
+                console.log(res.data)
             })
     }
 

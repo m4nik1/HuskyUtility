@@ -13,6 +13,8 @@
         "chokidar": "^3.4.0"
     },
     "dependencies": {
+        "axios": "^0.25.0",
+        "cheerio": "^1.0.0-rc.10",
         "expo": "^44.0.0",
         "expo-cli": "^4.3.0",
         "expo-location": "~13.0.4",
