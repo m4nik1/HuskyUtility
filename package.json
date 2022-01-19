@@ -1,32 +1,19 @@
 {
-    "name": "personalapp",
-    "version": "1.0.0",
-    "main": "node_modules/expo/AppEntry.js",
-    "scripts": {
-        "start": "expo start",
-        "android": "expo start --android",
-        "ios": "expo start --ios",
-        "web": "expo start --web",
-        "eject": "expo eject"
-    },
-    "resolutions": {
-        "chokidar": "^3.4.0"
-    },
-    "dependencies": {
-        "expo": "^44.0.0",
-        "expo-cli": "^4.3.0",
-        "expo-location": "~13.0.4",
-        "expo-notifications": "~0.13.3",
-        "expo-status-bar": "~1.1.0",
-        "moment": "^2.29.1",
-        "react": "^17.0.1",
-        "react-dom": "17.0.1",
-        "react-native": "^0.64.3",
-        "react-native-maps": "^0.28.1",
-        "react-native-web": "0.17.1"
-    },
-    "devDependencies": {
-        "@babel/core": "^7.12.9"
-    },
-    "private": true
+  "name": "webserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m4nik1/personalUconn.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/m4nik1/personalUconn/issues"
+  },
+  "homepage": "https://github.com/m4nik1/personalUconn#readme"
 }
