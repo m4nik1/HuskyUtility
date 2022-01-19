@@ -30,7 +30,7 @@ const server = http.createServer(function (req, res) {
     res.end('Hello World');
 })
 
-server.listen(port, '127.0.0.1', () => {
+server.listen(port, () => {
     console.log(`Server is running`);
     diningScrape()
 })
