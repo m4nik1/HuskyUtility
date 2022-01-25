@@ -27,7 +27,7 @@ export default function App() {
       <LocationDining shouldRengar={screen === "Dining"} />
       <ClassesCard currentDay={day} shouldRengar={screen === "home"} changeScreen={(screen2) => {changeScreen(screen2)}} />
       <LocationCard currentDay={day} changeScreen={(screen2) => {changeScreen(screen2)}} />
-      {/* <DiningHallStatus /> */}
+      <DiningHallStatus />
     </View>
 
     // <View>
