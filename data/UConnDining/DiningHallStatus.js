@@ -20,3 +20,4 @@ const DiningHallStatus = () => {
 }
 
 export default DiningHallStatus;
+
