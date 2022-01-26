@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { View, Modal, StyleSheet, Text, Button, Pressable } from "react-native"
+import { ScrollView } from "react-native-web";
 import DiningHallStatus from "../data/UConnDining/DiningHallStatus";
 import Card from "./Card";
 
@@ -19,9 +20,11 @@ const ModalDining = props => {
         return (
             <Modal transparent={true} presentationStyle="overFullScreen" animationType="slide">
                 <Card style={styles.modalView}>
-                    <Text>{props.title}</Text>
-                    <DiningHallStatus />
-                    <Button title='Exit' onPress={() => cancelModal()} />
+                    {/* <ScrollView> */}
+                        <Text>{props.title}</Text>
+                        <DiningHallStatus />
+                        <Button title='Exit' onPress={() => cancelModal()} />
+                    {/* </ScrollView> */}
                 </Card>
             </Modal>
         );
@@ -36,8 +39,8 @@ const ModalDining = props => {
 
 const styles= StyleSheet.create({
     modalView: {
-        marginTop: 500,
-        height: 350
+        marginTop: 200,
+        height: 610
     },
 })
 

@@ -10,9 +10,13 @@ function MealCard(props) {
         let stationsTitles = []
 
         for(j in stationData) {
+            // console.log(stationData[j])
             stationsTitles.push(
                 <View>
                     <Text style={styles.stationTitle}>{stationData[j]["Station_Name"]}</Text>
+                    { stationData[j]["food"].map((foods) => {
+                        return <Text style={styles.menuItems}>{foods}</Text>
+                    }) }
                 </View>
             )
         }
@@ -40,7 +44,7 @@ const styles = StyleSheet.create({
         color: '#7a80e8',
     },
     menuItems: {
-        fontSize: 15
+        fontSize: 15,
     },
     container: {
         padding: 20
