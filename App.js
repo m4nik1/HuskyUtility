@@ -6,7 +6,7 @@ import moment from "moment";
 import LocationDining from './screens/LocationDining';
 import ClassHomeWidget from './components/HomeWidgets';
 import LocationCard from './components/LocationCard';
-import DiningHallStatus from './data/UConnDining/DiningHallStatus';
+import ModalDining from './components/diningHallModal';
 
 export default function App() {
 
@@ -21,20 +21,19 @@ export default function App() {
     }
   }
 
+
   return (
     <View style={styles.container}>
       <Home current_day={day} shouldRengar={screen === "classes"} changeScreen={(screen2) => {changeScreen(screen2)}} />
       <LocationDining shouldRengar={screen === "Dining"} />
       <ClassesCard currentDay={day} shouldRengar={screen === "home"} changeScreen={(screen2) => {changeScreen(screen2)}} />
       <LocationCard currentDay={day} changeScreen={(screen2) => {changeScreen(screen2)}} />
-      {/* <DiningHallStatus /> */}
+      <ModalDining isVisible={true} />
     </View>
-
-    // <View>
-    //   <LocationDining />
-    // </View>
   );
 }
+
+
 
 const styles = StyleSheet.create({
   container: {

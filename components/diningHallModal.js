@@ -21,7 +21,6 @@ const ModalDining = props => {
                 <Card style={styles.modalView}>
                     <Text>{props.title}</Text>
                     <DiningHallStatus />
-                    <Text>Menu</Text>
                     <Button title='Exit' onPress={() => cancelModal()} />
                 </Card>
             </Modal>
@@ -37,7 +36,8 @@ const ModalDining = props => {
 
 const styles= StyleSheet.create({
     modalView: {
-        marginTop: 680
+        marginTop: 500,
+        height: 350
     },
 })
 
