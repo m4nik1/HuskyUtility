@@ -74,23 +74,16 @@ const LocationDining = props => {
                         // For now its disabled for testing purposes
                         // followsUserLocation={true}
                         // zoomEnabled={true}
-                        // showsUserLocation={true}
-                                
+                        // showsUserLocation={true}       
                     >
                         <Marker onPress={() => modalSet(true, "Northwest Dining hall")} title={"Northwest Dining hall"} coordinate={NWCoords} description={"Dining hall"}>
                             {markerImage}
                         </Marker>
 
-
-                        <MapView.Marker
-                            coordinate={putnamCoords}
-                            title={"Putnam Dining hall"} 
-                            description={"Dining Hall"}           
-                        >
-                            <TouchableWithoutFeedback onPress={() => alert.alert("Awesome")}>
-                                <Image source={dining} />
-                            </TouchableWithoutFeedback>
-                        </MapView.Marker>
+                        
+                        <Marker onPress={() => modalSet(true, "Putnam Dining Hall")} title={"Putnam Dining Hall"} coordinate={putnamCoords} description={"Dining hall"}>
+                                {markerImage}
+                        </Marker>
                     </MapView>
                     <ModalDining title={diningModalTitle} isVisible={modal} modalCancel={() => modalClose(false)} />
             </View>

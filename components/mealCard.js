@@ -43,11 +43,9 @@ function MealCard(props) {
             <TouchableOpacity style={styles.collpaseList, !open && {height:27}} onPress={() => collpaseList()}>
                 <Text style={styles.mealTitle}>{props.meal}</Text>
                 {open && (
-                    // <View><Text>Awesome Sauce</Text></View>
                     [stations()]
                 )}
             </TouchableOpacity>
-            {/* {stations()} */}
         </View>
     )
 }
@@ -68,7 +66,7 @@ const styles = StyleSheet.create({
         fontSize: 13,
     },
     container: {
-        padding: 20,
+        padding: 20
     },
     collpaseList: {
         width: '100%',

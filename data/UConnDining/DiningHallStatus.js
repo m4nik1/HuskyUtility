@@ -10,20 +10,20 @@ const DiningHallStatus = () => {
 
     const [data, changeData] = useState()
 
+    let diningHallName = props.title
+
     function mealParsing() {
         let mealData;
         axios.get(baseURL).then((res) => {
-            // console.log(res.data)
             changeData(res.data)
         })
 
         let mealComponents = [];
-        // console.log(data[0]["stations"])
 
         for(var i in data) {
-            // console.log(data[i]["mealName"])
             mealComponents.push(
-                <MealCard 
+                <MealCard
+                    key={data[i]["mealName"]} 
                     meal = {data[i]["mealName"]}
                     stationTitle = {data[i]["stations"]}
                 />
@@ -32,10 +32,6 @@ const DiningHallStatus = () => {
         return mealComponents
 
     }
-
-    // useEffect(() => {
-    //     // mealParsing()
-    // }, [])
 
     return (
         <View style={styles.menu}>
@@ -47,7 +43,7 @@ const DiningHallStatus = () => {
 
 const styles = StyleSheet.create({
     menu: {
-        marginTop: 50,
+        marginTop: 15,
         overflow: 'scroll'
     },
     mealTitle: {

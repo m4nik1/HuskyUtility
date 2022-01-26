@@ -17,11 +17,9 @@ const ModalDining = props => {
             
               <Modal onRequestClose={() => {cancelModal()}} transparent={true} presentationStyle="overFullScreen" animationType="slide">
                 <Card style={styles.modalView}>
-                     {/* <ScrollView> */}
-                          <Text>{props.title}</Text>
-                        <DiningHallStatus />
-                      {/* </ScrollView> */}
-                      <Button title="Back to maps" onPress={() => cancelModal()} />
+                    <Text style={styles.diningHall}>{props.title}</Text>
+                    <DiningHallStatus name={props.title} />
+                    <Button title="Back to maps" onPress={() => cancelModal()} />
                 </Card>
             </Modal>
         );
@@ -45,6 +43,12 @@ const styles= StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 4,
+    },
+    diningHall: {
+        fontSize: 30,
+        fontWeight: '300',
+        alignSelf: 'center'
+
     },
 })
 
