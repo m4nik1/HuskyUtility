@@ -55,6 +55,9 @@ const LocationDining = props => {
         setModal(state)
         setTitle(name)
     }
+    function modalClose(state) {
+        setModal(state)
+    }
 
     useEffect(() => {
         getCurrentLocation();
@@ -65,31 +68,31 @@ const LocationDining = props => {
     if(props.shouldRengar) {
         return (
             <View>
-                <MapView 
-                    style={styles.map}
-                    region={mapRegion}
-                    // For now its disabled for IOS purposes
-                    // followsUserLocation={true}
-                    // zoomEnabled={true}
-                    // showsUserLocation={true}
-                            
-                >
-                    <Marker onPress={() => modalSet(true, "Northwest Dining hall")} title={"Northwest Dining hall"} coordinate={NWCoords} description={"Dining hall"}>
-                        {markerImage}
-                    </Marker>
-
-
-                    <MapView.Marker
-                        coordinate={putnamCoords}
-                        title={"Putnam Dining hall"} 
-                        description={"Dining Hall"}           
+                    <MapView 
+                        style={styles.map}
+                        region={mapRegion}
+                        // For now its disabled for testing purposes
+                        // followsUserLocation={true}
+                        // zoomEnabled={true}
+                        // showsUserLocation={true}
+                                
                     >
-                        <TouchableWithoutFeedback onPress={() => alert.alert("Awesome")}>
-                            <Image source={dining} />
-                        </TouchableWithoutFeedback>
-                    </MapView.Marker>
-                </MapView>
-                <ModalDining title={diningModalTitle} isVisible={modal} modalCancel={(bool) => modalSet(bool)} />
+                        <Marker onPress={() => modalSet(true, "Northwest Dining hall")} title={"Northwest Dining hall"} coordinate={NWCoords} description={"Dining hall"}>
+                            {markerImage}
+                        </Marker>
+
+
+                        <MapView.Marker
+                            coordinate={putnamCoords}
+                            title={"Putnam Dining hall"} 
+                            description={"Dining Hall"}           
+                        >
+                            <TouchableWithoutFeedback onPress={() => alert.alert("Awesome")}>
+                                <Image source={dining} />
+                            </TouchableWithoutFeedback>
+                        </MapView.Marker>
+                    </MapView>
+                    <ModalDining title={diningModalTitle} isVisible={modal} modalCancel={() => modalClose(false)} />
             </View>
         )
     }

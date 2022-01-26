@@ -1,10 +1,24 @@
 import React, { useEffect, useState } from "react";
 
-import { View, Text, ScrollView, StyleSheet, FlatList, Button } from "react-native";
+import { View, Text, ScrollView, StyleSheet, FlatList, Button, Platform, UIManager, TouchableOpacity, LayoutAnimation } from "react-native";
 
 
 function MealCard(props) {
     let stationData = props.stationTitle
+
+    if(Platform.OS === 'android') {
+        if(UIManager.setLayoutAnimationEnabledExperimental) {
+            UIManager.setLayoutAnimationEnabledExperimental(true)
+        }
+    }
+
+    const [open, setOpen] = useState(false)
+
+
+    function collpaseList() {
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+        setOpen(!open)
+    }
 
     function stations() {
         let stationsTitles = []
@@ -15,7 +29,7 @@ function MealCard(props) {
                 <View>
                     <Text style={styles.stationTitle}>{stationData[j]["Station_Name"]}</Text>
                     { stationData[j]["food"].map((foods) => {
-                        return <Text style={styles.menuItems}>{foods}</Text>
+                        return <Text style={styles.menuItems}>  {foods}</Text>
                     }) }
                 </View>
             )
@@ -26,8 +40,14 @@ function MealCard(props) {
 
     return(
         <View style={styles.container}>
-            <Text style={styles.mealTitle}>{props.meal}</Text>
-            {stations()}
+            <TouchableOpacity style={styles.collpaseList, !open && {height:27}} onPress={() => collpaseList()}>
+                <Text style={styles.mealTitle}>{props.meal}</Text>
+                {open && (
+                    // <View><Text>Awesome Sauce</Text></View>
+                    [stations()]
+                )}
+            </TouchableOpacity>
+            {/* {stations()} */}
         </View>
     )
 }
@@ -36,7 +56,8 @@ function MealCard(props) {
 const styles = StyleSheet.create({
     mealTitle: {
         fontWeight: 'bold',
-        fontSize: 25
+        fontSize: 25,
+        textAlignVertical: 'center'
     },
     stationTitle: {
         fontWeight: 'bold',
@@ -44,10 +65,15 @@ const styles = StyleSheet.create({
         color: '#7a80e8',
     },
     menuItems: {
-        fontSize: 15,
+        fontSize: 13,
     },
     container: {
-        padding: 20
+        padding: 20,
+    },
+    collpaseList: {
+        width: '100%',
+        borderWidth: 1,
+        paddingHorizontal: 20,
     }
 
 })

@@ -38,16 +38,18 @@ const DiningHallStatus = () => {
     // }, [])
 
     return (
-        // <Button title='Press this' onPress={() => fetchHtmlData()} />
-        <View>
+        <View style={styles.menu}>
             {mealParsing()}
-            <Button style={styles.btn} title='Fetch' onPress={() => mealParsing()} />
         </View>
     )
 }
 
 
 const styles = StyleSheet.create({
+    menu: {
+        marginTop: 50,
+        overflow: 'scroll'
+    },
     mealTitle: {
         fontWeight: 'bold',
         fontSize: 25

@@ -1,30 +1,27 @@
 import React, {useState, useEffect} from "react";
 import { View, Modal, StyleSheet, Text, Button, Pressable } from "react-native"
-import { ScrollView } from "react-native-web";
+import { ScrollView, TouchableOpacity, TouchableWithoutFeedback } from "react-native-web";
 import DiningHallStatus from "../data/UConnDining/DiningHallStatus";
 import Card from "./Card";
 
 const ModalDining = props => {
 
     function cancelModal() {
-        props.modalCancel(false)
+        props.modalCancel()
         console.log("Modal is being canceled")
     }
 
 
     if(props.isVisible) {
-        console.log("modal is true")
-
-
-
         return (
-            <Modal transparent={true} presentationStyle="overFullScreen" animationType="slide">
+            
+              <Modal onRequestClose={() => {cancelModal()}} transparent={true} presentationStyle="overFullScreen" animationType="slide">
                 <Card style={styles.modalView}>
-                    {/* <ScrollView> */}
-                        <Text>{props.title}</Text>
+                     {/* <ScrollView> */}
+                          <Text>{props.title}</Text>
                         <DiningHallStatus />
-                        <Button title='Exit' onPress={() => cancelModal()} />
-                    {/* </ScrollView> */}
+                      {/* </ScrollView> */}
+                      <Button title="Back to maps" onPress={() => cancelModal()} />
                 </Card>
             </Modal>
         );
@@ -39,8 +36,15 @@ const ModalDining = props => {
 
 const styles= StyleSheet.create({
     modalView: {
-        marginTop: 200,
-        height: 610
+        height: 610,
+        marginTop: 100,
+        shadowColor: '#000',
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
     },
 })
 
