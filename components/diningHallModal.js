@@ -12,6 +12,8 @@ const ModalDining = props => {
     }
 
 
+    
+
     if(props.isVisible) {
         return (
             
