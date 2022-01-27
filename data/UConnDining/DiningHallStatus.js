@@ -2,41 +2,64 @@ import React, { useEffect, useState } from 'react'
 import * as cheerio from 'cheerio'
 import axios from "axios"
 import { Image, View, StyleSheet, Dimensions, Text, Alert, Button} from "react-native"
+import { color } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes'
+import MealCard from '../../components/mealCard'
 
 const DiningHallStatus = () => {
-    const baseURL = "http://localhost:8081"
+    const baseURL = "http://192.168.1.7:8081/"
 
-    const [status, ChangeStatus] = useState()
+    const [data, changeData] = useState()
 
-    async function fetchHtmlData() {
-        axios.get(baseURL)
-            .then(res => {
-                // console.log(res.data)
+    let diningHallName = props.title
 
-                ChangeStatus(res.data)
-            })
-    }
+    function mealParsing() {
+        let mealData;
+        axios.get(baseURL).then((res) => {
+            changeData(res.data)
+        })
 
+        let mealComponents = [];
 
-    function meals() {
-        for(i in status[0]) {
-            
+        for(var i in data) {
+            mealComponents.push(
+                <MealCard
+                    key={data[i]["mealName"]} 
+                    meal = {data[i]["mealName"]}
+                    stationTitle = {data[i]["stations"]}
+                />
+            )
         }
-    }
+        return mealComponents
 
-    useEffect(() => {
-        fetchHtmlData()
-        console.log(status[0])
-    }, [])
+    }
 
     return (
-        // <Button title='Press this' onPress={() => fetchHtmlData()} />
-        <View>
-            <Text>Open</Text>
+        <View style={styles.menu}>
+            {mealParsing()}
         </View>
-
-
     )
 }
 
+
+const styles = StyleSheet.create({
+    menu: {
+        marginTop: 15,
+        overflow: 'scroll'
+    },
+    mealTitle: {
+        fontWeight: 'bold',
+        fontSize: 25
+    },
+    stationTitle: {
+        fontWeight: 'bold',
+        fontSize: 17,
+        color: '#7a80e8',
+    },
+    menuItems: {
+        fontSize: 15
+    }
+
+})
+
 export default DiningHallStatus;
+
