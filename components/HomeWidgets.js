@@ -16,7 +16,7 @@ const HomeWidgets = props => {
                     <Text style={styles.classTitle}>{props.title}</Text>
                 </View>
                 <FlatList
-                    keyExtractor={item => item.id}
+                    keyExtractor={item => item.profName}
                     style={styles.listView}
                     data={classItems[day]}
                     renderItem={itemData => (

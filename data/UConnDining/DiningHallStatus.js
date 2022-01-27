@@ -11,23 +11,28 @@ const DiningHallStatus = (props) => {
     let diningHallName = props.name
 
     function mealParsing() {
-        axios.get(baseURL+diningHallName).then((res) => {
-            console.log("GET request is being sent")
-            changeData(res.data)
-        })
+        try{
+            axios.get(baseURL+diningHallName).then((res) => {
+                console.log("GET request is being sent")
+                changeData(res.data)
+            })
 
-        let mealComponents = [];
+            let mealComponents = [];
 
-        for(var i in data) {
-            mealComponents.push(
-                <MealCard
-                    key={data[i]["mealName"]} 
-                    meal = {data[i]["mealName"]}
-                    stationTitle = {data[i]["stations"]}
-                />
-            )
+            for(var i in data) {
+                mealComponents.push(
+                    <MealCard
+                        key={data[i]["mealName"]} 
+                        meal = {data[i]["mealName"]}
+                        stationTitle = {data[i]["stations"]}
+                    />
+                )
+            }
+            return mealComponents
         }
-        return mealComponents
+        catch(e) {
+            console.log(e)
+        }
     }
 
     return (
