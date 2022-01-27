@@ -6,15 +6,25 @@ import { color } from 'react-native/Libraries/Components/View/ReactNativeStyleAt
 import MealCard from '../../components/mealCard'
 
 const DiningHallStatus = (props) => {
-    const baseURL = "http://192.168.1.7:8081/"
+    const baseURL = "http://192.168.1.13:8081/"
 
     const [data, changeData] = useState()
 
-    let diningHallName = props.title
+    let diningHallName = props.name
+
+
+    function testRequest() {
+        console.log('Post request is being made')
+        console.log(baseURL+diningHallName)
+        axios.get(baseURL+diningHallName)
+        .then((res) => {
+            console.log(res.data)
+        })
+    }
 
     function mealParsing() {
         let mealData;
-        axios.get(baseURL).then((res) => {
+        axios.get(baseURL+diningHallName).then((res) => {
             changeData(res.data)
         })
 
@@ -30,7 +40,6 @@ const DiningHallStatus = (props) => {
             )
         }
         return mealComponents
-
     }
 
     return (

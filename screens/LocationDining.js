@@ -76,12 +76,12 @@ const LocationDining = props => {
                         // zoomEnabled={true}
                         // showsUserLocation={true}       
                     >
-                        <Marker onPress={() => modalSet(true, "Northwest Dining hall")} title={"Northwest Dining hall"} coordinate={NWCoords} description={"Dining hall"}>
+                        <Marker onPress={() => modalSet(true, "Northwest")} title={"Northwest Dining hall"} coordinate={NWCoords} description={"Dining hall"}>
                             {markerImage}
                         </Marker>
 
                         
-                        <Marker onPress={() => modalSet(true, "Putnam Dining Hall")} title={"Putnam Dining Hall"} coordinate={putnamCoords} description={"Dining hall"}>
+                        <Marker onPress={() => modalSet(true, "Putnam")} title={"Putnam Dining Hall"} coordinate={putnamCoords} description={"Dining hall"}>
                                 {markerImage}
                         </Marker>
                     </MapView>

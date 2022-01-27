@@ -51,6 +51,8 @@ function MealCard(props) {
 }
 
 
+
+
 const styles = StyleSheet.create({
     mealTitle: {
         fontWeight: 'bold',
