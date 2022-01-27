@@ -5,7 +5,7 @@ import { Image, View, StyleSheet, Dimensions, Text, Alert, Button} from "react-n
 import { color } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes'
 import MealCard from '../../components/mealCard'
 
-const DiningHallStatus = () => {
+const DiningHallStatus = (props) => {
     const baseURL = "http://192.168.1.7:8081/"
 
     const [data, changeData] = useState()
