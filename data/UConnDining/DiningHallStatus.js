@@ -1,30 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import * as cheerio from 'cheerio'
+import React, { useState } from 'react'
 import axios from "axios"
-import { Image, View, StyleSheet, Dimensions, Text, Alert, Button} from "react-native"
-import { color } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes'
+import { View, StyleSheet} from "react-native"
 import MealCard from '../../components/mealCard'
 
 const DiningHallStatus = (props) => {
-    const baseURL = "http://192.168.1.13:8081/"
+    const baseURL = "http://localhost:8081/"
 
     const [data, changeData] = useState()
 
     let diningHallName = props.name
 
-
-    function testRequest() {
-        console.log('Post request is being made')
-        console.log(baseURL+diningHallName)
-        axios.get(baseURL+diningHallName)
-        .then((res) => {
-            console.log(res.data)
-        })
-    }
-
     function mealParsing() {
-        let mealData;
         axios.get(baseURL+diningHallName).then((res) => {
+            console.log("GET request is being sent")
             changeData(res.data)
         })
 
