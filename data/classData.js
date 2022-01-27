@@ -1,13 +1,16 @@
 export const classItems = {
-    Monday: [{ className: "CSE 3140", time: "2:00pm - 3:50pm", profName: "Amir Herzberg", location:"ITE 138", hour:2, minute:30 }],
-    Tuesday: [{ className: "Stats 3025Q", time:"9:30am - 10:45am", profName: "Emmy Karim", location:"ARJ 143", hour:9, minute:30 }, 
-              { className:"CSE 3666", time:"2:00pm - 3:15pm", profName: "Caiwen Ding", location:"UTEB 175", hour: 2, minute: 0},
-              { className:"CSE 3500", time:"3:30pm - 4:45", profName:"Derek Aguiar", location:"CAST 212", hour: 3, minute: 30},
-              { className:"Drumline", time:"7:00pm - 9:00pm", profName:"Ricardo Brown", location:"Music", hour: 7, minute: 0}],
-    Wednesday: [{ className:"CSE 2102 Lab", time:"3:30pm - 4:20pm", profName:"TA", location:"ENGR II 306", hour: 3, minute: 30 },
-                { className:"CSE 3666 Lab", time:"4:40pm - 5:30pm", profName:"Alex Chandy", location: "ITE 134", hour: 4, minute: 40 }],
-    Thursday: [{ className: "Stats 3025Q", time:"9:30am - 10:45am", profName: "Emmy Karim", location:"ARJ 143", hour: 9, minute: 30 }, 
-               { className:"CSE 3666", time:"2:00pm - 3:15pm", profName: "Caiwen Ding", location:"UTEB 175", hour: 2, minute: 0 },
-               { className:"CSE 3500", time:"3:30pm - 4:45pm", profName:"Derek Aguiar", location:"CAST 212", hour: 3, minute: 30}],
-    Saturday: [{ className:"Test class", time:"8:30pm - 9:30pm", profName: "Manik Soomro", location:"ITE 134", hour: 8, minute: 30, mode: "Online" }]
+    Monday: [{ className: "CSE 4102", time: "10:10am - 11:00am", profName: "Wei Wei", location:"ITE 336", hour:10, minute:10 },
+            { className: "POLS 1402", time:"11:15am - 12:05pm", profName: "Stephen Dyson", location:"Oak Hall 101", hour:11, minute:15 }, 
+            { className:"CSE 3300", time:"2:30pm - 3:20pm", profName: "Bing Wang", location:"Austin Building 163", hour: 2, minute: 30},
+            { className:"Drumline", time:"7:00pm - 9:00pm", profName:"Ricardo Brown", location:"Music", hour: 7, minute: 0}],
+
+    Tuesday:[{ className: "CSE 3150", time: "8:45am - 10:45am", profName: "Greg Johnson", location:"TBD", hour:8, minute:45 },
+            { className: "CSE 4095", time:"11:00am - 12:15pm", profName: "Walter Krawec", location:"Oak Hall 101", hour:11, minute:0 }],
+    Wednesday: [{ className: "CSE 4102", time: "10:10am - 11:00am", profName: "Wei Wei", location:"ITE 336", hour:10, minute:10 },
+                { className: "POLS 1402", time:"11:15am - 12:05pm", profName: "Stephen Dyson", location:"Oak Hall 101", hour:11, minute:15 }, 
+                { className:"CSE 3300", time:"2:30pm - 3:20pm", profName: "Bing Wang", location:"Austin Building 163", hour: 2, minute: 30}],
+    Thursday: [{className: "CSE 4095", time:"11:00am - 12:15pm", profName: "Walter Krawec", location:"Oak Hall 101", hour:11, minute:0 }],
+    Friday: [{ className: "POLS 1402", time:"9:05am - 9:55am", profName: "TA", location:"Oak Hall 401", hour:9, minute:05 },
+             { className: "CSE 4102", time: "10:10am - 11:00am", profName: "Wei Wei", location:"ITE 336", hour:10, minute:10 },
+             { className:"CSE 3300", time:"2:30pm - 3:20pm", profName: "Bing Wang", location:"Austin Building 163", hour: 2, minute: 30}]
 }
