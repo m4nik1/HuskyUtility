@@ -7,6 +7,7 @@ import LocationDining from './screens/LocationDining';
 import ClassHomeWidget from './components/HomeWidgets';
 import LocationCard from './components/LocationCard';
 import ModalDining from './components/diningHallModal';
+import MapBar from './components/MapTabBar';
 
 export default function App() {
 
@@ -29,6 +30,7 @@ export default function App() {
       <ClassesCard currentDay={day} shouldRengar={screen === "home"} changeScreen={(screen2) => {changeScreen(screen2)}} />
       <LocationCard currentDay={day} changeScreen={(screen2) => {changeScreen(screen2)}} />
       {/* <ModalDining isVisible={true} /> */}
+      <MapBar />
     </View>
   );
 }
