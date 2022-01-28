@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         minHeight: 66,
         marginHorizontal: currentWidth * .1,
         marginTop: 700,
-        zIndex: 5
+        zIndex: 5,
     },
 })
 
