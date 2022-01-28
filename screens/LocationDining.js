@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react"
-
-import { Image, View, StyleSheet, Dimensions, Text, Alert, Button} from "react-native"
+import { Image, View, StyleSheet, Dimensions, SafeAreaView} from "react-native"
 import * as Location from "expo-location";
-import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
-import moment from "moment";
-import { TouchableWithoutFeedback } from "react-native-web";
+import MapView, { Marker } from "react-native-maps";
 import dining from "../assets/dining_icon.png"
 import ModalDining from "../components/diningHallModal";
 import MapBar from '../components/MapTabBar'
@@ -69,26 +66,25 @@ const LocationDining = props => {
     if(props.shouldRengar) {
         return (
             <View>
-
-                    {/* <MapBar /> */}
-                    <MapView 
-                        style={styles.map}
-                        region={mapRegion}
-                        // For now its disabled for testing purposes
-                        // followsUserLocation={true}
-                        // zoomEnabled={true}
-                        // showsUserLocation={true}
-                    >
-                        <Marker onPress={() => modalSet(true, "Northwest")} title={"Northwest Dining hall"} coordinate={NWCoords} description={"Dining hall"}>
-                            {markerImage}
-                        </Marker>
+                <MapBar />
+                <MapView 
+                    style={styles.map}
+                    region={mapRegion}
+                    // For now its disabled for testing purposes
+                    // followsUserLocation={true}
+                    // zoomEnabled={true}
+                    // showsUserLocation={true}
+                >
+                    <Marker onPress={() => modalSet(true, "Northwest")} title={"Northwest Dining hall"} coordinate={NWCoords} description={"Dining hall"}>
+                        {markerImage}
+                    </Marker>
 
                         
-                        <Marker onPress={() => modalSet(true, "Putnam")} title={"Putnam Dining Hall"} coordinate={putnamCoords} description={"Dining hall"}>
-                                {markerImage}
-                        </Marker>
-                    </MapView>
-                    <ModalDining title={diningModalTitle} isVisible={modal} modalCancel={() => modalClose(false)} />
+                    <Marker onPress={() => modalSet(true, "Putnam")} title={"Putnam Dining Hall"} coordinate={putnamCoords} description={"Dining hall"}>
+                        {markerImage}
+                    </Marker>
+                </MapView>
+                <ModalDining title={diningModalTitle} isVisible={modal} modalCancel={() => modalClose(false)} />
             </View>
         )
     }
