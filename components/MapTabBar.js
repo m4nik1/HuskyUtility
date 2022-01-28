@@ -8,15 +8,15 @@ const currentWidth = Dimensions.get('window').width
 const MapBar = (props) => {
     return(
                 <View style={styles.Container}>
-                     <Pressable onPress={() => console.log("Details")} style={{ marginLeft: 20, alignSelf: 'center' }}>
+                     {/* <Pressable onPress={() => console.log("Details")} style={{ marginLeft: 20, alignSelf: 'center' }}>
                         <Entypo name="list" size={26} color="#c1dddd" />
-                    </Pressable>
-                    <Pressable onPress={() => props.changeScreen("home")} style={{ justifyContent:'center', alignSelf:'center', marginLeft: 95 }}>
+                    </Pressable> */}
+                    <Pressable onPress={() => props.changeScreen("home")} style={{ justifyContent:'center', alignSelf:'center', marginLeft: 135 }}>
                         <AntDesign name="home" size={26} color="#c1dddd" />
                     </Pressable>
-                    <Pressable onPress={() => console.log("Current Location")} style={{marginLeft: 85, alignSelf: 'center', textAlignVertical: 'center' }}>
+                    {/* <Pressable onPress={() => console.log("Current Location")} style={{marginLeft: 85, alignSelf: 'center', textAlignVertical: 'center' }}>
                         <FontAwesome5 name="location-arrow" size={26} color="#c1dddd" />
-                    </Pressable>
+                    </Pressable> */}
                 </View>
     )
 }

@@ -82,7 +82,7 @@ const LocationDining = props => {
                     <Marker onPress={() => modalSet(true, "Putnam")} title={"Putnam Dining Hall"} coordinate={putnamCoords} description={"Dining hall"}>
                         {markerImage}
                     </Marker>
-                    <MapBar />
+                    <MapBar changeScreen={(screen) => props.changeScreen(screen)} />
                 </MapView>
                 <ModalDining title={diningModalTitle} isVisible={modal} modalCancel={() => modalClose(false)} />
             </View>
