@@ -28,7 +28,8 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         minHeight: 66,
         marginHorizontal: currentWidth * .1,
-        marginTop: 700
+        marginTop: 700,
+        zIndex: 5
     },
 })
 
