@@ -65,7 +65,7 @@ const LocationDining = props => {
 
     useEffect(() => {
         getCurrentLocation();
-    })
+    }, [])
 
 
 

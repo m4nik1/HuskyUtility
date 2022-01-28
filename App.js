@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Home from './screens/HomeScreen';
 import ClassesCard from './components/ClassCard';
 import moment from "moment";
 import LocationDining from './screens/LocationDining';
-
+import DiningParsing from './data/UConnDining/DiningParsing'
 import LocationCard from './components/LocationCard';
 import MapBar from './components/MapTabBar';
 
 export default function App() {
 
-  const [screen, setScreen] = useState("Dining")
+  const [screen, setScreen] = useState("Home")
   const [modal, setModal] = useState(false)
 
   const day = moment().format('dddd');
@@ -21,6 +21,9 @@ export default function App() {
     }
   }
 
+  useEffect(() => {
+    DiningParsing.mealReturn()
+  })
 
   return (
     <View style={styles.container}>

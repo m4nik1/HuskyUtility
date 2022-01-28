@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from "axios"
 import { View, StyleSheet} from "react-native"
 import MealCard from '../../components/mealCard'
 
 const DiningHallStatus = (props) => {
-    const baseURL = "http://73.68.84.168:8081/"
+    const baseURL = "http://192.168.7:8081/"
 
     const [data, changeData] = useState()
+    let mealComponents = [];
 
     let diningHallName = props.name
 
@@ -16,8 +17,6 @@ const DiningHallStatus = (props) => {
                 console.log("GET request is being sent")
                 changeData(res.data)
             })
-
-            let mealComponents = [];
 
             for(var i in data) {
                 mealComponents.push(
@@ -31,9 +30,12 @@ const DiningHallStatus = (props) => {
             return mealComponents
         }
         catch(e) {
-            console.log(e)
         }
     }
+
+    useEffect(() => {
+        mealParsing()
+    })
 
     return (
         <View style={styles.menu}>
