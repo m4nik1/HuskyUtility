@@ -4,7 +4,7 @@ import { View, StyleSheet} from "react-native"
 import MealCard from '../../components/mealCard'
 
 const DiningHallStatus = (props) => {
-    const baseURL = "http://localhost:8081/"
+    const baseURL = "http://73.68.84.168:8081/"
 
     const [data, changeData] = useState()
 

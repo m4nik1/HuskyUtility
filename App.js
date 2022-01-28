@@ -30,7 +30,7 @@ export default function App() {
       <ClassesCard currentDay={day} shouldRengar={screen === "home"} changeScreen={(screen2) => {changeScreen(screen2)}} />
       <LocationCard currentDay={day} changeScreen={(screen2) => {changeScreen(screen2)}} />
       {/* <ModalDining isVisible={true} /> */}
-      <MapBar />
+      
     </View>
   );
 }

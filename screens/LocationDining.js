@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 
-import { Image, View, StyleSheet, Dimensions, Text, Alert} from "react-native"
+import { Image, View, StyleSheet, Dimensions, Text, Alert, Button} from "react-native"
 import * as Location from "expo-location";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import moment from "moment";
@@ -92,6 +92,7 @@ const LocationDining = props => {
             </View>
         )
     }
+
     else {
         return (
             null
