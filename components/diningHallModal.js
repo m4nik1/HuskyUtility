@@ -5,6 +5,8 @@ import Card from "./Card";
 
 const ModalDining = props => {
 
+    const [component, setComponent] = useState()
+
     function cancelModal() {
         props.modalCancel()
         console.log("Modal is being canceled")
@@ -25,12 +27,12 @@ const ModalDining = props => {
                 />
             )
         }
-        return mealComponents
+        setComponent(mealComponents);
     }
 
-    // useEffect(() => {
-    //     mealComponent()
-    // }, [])
+    useEffect(() => {
+        mealComponent()
+    }, [])
     
 
     if(props.isVisible) {
@@ -39,7 +41,7 @@ const ModalDining = props => {
               <Modal onRequestClose={() => {cancelModal()}} transparent={true} presentationStyle="overFullScreen" animationType="slide">
                 <Card style={styles.modalView}>
                     <Text style={styles.diningHall}>{props.title}</Text>
-                    {}
+                    {component}
                     <Button title="Back to maps" onPress={() => cancelModal()} />
                 </Card>
             </Modal>
