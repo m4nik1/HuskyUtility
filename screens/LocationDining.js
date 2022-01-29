@@ -60,15 +60,16 @@ const LocationDining = props => {
         setModal(state)
         setTitle(name)
         setMapRegion(region)
-        meals()
+        setData(meals("Northwest"))
+        // console.log(meals(name))
     }
+
     function modalSet(state) {
         setModal(state)
     }
 
     useEffect(() => {
         getCurrentLocation();
-        setData(meals())
     }, [])
 
 

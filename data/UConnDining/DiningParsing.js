@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from "axios"
 import { View, StyleSheet} from "react-native"
+import { data } from 'cheerio/lib/api/attributes';
 
 export async function meals() {
     let mealHtml;
@@ -20,6 +21,7 @@ export async function meals() {
                 "url_id": "06"
             },
         }
+        // console.log("THIS IS WHAT IS PICKED" + " " + Halls[diningHall]["url_name"])
     
         await axios.get(`http://nutritionanalysis.dds.uconn.edu/shortmenu.aspx?sName=UCONN+Dining+Services&locationNum=${Halls[diningHall]["url_id"]}&locationName=${Halls[diningHall]["url_name"]}&naFlag=1&WeeksMenus=This+Week%27s+Menus&myaction=read&dtdate=1%2f18%2f2022`)
             .then(res => {
@@ -89,8 +91,14 @@ export async function meals() {
     
         return foods
     }
-    const func = await diningScrape("Northwest")
-    return func
+    const H = ["Northwest", "Putnam"]
+    let dataReturn = {}
+    for(var s in H) {
+        const func = await diningScrape(H[s])
+        dataReturn[H[s]] = func
+    }
+    // console.log(dataReturn)
+    return dataReturn
 }
 
 
