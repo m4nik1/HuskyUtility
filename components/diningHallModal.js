@@ -7,17 +7,17 @@ import Card from "./Card";
 const ModalDining = props => {
 
     const [component, setComponent] = useState()
-    const [mealItems, changeMeal] = useState(props.menuData)
     const [data, changeData] = useState()
 
     function cancelModal() {
         props.modalCancel()
-        console.log("Modal is being canceled")
     }
+
+    
 
     async function mealComponent() {
         changeData(await meals())
-        console.log(data)
+        // console.log(data)
         let mealComponents = [];
 
             for(var i in data[props.title]) {
@@ -32,9 +32,15 @@ const ModalDining = props => {
             setComponent(mealComponents);
     }
 
-    // useEffect(() => {
-    //     mealComponent()
-    // }, [])
+    async function fetchMeals() {
+        let m = await meals()
+        changeData(await m)
+    }
+
+    useEffect(() => {
+        fetchMeals()
+        mealComponent()
+    }, [])
     
 
     if(props.isVisible) {
@@ -60,8 +66,8 @@ const ModalDining = props => {
 
 const styles= StyleSheet.create({
     modalView: {
-        height: 610,
-        marginTop: 100,
+        height: 680,
+        marginTop: 75,
         shadowColor: '#000',
         shadowOffset: {
           width: 0,

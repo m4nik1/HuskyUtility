@@ -39,7 +39,7 @@ function MealCard(props) {
 
 
     return(
-        <View style={styles.container}>
+        <View key={props.meal} style={styles.container}>
             <TouchableOpacity style={styles.collpaseList, !open && {height:27}} onPress={() => collpaseList()}>
                 <Text style={styles.mealTitle}>{props.meal}</Text>
                 {open && (

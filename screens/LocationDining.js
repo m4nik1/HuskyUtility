@@ -34,6 +34,29 @@ const LocationDining = props => {
         longitudeDelta: .01
     }
 
+    const southCoords = {
+        latitude: 41.803773507878255,
+        longitude: -72.2485690604892,
+        latitudeDelta: .01,
+        longitudeDelta: .01
+    }
+
+    const McMahonCoords = {
+        latitude: 41.803514290987316, 
+        longitude: -72.25226181074956,
+        latitudeDelta: .01,
+        longitudeDelta: .01
+    }
+
+    const whitneyCoords = {
+        latitude: 41.80989113269769,
+        longitude: -72.24745201204462 ,
+        latitudeDelta: .01,
+        longitudeDelta: .01
+    }
+
+    
+
     
 
     async function getCurrentLocation() {
@@ -60,8 +83,15 @@ const LocationDining = props => {
         setModal(state)
         setTitle(name)
         setMapRegion(region)
-        setData(meals("Northwest"))
         // console.log(meals(name))
+    }
+
+    function screenChange(screen) {
+        props.changeScreen(screen)
+    }
+
+    async function saveMealData() {
+        setData(await props.mealsData)
     }
 
     function modalSet(state) {
@@ -70,6 +100,7 @@ const LocationDining = props => {
 
     useEffect(() => {
         getCurrentLocation();
+        saveMealData()
     }, [])
 
 
@@ -92,7 +123,21 @@ const LocationDining = props => {
                     <Marker onPress={() => setMapUtility(true, "Putnam", putnamCoords)} title={"Putnam Dining Hall"} coordinate={putnamCoords} description={"Dining hall"}>
                         {markerImage}
                     </Marker>
-                    <MapBar changeScreen={(screen) => props.changeScreen(screen)} />
+
+                    <Marker onPress={() => setMapUtility(true, "South", southCoords)} title={"South Dining Hall"} coordinate={southCoords} description={"Dining hall"}>
+                        {markerImage}
+                    </Marker>
+
+                    <Marker onPress={() => setMapUtility(true, "McMahon", McMahonCoords)} title={"McMahon Dining Hall"} coordinate={McMahonCoords} description={"Dining hall"}>
+                        {markerImage}
+                    </Marker>
+
+                    <Marker onPress={() => setMapUtility(true, "Whitney", whitneyCoords)} title={"Whitney Dining Hall"} coordinate={whitneyCoords} description={"Dining hall"}>
+                        {markerImage}
+                    </Marker>
+
+
+                    <MapBar changeScreen={(screen) => screenChange(screen)} />
                 </MapView>
                 <ModalDining menuData={data} title={diningModalTitle} isVisible={modal} modalCancel={() => modalSet(false)} />
             </View>

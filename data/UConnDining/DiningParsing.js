@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import axios from "axios"
+import moment from 'moment';
 import { View, StyleSheet} from "react-native"
-import { data } from 'cheerio/lib/api/attributes';
 
 export async function meals() {
     let mealHtml;
     let stationName
 
 
-    async function diningScrape(diningHall, date) {
+    async function diningScrape(diningHall) {
         let toScrape;
+        let day = moment().format('D');
+        let month = moment().format('M');
+        let year = moment().format('Y')
+        let urlDate = `${month}%2f${day}%2f${year}`
     
         const Halls = {
             "Northwest": {
@@ -20,12 +24,25 @@ export async function meals() {
                 "url_name": "Putnam+Dining+Hall",
                 "url_id": "06"
             },
+            "South": {
+                "url_name": "South+Campus+Marketplace",
+                "url_id": "16"
+            },
+            "McMahon": {
+                "url_name": "McMahon+Dining+Hall",
+                "url_id": "05"
+            },
+            "Whitney": {
+                "url_name": "Whitney+Dining+Hall",
+                "url_id": "01"
+            },
+
+
         }
         // console.log("THIS IS WHAT IS PICKED" + " " + Halls[diningHall]["url_name"])
     
-        await axios.get(`http://nutritionanalysis.dds.uconn.edu/shortmenu.aspx?sName=UCONN+Dining+Services&locationNum=${Halls[diningHall]["url_id"]}&locationName=${Halls[diningHall]["url_name"]}&naFlag=1&WeeksMenus=This+Week%27s+Menus&myaction=read&dtdate=1%2f18%2f2022`)
+        await axios.get(`http://nutritionanalysis.dds.uconn.edu/shortmenu.aspx?sName=UCONN+Dining+Services&locationNum=${Halls[diningHall]["url_id"]}&locationName=${Halls[diningHall]["url_name"]}&naFlag=1&WeeksMenus=This+Week%27s+Menus&myaction=read&dtdate=${urlDate}`)
             .then(res => {
-                console.log("We are scraping")
                 toScrape = res.data
             })
     
@@ -91,7 +108,7 @@ export async function meals() {
     
         return foods
     }
-    const H = ["Northwest", "Putnam"]
+    const H = ["Northwest", "Putnam", "South", "McMahon", "Whitney"]
     let dataReturn = {}
     for(var s in H) {
         const func = await diningScrape(H[s])
