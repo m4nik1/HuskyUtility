@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from "axios"
 import { View, StyleSheet} from "react-native"
 import MealCard from '../../components/mealCard'
+import DiningParsing from './DiningParsing'
 
 const DiningHallStatus = (props) => {
     const baseURL = "http://192.168.7:8081/"
@@ -11,35 +12,34 @@ const DiningHallStatus = (props) => {
 
     let diningHallName = props.name
 
-    function mealParsing() {
-        try{
-            axios.get(baseURL+diningHallName).then((res) => {
-                console.log("GET request is being sent")
-                changeData(res.data)
-            })
+    // function mealParsing() {
+    //     try{
+    //         axios.get(baseURL+diningHallName).then((res) => {
+    //             console.log("GET request is being sent")
+    //             changeData(res.data)
+    //         })
 
-            for(var i in data) {
-                mealComponents.push(
-                    <MealCard
-                        key={data[i]["mealName"]} 
-                        meal = {data[i]["mealName"]}
-                        stationTitle = {data[i]["stations"]}
-                    />
-                )
-            }
-            return mealComponents
-        }
-        catch(e) {
-        }
-    }
+    //         for(var i in data) {
+    //             mealComponents.push(
+    //                 <MealCard
+    //                     key={data[i]["mealName"]} 
+    //                     meal = {data[i]["mealName"]}
+    //                     stationTitle = {data[i]["stations"]}
+    //                 />
+    //             )
+    //         }
+    //         return mealComponents
+    //     }
+    //     catch(e) {
+    //     }
+    // }
 
     useEffect(() => {
-        mealParsing()
     })
 
     return (
         <View style={styles.menu}>
-            {mealParsing()}
+            <Text>Testing</Text>
         </View>
     )
 }

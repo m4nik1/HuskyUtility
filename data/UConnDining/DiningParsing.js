@@ -4,6 +4,11 @@ import { View, StyleSheet} from "react-native"
 
 
 const DiningParsing = () => {
+    let mealHtml;
+    let stationName
+
+    const [data, setData] = useState()
+
     async function diningScrape(diningHall, date) {
         let toScrape;
     
@@ -18,7 +23,7 @@ const DiningParsing = () => {
             },
         }
     
-        await axios.get(`http://nutritionanalysis.dds.uconn.edu/shortmenu.aspx?sName=UCONN+Dining+Services&locationNum=${Halls[diningHall]["url_id"]}&locationName=${Halls[diningHall]["url_name"]}&naFlag=1&WeeksMenus=This+Week%27s+Menus&myaction=read&dtdate=${date}`)
+        await axios.get(`http://nutritionanalysis.dds.uconn.edu/shortmenu.aspx?sName=UCONN+Dining+Services&locationNum=${Halls[diningHall]["url_id"]}&locationName=${Halls[diningHall]["url_name"]}&naFlag=1&WeeksMenus=This+Week%27s+Menus&myaction=read&dtdate=1%2f18%2f2022`)
             .then(res => {
                 console.log("We are scraping")
                 toScrape = res.data
@@ -27,8 +32,6 @@ const DiningParsing = () => {
             .catch(err => {
                 console.log(err)
         })
-        // console.log(toScrape)
-        const $ = cheerio.load(toScrape)
     
         return meals(String(toScrape))
     
@@ -42,9 +45,8 @@ const DiningParsing = () => {
         let mealData = []
     
         mealHtml = allMeals.split("<div class=\"shortmenumeals\">")
-        // stations(mealHtml[1])
     
-        for(i in mealHtml) {
+        for(var i in mealHtml) {
             let mealName;
             if(i > 0) {
                 mealName = mealHtml[i].substring(0, mealHtml[i].indexOf("</div>")) 
@@ -61,12 +63,10 @@ const DiningParsing = () => {
     
     function stations(data) {
         const stationHtml = data.split("<div class=\"shortmenucats\"><span style=\"color: #000000\">-- ");
-    
-    
         
         let stationData = []
     
-        for(s in stationHtml) {
+        for(var s in stationHtml) {
             if(s > 0) {
                     stationName = stationHtml[s].substring(0, stationHtml[s].indexOf(" --</span></div>"))
     
@@ -84,7 +84,7 @@ const DiningParsing = () => {
     
         // ---------------------------------------------------------------- MAKE A FOOD OBJECT LATER ON ---------------------------------------------------------------------------------------------
     
-        for(f in foodHtml) {
+        for(var f in foodHtml) {
             if(f > 0) {
                 foods.push(foodHtml[f].substring(0, foodHtml[f].indexOf("&nbsp")))
             }
@@ -92,13 +92,12 @@ const DiningParsing = () => {
     
         return foods
     }
+     Promise.resolve(diningScrape("Northwest")).then(function(value) {
+        setData(value)
+        console.log(data)
+    })
 
-    function mealReturn() {
-        Promise.resolve(diningScrape("Northwest")).then(function(value) {
-            console.log(value)
-            return value
-        })
-    }
+    return null
 }
 
 export default DiningParsing;

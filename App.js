@@ -21,9 +21,13 @@ export default function App() {
     }
   }
 
+  function pullData() {
+    return <DiningParsing />
+  }
+
   useEffect(() => {
-    DiningParsing.mealReturn()
-  })
+    pullData()
+  }, [])
 
   return (
     <View style={styles.container}>
@@ -31,6 +35,7 @@ export default function App() {
       <LocationDining shouldRengar={screen === "Dining"} changeScreen={(screen2) => {changeScreen(screen2)}} />
       <ClassesCard currentDay={day} shouldRengar={screen === "home"} changeScreen={(screen2) => {changeScreen(screen2)}} />
       <LocationCard currentDay={day} changeScreen={(screen2) => {changeScreen(screen2)}} />
+      
     </View>
     
   );
