@@ -5,6 +5,7 @@ import MapView, { Marker } from "react-native-maps";
 import dining from "../assets/dining_icon.png"
 import ModalDining from "../components/diningHallModal";
 import MapBar from '../components/MapTabBar'
+import { meals } from "../data/UConnDining/DiningParsing";
 
 
 
@@ -15,6 +16,7 @@ const LocationDining = props => {
     const [mapRegion, setMapRegion] = useState();
     const [diningModalTitle, setTitle] = useState();
     const [modal, setModal] = useState(false)
+    const [data, setData] = useState()
 
     const NWCoords = {
         latitude: 41.81150,
@@ -58,6 +60,7 @@ const LocationDining = props => {
         setModal(state)
         setTitle(name)
         setMapRegion(region)
+        meals()
     }
     function modalSet(state) {
         setModal(state)
@@ -65,8 +68,8 @@ const LocationDining = props => {
 
     useEffect(() => {
         getCurrentLocation();
+        setData(meals())
     }, [])
-
 
 
     if(props.shouldRengar) {
@@ -90,7 +93,7 @@ const LocationDining = props => {
                     </Marker>
                     <MapBar changeScreen={(screen) => props.changeScreen(screen)} />
                 </MapView>
-                <ModalDining title={diningModalTitle} isVisible={modal} modalCancel={() => modalSet(false)} />
+                <ModalDining menuData={data} title={diningModalTitle} isVisible={modal} modalCancel={() => modalSet(false)} />
             </View>
         )
     }

@@ -7,10 +7,11 @@ import LocationDining from './screens/LocationDining';
 import DiningParsing from './data/UConnDining/DiningParsing'
 import LocationCard from './components/LocationCard';
 import MapBar from './components/MapTabBar';
+import { meals } from './data/UConnDining/DiningParsing';
 
 export default function App() {
 
-  const [screen, setScreen] = useState("Home")
+  const [screen, setScreen] = useState("Dining")
   const [modal, setModal] = useState(false)
 
   const day = moment().format('dddd');
@@ -21,21 +22,12 @@ export default function App() {
     }
   }
 
-  function pullData() {
-    return <DiningParsing />
-  }
-
-  useEffect(() => {
-    pullData()
-  }, [])
-
   return (
     <View style={styles.container}>
       <Home current_day={day} shouldRengar={screen === "classes"} changeScreen={(screen2) => {changeScreen(screen2)}} />
       <LocationDining shouldRengar={screen === "Dining"} changeScreen={(screen2) => {changeScreen(screen2)}} />
       <ClassesCard currentDay={day} shouldRengar={screen === "home"} changeScreen={(screen2) => {changeScreen(screen2)}} />
       <LocationCard currentDay={day} changeScreen={(screen2) => {changeScreen(screen2)}} />
-      
     </View>
     
   );

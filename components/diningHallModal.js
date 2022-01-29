@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { View, Modal, StyleSheet, Text, Button, Pressable } from "react-native"
-import { ScrollView, TouchableOpacity, TouchableWithoutFeedback } from "react-native-web";
-import DiningHallStatus from "../data/UConnDining/DiningHallStatus";
+import MealCard from '../components/mealCard'
 import Card from "./Card";
 
 const ModalDining = props => {
@@ -11,7 +10,27 @@ const ModalDining = props => {
         console.log("Modal is being canceled")
     }
 
+    async function mealComponent() {
+        let data = await props.menuData
+        let mealComponents = [];
 
+        // console.log(data)
+        
+        for(var i in data) {
+            mealComponents.push(
+                <MealCard
+                    key={data[i]["mealName"]} 
+                    meal = {data[i]["mealName"]}
+                    stationTitle = {data[i]["stations"]}
+                />
+            )
+        }
+        return mealComponents
+    }
+
+    // useEffect(() => {
+    //     mealComponent()
+    // }, [])
     
 
     if(props.isVisible) {
@@ -20,7 +39,7 @@ const ModalDining = props => {
               <Modal onRequestClose={() => {cancelModal()}} transparent={true} presentationStyle="overFullScreen" animationType="slide">
                 <Card style={styles.modalView}>
                     <Text style={styles.diningHall}>{props.title}</Text>
-                    <DiningHallStatus name={props.title} />
+                    {}
                     <Button title="Back to maps" onPress={() => cancelModal()} />
                 </Card>
             </Modal>

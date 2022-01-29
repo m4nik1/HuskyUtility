@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react'
 import axios from "axios"
 import { View, StyleSheet} from "react-native"
 
-
-const DiningParsing = () => {
+export async function meals() {
     let mealHtml;
     let stationName
 
-    const [data, setData] = useState()
 
     async function diningScrape(diningHall, date) {
         let toScrape;
@@ -33,9 +31,8 @@ const DiningParsing = () => {
                 console.log(err)
         })
     
-        return meals(String(toScrape))
-    
-    
+        const returnState = meals(String(toScrape))
+        return returnState
     }
     
     
@@ -92,12 +89,8 @@ const DiningParsing = () => {
     
         return foods
     }
-     Promise.resolve(diningScrape("Northwest")).then(function(value) {
-        setData(value)
-        console.log(data)
-    })
-
-    return null
+    const func = await diningScrape("Northwest")
+    return func
 }
 
-export default DiningParsing;
+
