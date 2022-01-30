@@ -11,9 +11,9 @@ const MapBar = (props) => {
                      {/* <Pressable onPress={() => console.log("Details")} style={{ marginLeft: 20, alignSelf: 'center' }}>
                         <Entypo name="list" size={26} color="#c1dddd" />
                     </Pressable> */}
-                    <Pressable onPress={() => props.changeScreen("home")} style={{ justifyContent:'center', alignSelf:'center', marginLeft: 135 }}>
+                    {/* <Pressable onPress={() => props.changeScreen("home")} style={{ justifyContent:'center', alignSelf:'center', marginLeft: 135 }}>
                         <AntDesign name="home" size={26} color="#c1dddd" />
-                    </Pressable>
+                    </Pressable> */}
                     {/* <Pressable onPress={() => console.log("Current Location")} style={{marginLeft: 85, alignSelf: 'center', textAlignVertical: 'center' }}>
                         <FontAwesome5 name="location-arrow" size={26} color="#c1dddd" />
                     </Pressable> */}
@@ -28,8 +28,7 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         minHeight: 66,
         marginHorizontal: currentWidth * .1,
-        marginTop: 700,
-        zIndex: 5,
+        zIndex: 5
     },
 })
 

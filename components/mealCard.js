@@ -16,17 +16,17 @@ function MealCard(props) {
 
 
     function collpaseList() {
-        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
         setOpen(!open)
     }
 
     function stations() {
         let stationsTitles = []
 
-        for(j in stationData) {
-            // console.log(stationData[j])
+        for(var j in stationData) {
+            console.log(stationData[j]["Station_Name"])
             stationsTitles.push(
-                <View>
+                <View style={{overflow: 'scroll'}}>
                     <Text style={styles.stationTitle}>{stationData[j]["Station_Name"]}</Text>
                     { stationData[j]["food"].map((foods) => {
                         return <Text style={styles.menuItems}>  {foods}</Text>
@@ -40,8 +40,8 @@ function MealCard(props) {
 
     return(
         <View key={props.meal} style={styles.container}>
-            <TouchableOpacity style={styles.collpaseList, !open && {height:27}} onPress={() => collpaseList()}>
-                <Text style={styles.mealTitle}>{props.meal}</Text>
+            <TouchableOpacity style={styles.collpaseList, !open && {height: 30}} onPress={() => collpaseList()}>
+                <Text style={(Platform.OS === 'android') ? styles.mealTitleA : styles.mealTitle}>{props.meal}</Text>
                 {open && (
                     [stations()]
                 )}
@@ -68,12 +68,19 @@ const styles = StyleSheet.create({
         fontSize: 13,
     },
     container: {
-        padding: 20
+        padding: 10,
+        overflow: 'scroll'
     },
     collpaseList: {
         width: '100%',
         borderWidth: 1,
-        paddingHorizontal: 20,
+        // paddingHorizontal: 20,
+        overflow: 'scroll'
+    },
+    mealTitleA: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        textAlignVertical: 'center'
     }
 
 })

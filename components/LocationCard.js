@@ -45,7 +45,7 @@ const LocationCard = props => {
     }, [])
 
     return (
-            <Pressable onPress={() => screenCallback(props.screen)}>
+            <Pressable onPress={() => screenCallback("Dining")}>
                 <Card style={styles.diningCard}>
                     <View style={styles.nameView}>
                         <Text style={styles.title}>Dining Halls</Text>

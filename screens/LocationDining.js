@@ -77,6 +77,7 @@ const LocationDining = props => {
             longitudeDelta: .01
         }
         setMapRegion(currentRegion)
+        console.log("Centering on current location")
     }
 
     function setMapUtility(state, name, region) {
@@ -100,6 +101,7 @@ const LocationDining = props => {
 
     useEffect(() => {
         getCurrentLocation();
+        console.log("UseEffect is working!")
         saveMealData()
     }, [])
 
@@ -110,34 +112,32 @@ const LocationDining = props => {
                 <MapView 
                     style={styles.map}
                     region={mapRegion}
+                    showsUserLocation
                     // For now its disabled for testing purposes
                     // followsUserLocation={true}
                     // zoomEnabled={true}
                     // showsUserLocation={true}
                 >
-                    <Marker onPress={() => setMapUtility(true, "Northwest", NWCoords)} title={"Northwest Dining hall"} coordinate={NWCoords} description={"Dining hall"}>
+                    <MapView.Marker onPress={() => setMapUtility(true, "Northwest", NWCoords)} title={"Northwest Dining hall"} coordinate={NWCoords} description={"Dining hall"}>
                         {markerImage}
-                    </Marker>
+                    </MapView.Marker>
 
                         
-                    <Marker onPress={() => setMapUtility(true, "Putnam", putnamCoords)} title={"Putnam Dining Hall"} coordinate={putnamCoords} description={"Dining hall"}>
+                    <MapView.Marker onPress={() => setMapUtility(true, "Putnam", putnamCoords)} title={"Putnam Dining Hall"} coordinate={putnamCoords} description={"Dining hall"}>
                         {markerImage}
-                    </Marker>
+                    </MapView.Marker>
 
-                    <Marker onPress={() => setMapUtility(true, "South", southCoords)} title={"South Dining Hall"} coordinate={southCoords} description={"Dining hall"}>
+                    <MapView.Marker onPress={() => setMapUtility(true, "South", southCoords)} title={"South Dining Hall"} coordinate={southCoords} description={"Dining hall"}>
                         {markerImage}
-                    </Marker>
+                    </MapView.Marker>
 
-                    <Marker onPress={() => setMapUtility(true, "McMahon", McMahonCoords)} title={"McMahon Dining Hall"} coordinate={McMahonCoords} description={"Dining hall"}>
+                    <MapView.Marker onPress={() => setMapUtility(true, "McMahon", McMahonCoords)} title={"McMahon Dining Hall"} coordinate={McMahonCoords} description={"Dining hall"}>
                         {markerImage}
-                    </Marker>
+                    </MapView.Marker>
 
-                    <Marker onPress={() => setMapUtility(true, "Whitney", whitneyCoords)} title={"Whitney Dining Hall"} coordinate={whitneyCoords} description={"Dining hall"}>
+                    <MapView.Marker onPress={() => setMapUtility(true, "Whitney", whitneyCoords)} title={"Whitney Dining Hall"} coordinate={whitneyCoords} description={"Dining hall"}>
                         {markerImage}
-                    </Marker>
-
-
-                    <MapBar changeScreen={(screen) => screenChange(screen)} />
+                    </MapView.Marker>
                 </MapView>
                 <ModalDining menuData={data} title={diningModalTitle} isVisible={modal} modalCancel={() => modalSet(false)} />
             </View>

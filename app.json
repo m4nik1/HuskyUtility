@@ -24,7 +24,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.m4nik1.HuskyUtility"
     },
     "web": {
       "favicon": "./assets/favicon.png"

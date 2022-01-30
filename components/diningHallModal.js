@@ -49,7 +49,6 @@ const ModalDining = props => {
               <Modal onShow={() => mealComponent()} onRequestClose={() => {cancelModal()}} transparent={true} presentationStyle="overFullScreen" animationType="slide" visible={props.isVisible}>
                 <Card style={styles.modalView}>
                     <Text style={styles.diningHall}>{props.title}</Text>
-                    {/* {mealComponent()} */}
                     {component}
                     <Button title="Back to maps" onPress={() => cancelModal()} />
                 </Card>
@@ -66,8 +65,9 @@ const ModalDining = props => {
 
 const styles= StyleSheet.create({
     modalView: {
-        height: 680,
-        marginTop: 75,
+        height: 660,
+        marginTop: 10,
+        marginBottom: 10,
         shadowColor: '#000',
         shadowOffset: {
           width: 0,

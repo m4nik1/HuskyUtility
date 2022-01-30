@@ -1,19 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { Button, StyleSheet, View } from 'react-native';
+import { ButtonStyleSheet, View, StyleSheet } from 'react-native';
 import Home from './screens/HomeScreen';
 import ClassesCard from './components/ClassCard';
 import moment from "moment";
 import LocationDining from './screens/LocationDining';
-import DiningParsing from './data/UConnDining/DiningParsing'
-import ModalDining from './components/diningHallModal';
 import LocationCard from './components/LocationCard';
-import MapBar from './components/MapTabBar';
 import { meals } from './data/UConnDining/DiningParsing';
-import { HallStatus } from './data/UConnDining/HallStatus';
+
+
+
+function tabs() {
+  return (
+    <Tab.Navigator initialRouteName={"home"} >
+      <Tab.Screen name="home" component={App} />
+    </Tab.Navigator>
+  );
+}
 
 export default function App() {
 
-  const [screen, setScreen] = useState("Home")
+  const [screen, setScreen] = useState("home")
   const [data, setData] = useState()
 
   const day = moment().format('dddd');
