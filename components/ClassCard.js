@@ -13,7 +13,7 @@ const ClassesCard = props => {
     }
         return (
             <View>
-                <HomeWidgets title={"Today's Classes: "} screen="classes" day={props.currentDay} screenRequest={(screen2) => screenCallback(screen2)} />
+                <HomeWidgets title={"Today's Classes: "} screen="classes" day={props.currentDay} screenRequest={() => props.navi.navigate('Classes')} />
             </View> 
             
         )

@@ -32,7 +32,7 @@ export default function App() {
   function MainScreen({ navigation }) {
     return (
       <View style={styles.container}>
-        <ClassesCard currentDay={day}  /> 
+        <ClassesCard navi={navigation} currentDay={day}  /> 
         <LocationCard navi={navigation} currentDay={day} />
       </View>
     )
@@ -60,9 +60,10 @@ export default function App() {
         screenOptions={{ 
           tabBarStyle: { position: 'absolute' }, tabBarBackground: () => (
           <BlurView tint="light" intensity={100} style={StyleSheet.absoluteFill} />), }} 
-        initialRouteName="Home" tabBar={() => <TabBar />} >
+        initialRouteName="Home" tabBar={(props) => <TabBar {... props} />} >
         <Tab.Screen name="Home" component={MainScreen} options={ {headerShown: false} } />
         <Tab.Screen name="Dining-Maps" component={LocationDining} options={ {headerShown: false} } />
+        <Tab.Screen name="Classes" component={Home} options={ {headerShown: false} } />
       </Tab.Navigator>
     </NavigationContainer>
     

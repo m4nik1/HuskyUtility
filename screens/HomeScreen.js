@@ -17,12 +17,8 @@ const Home = props => {
         changeData(classItems[day])
     }, [currentMinutes])
 
-    if(props.shouldRengar) {
         return (
             <View>
-                <View style={styles.backBtn}>
-                    <Button title="back" onPress={() => props.changeScreen("home")} />
-                </View>
                 <View style={styles.classContainer}>
                     <Text style={styles.title}>Classes</Text>
                     <FlatList
@@ -44,12 +40,6 @@ const Home = props => {
                 </View>
             </View>
         )
-    }
-    else {
-        return(
-          null
-        );
-    }
 }
 
 

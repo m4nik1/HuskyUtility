@@ -66,7 +66,7 @@ const ModalDining = props => {
 const styles= StyleSheet.create({
     modalView: {
         height: 660,
-        marginTop: 10,
+        marginTop: 80,
         marginBottom: 10,
         shadowColor: '#000',
         shadowOffset: {

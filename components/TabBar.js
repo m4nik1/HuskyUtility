@@ -5,14 +5,14 @@ import { Image, View, StyleSheet, Dimensions, Text, Alert, Pressable, Modal} fro
 
 const currentWidth = Dimensions.get('window').width
 
-const TabBar = (state, descriptors, navigation) => {
+const TabBar = ({  state, descriptors, navigation  }) => {
     return(
                 <View style={styles.Container}>
                      {/* <Pressable onPress={() => console.log("Details")} style={{ marginLeft: 20, alignSelf: 'center' }}>
                         <Entypo name="list" size={26} color="#c1dddd" />
                     </Pressable> */}
-                    <Pressable onPress={() => props.changeScreen("home")} style={{ justifyContent:'center', alignSelf:'center', marginLeft: 135 }}>
-                        <AntDesign name="home" size={26} color="#c1dddd" />
+                    <Pressable onPress={() => navigation.navigate('Home')} style={{ justifyContent:'center', alignSelf:'center', marginLeft: 135 }}>
+                        <AntDesign name="home" size={30} color="#c1dddd" />
                     </Pressable>
                     {/* <Pressable onPress={() => console.log("Current Location")} style={{marginLeft: 85, alignSelf: 'center', textAlignVertical: 'center' }}>
                         <FontAwesome5 name="location-arrow" size={26} color="#c1dddd" />

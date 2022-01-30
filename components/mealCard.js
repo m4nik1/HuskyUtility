@@ -16,7 +16,7 @@ function MealCard(props) {
 
 
     function collpaseList() {
-        LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
         setOpen(!open)
     }
 
