@@ -6,29 +6,36 @@ import moment from "moment";
 import LocationDining from './screens/LocationDining';
 import LocationCard from './components/LocationCard';
 import { meals } from './data/UConnDining/DiningParsing';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import TabBar from './components/TabBar'
+import { BlurView } from 'expo-blur'
 
 
-
-function tabs() {
-  return (
-    <Tab.Navigator initialRouteName={"home"} >
-      <Tab.Screen name="home" component={App} />
-    </Tab.Navigator>
-  );
-}
+const Tab = createBottomTabNavigator()
+let day = moment().format('dddd');
 
 export default function App() {
 
   const [screen, setScreen] = useState("home")
   const [data, setData] = useState()
 
-  const day = moment().format('dddd');
+
 
   const changeScreen = (newScreen) => {
     if(newScreen === "home" || newScreen === "classes" || newScreen === "Dining") {
       setScreen(newScreen)
       mealsFetch()
     }
+  }
+
+  function MainScreen({ navigation }) {
+    return (
+      <View style={styles.container}>
+        <ClassesCard currentDay={day}  /> 
+        <LocationCard navi={navigation} currentDay={day} />
+      </View>
+    )
   }
 
   async function mealsFetch() {
@@ -42,14 +49,22 @@ export default function App() {
   }, [])
 
   return (
-    <View style={styles.container}>
-      <Home current_day={day} shouldRengar={screen === "classes"} changeScreen={(screen2) => {changeScreen(screen2)}} />
-      <LocationDining mealsData={data} shouldRengar={screen === "Dining"} changeScreen={(screen2) => {changeScreen(screen2)}} />
-      <ClassesCard currentDay={day} shouldRengar={screen === "home"} changeScreen={(screen2) => {changeScreen(screen2)}} />
-      <LocationCard currentDay={day} changeScreen={(screen2) => {changeScreen(screen2)}} />
-      {/* <Button title='fetchP' onPress={() => setModal(true)} />  */}
-      {/* <ModalDining isVisible={modal}  title="Putnam Dining Hall" menuData={meals("Northwest")} /> */}
-    </View>
+    // <View style={styles.container}>
+    //   <Home current_day={day} shouldRengar={screen === "classes"} changeScreen={(screen2) => {changeScreen(screen2)}} />
+    //   <LocationDining mealsData={data} shouldRengar={screen === "Dining"} changeScreen={(screen2) => {changeScreen(screen2)}} />
+    //   {/* <Button title='fetchP' onPress={() => setModal(true)} />  */}
+    //   {/* <ModalDining isVisible={modal}  title="Putnam Dining Hall" menuData={meals("Northwest")} /> */}
+    // </View>
+    <NavigationContainer>
+      <Tab.Navigator  
+        screenOptions={{ 
+          tabBarStyle: { position: 'absolute' }, tabBarBackground: () => (
+          <BlurView tint="light" intensity={100} style={StyleSheet.absoluteFill} />), }} 
+        initialRouteName="Home" tabBar={() => <TabBar />} >
+        <Tab.Screen name="Home" component={MainScreen} options={ {headerShown: false} } />
+        <Tab.Screen name="Dining-Maps" component={LocationDining} options={ {headerShown: false} } />
+      </Tab.Navigator>
+    </NavigationContainer>
     
   );
 }

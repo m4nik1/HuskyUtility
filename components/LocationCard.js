@@ -3,13 +3,9 @@ import { View, Modal, StyleSheet, Text, Button, Pressable } from "react-native"
 import Card from "./Card";
 import { HallStatus } from "../data/UConnDining/HallStatus";
 
-const LocationCard = props => {
+function LocationCard(props) {
 
     const [statusData, changeStatusData] = useState()
-
-    const screenCallback = (screen) => {
-        props.changeScreen(screen)
-    }
 
 
     const H = ["Northwest", "Putnam", "South", "McMahon", "Whitney"]
@@ -45,7 +41,7 @@ const LocationCard = props => {
     }, [])
 
     return (
-            <Pressable onPress={() => screenCallback("Dining")}>
+            <Pressable onPress={() => props.navi.navigate('Dining-Maps')}>
                 <Card style={styles.diningCard}>
                     <View style={styles.nameView}>
                         <Text style={styles.title}>Dining Halls</Text>

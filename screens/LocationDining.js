@@ -4,13 +4,12 @@ import * as Location from "expo-location";
 import MapView, { Marker } from "react-native-maps";
 import dining from "../assets/dining_icon.png"
 import ModalDining from "../components/diningHallModal";
-import MapBar from '../components/MapTabBar'
 import { meals } from "../data/UConnDining/DiningParsing";
 
 
 
 
-const LocationDining = props => {
+const LocationDining = (props, { navigation }) => {
 
 
     const [mapRegion, setMapRegion] = useState();
@@ -87,10 +86,6 @@ const LocationDining = props => {
         // console.log(meals(name))
     }
 
-    function screenChange(screen) {
-        props.changeScreen(screen)
-    }
-
     async function saveMealData() {
         setData(await props.mealsData)
     }
@@ -105,8 +100,6 @@ const LocationDining = props => {
         saveMealData()
     }, [])
 
-
-    if(props.shouldRengar) {
         return (
             <View>
                 <MapView 
@@ -142,13 +135,6 @@ const LocationDining = props => {
                 <ModalDining menuData={data} title={diningModalTitle} isVisible={modal} modalCancel={() => modalSet(false)} />
             </View>
         )
-    }
-
-    else {
-        return (
-            null
-        )
-    }
 }
 
 
@@ -157,6 +143,7 @@ const styles = StyleSheet.create({
     map: {
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height,
+        zIndex: 5
     },
 })
 
