@@ -1,26 +1,56 @@
 import React, {useState, useEffect} from "react";
 import { View, Modal, StyleSheet, Text, Button, Pressable } from "react-native"
-import { ScrollView, TouchableOpacity, TouchableWithoutFeedback } from "react-native-web";
-import DiningHallStatus from "../data/UConnDining/DiningHallStatus";
+import MealCard from '../components/mealCard'
+import { meals } from "../data/UConnDining/DiningParsing";
 import Card from "./Card";
 
 const ModalDining = props => {
 
+    const [component, setComponent] = useState()
+    const [data, changeData] = useState()
+
     function cancelModal() {
         props.modalCancel()
-        console.log("Modal is being canceled")
     }
 
+    
 
+    async function mealComponent() {
+        changeData(await meals())
+        // console.log(data)
+        let mealComponents = [];
+
+            for(var i in data[props.title]) {
+                mealComponents.push(
+                    <MealCard
+                        key={data[props.title][i]["mealName"]} 
+                        meal = {data[props.title][i]["mealName"]}
+                        stationTitle = {data[props.title][i]["stations"]}
+                    />
+                )
+            }
+            setComponent(mealComponents);
+    }
+
+    async function fetchMeals() {
+        let m = await meals()
+        changeData(await m)
+    }
+
+    useEffect(() => {
+        fetchMeals()
+        mealComponent()
+    }, [])
     
 
     if(props.isVisible) {
         return (
             
-              <Modal onRequestClose={() => {cancelModal()}} transparent={true} presentationStyle="overFullScreen" animationType="slide">
+              <Modal onShow={() => mealComponent()} onRequestClose={() => {cancelModal()}} transparent={true} presentationStyle="overFullScreen" animationType="slide" visible={props.isVisible}>
                 <Card style={styles.modalView}>
                     <Text style={styles.diningHall}>{props.title}</Text>
-                    <DiningHallStatus name={props.title} />
+                    {/* {mealComponent()} */}
+                    {component}
                     <Button title="Back to maps" onPress={() => cancelModal()} />
                 </Card>
             </Modal>
@@ -36,8 +66,8 @@ const ModalDining = props => {
 
 const styles= StyleSheet.create({
     modalView: {
-        height: 610,
-        marginTop: 100,
+        height: 680,
+        marginTop: 75,
         shadowColor: '#000',
         shadowOffset: {
           width: 0,
