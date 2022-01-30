@@ -9,6 +9,7 @@ import ModalDining from './components/diningHallModal';
 import LocationCard from './components/LocationCard';
 import MapBar from './components/MapTabBar';
 import { meals } from './data/UConnDining/DiningParsing';
+import { HallStatus } from './data/UConnDining/HallStatus';
 
 export default function App() {
 
@@ -32,6 +33,7 @@ export default function App() {
   useEffect(() => {
     mealsFetch()
     meals()
+    HallStatus()
   }, [])
 
   return (
