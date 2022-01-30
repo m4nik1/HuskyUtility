@@ -2,70 +2,69 @@ import moment, { min } from "moment";
 import React from "react";
 import { View, Modal, StyleSheet, Text, Button, Pressable } from "react-native"
 
-const hallsTime = {
-    "Northwest": {
-        "break": {
-            "Hour": 2,
-            "minute": 30,
-            "dayTime": "pm",
+export function HallStatus(name) {
+    const hallsTime = {
+        "Northwest": {
+            "break": {
+                "Hour": 2,
+                "minute": 30,
+                "dayTime": "pm",
+            },
+            "close": {
+                "Hour": 7, 
+                "minute": 45,
+                "dayTime": "pm"
+            }
         },
-        "close": {
-            "Hour": 7, 
-            "minute": 45,
-            "dayTime": "pm"
-        }
-    },
-    "Putnam": {
-        "break": {
-            "Hour": 2,
-            "minute": 30,
-            "dayTime": "pm",
+        "Putnam": {
+            "break": {
+                "Hour": 2,
+                "minute": 30,
+                "dayTime": "pm",
+            },
+            "close": {
+                "Hour": 7, 
+                "minute": 45,
+                "dayTime": "pm"
+            }
         },
-        "close": {
-            "Hour": 7, 
-            "minute": 45,
-            "dayTime": "pm"
-        }
-    },
-    "South": {
-        "break": {
-            "Hour": 2,
-            "minute": 0,
-            "dayTime": "pm",
+        "South": {
+            "break": {
+                "Hour": 2,
+                "minute": 0,
+                "dayTime": "pm",
+            },
+            "close": {
+                "Hour": 7, 
+                "minute": 45,
+                "dayTime": "pm"
+            }
         },
-        "close": {
-            "Hour": 7, 
-            "minute": 45,
-            "dayTime": "pm"
-        }
-    },
-    "McMahon": {
-        "break": {
-            "Hour": 2,
-            "minute": 15,
-            "dayTime": "pm",
+        "McMahon": {
+            "break": {
+                "Hour": 2,
+                "minute": 15,
+                "dayTime": "pm",
+            },
+            "close": {
+                "Hour": 7, 
+                "minute": 45,
+                "dayTime": "pm"
+            }
         },
-        "close": {
-            "Hour": 7, 
-            "minute": 45,
-            "dayTime": "pm"
-        }
-    },
-    "Whitney": {
-        "break": {
-            "Hour": 3,
-            "minute": 0,
-            "dayTime": "pm",
-        },
-        "close": {
-            "Hour": 7, 
-            "minute": 45,
-            "dayTime": "pm"
+        "Whitney": {
+            "break": {
+                "Hour": 3,
+                "minute": 0,
+                "dayTime": "pm",
+            },
+            "close": {
+                "Hour": 7, 
+                "minute": 45,
+                "dayTime": "pm"
+            }
         }
     }
-}
-
-export function HallStatus(name) {
 
     let hour = moment().format('h');
     let minute = moment().format('m');
@@ -85,5 +84,6 @@ export function HallStatus(name) {
         }
     }
 
-    return determineStatus(name)
+    let status = determineStatus(name)
+    return status
 }

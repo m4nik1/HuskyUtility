@@ -5,6 +5,8 @@ import { HallStatus } from "../data/UConnDining/HallStatus";
 
 const LocationCard = props => {
 
+    const [statusData, changeStatusData] = useState()
+
     const screenCallback = (screen) => {
         props.changeScreen(screen)
     }
@@ -15,18 +17,27 @@ const LocationCard = props => {
     function status() {
         let statusData = []
         for(var d in H) {
+            console.log(H[d])
             const obj = {}
-            obj[H[d]] = HallStatus(H[d])
+            const status = HallStatus(H[d])
+            obj[H[d]] = status
             statusData.push(obj)
         }
+        changeStatusData(statusData)
+    }
 
-        return (
-            <View>
-                {/* <Text>{stat}</Text> */}
-                <Text style={styles.classTime}>Open</Text>
-            </View>
-        )
+    function renderStatus() {
+        let statusComponent = []
 
+        for(var s in statusData) {
+            statusComponent.push(
+                <View>
+                    <Text>{H[s]}</Text>
+                    <Text style={styles.classTime, (statusData[s][H[s]] === "Open" ? {color: 'green'} : {color:'red'})}>{statusData[s][H[s]]}</Text>
+                </View>
+            )
+        }
+        return statusComponent
     }
 
     useEffect(() => {
@@ -34,19 +45,19 @@ const LocationCard = props => {
     }, [])
 
     return (
-            <Pressable onPress={() => props.screenRequest(props.screen)}>
-                <Card style={styles.classCard}>
+            <Pressable onPress={() => screenCallback(props.screen)}>
+                <Card style={styles.diningCard}>
                     <View style={styles.nameView}>
                         <Text style={styles.title}>Dining Halls</Text>
                     </View>
                     <View style={styles.classListView}>
-                        <Text>Northwest</Text>
-                        <Text style={styles.classTime}>Open</Text>
+                        { renderStatus() }
                     </View>
                 </Card>
             </Pressable>
     )
 }
+
 
 const styles = StyleSheet.create({
     classCard: {
@@ -54,8 +65,6 @@ const styles = StyleSheet.create({
         height: 200,
         marginTop: 70,
         marginLeft: 40,
-        alignContent: 'center',
-        alignItems: 'center'
     },
     nameView: {
         alignItems: "center",
@@ -66,7 +75,7 @@ const styles = StyleSheet.create({
 
     classListView: {
         flex: 1,
-        flexDirection: "row",
+        flexDirection: "column",
         paddingTop: 20,
         textAlign: 'left'
     },
@@ -84,6 +93,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 20,
+        alignSelf: 'center'
     }
 })
 

@@ -33,7 +33,6 @@ export default function App() {
   useEffect(() => {
     mealsFetch()
     meals()
-    HallStatus()
   }, [])
 
   return (
