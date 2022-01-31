@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { View, Modal, StyleSheet, Text, Button, Pressable } from "react-native"
 import Card from "./Card";
+import moment from "moment";
 import { HallStatus } from "../data/UConnDining/HallStatus";
 
 function LocationCard(props) {
 
     const [statusData, changeStatusData] = useState()
+    const currentMinutes = moment().format("mm");
 
 
     const H = ["Northwest", "Putnam", "South", "McMahon", "Whitney"]
@@ -38,7 +40,7 @@ function LocationCard(props) {
 
     useEffect(() => {
         status()
-    }, [])
+    }, [currentMinutes])
 
     return (
             <Pressable onPress={() => props.navi.navigate('Dining-Maps')}>

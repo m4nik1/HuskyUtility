@@ -49,12 +49,6 @@ export default function App() {
   }, [])
 
   return (
-    // <View style={styles.container}>
-    //   <Home current_day={day} shouldRengar={screen === "classes"} changeScreen={(screen2) => {changeScreen(screen2)}} />
-    //   <LocationDining mealsData={data} shouldRengar={screen === "Dining"} changeScreen={(screen2) => {changeScreen(screen2)}} />
-    //   {/* <Button title='fetchP' onPress={() => setModal(true)} />  */}
-    //   {/* <ModalDining isVisible={modal}  title="Putnam Dining Hall" menuData={meals("Northwest")} /> */}
-    // </View>
     <NavigationContainer>
       <Tab.Navigator  
         screenOptions={{ 

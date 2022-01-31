@@ -9,9 +9,10 @@ import { classItems } from "../data/classData";
 const Home = props => {
 
     const currentMinutes = moment().format("mm");
-
-    const [day, changeDay] = useState(props.current_day);
+    const [day, changeDay] = useState(moment().format('dddd'));
     const [data, changeData] = useState();
+
+    let todaysDate = moment().format("dddd MMM Do"); 
 
     useEffect(() => {
         changeData(classItems[day])
@@ -21,6 +22,7 @@ const Home = props => {
             <View>
                 <View style={styles.classContainer}>
                     <Text style={styles.title}>Classes</Text>
+                    <Text style={styles.date}>{ todaysDate }</Text>
                     <FlatList
                         keyExtractor={item => item.id}
                         style={styles.scrollView}
@@ -61,11 +63,15 @@ const styles = StyleSheet.create({
         paddingTop: 20
     },
     scrollView: {
-        width: "100%"
+        width: "100%",
+        height: "50%"
     },
     backBtn: {
         marginTop: 50,
         marginRight: 300
+    },
+    date: {
+        fontSize: 23
     }
 })
 
