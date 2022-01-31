@@ -4,7 +4,7 @@ import * as Location from "expo-location";
 import MapView, { Marker } from "react-native-maps";
 import dining from "../assets/dining_icon.png"
 import ModalDining from "../components/diningHallModal";
-import { meals } from "../data/UConnDining/DiningParsing";
+import { HallStatus } from "../data/UConnDining/HallStatus";
 
 
 
@@ -75,6 +75,7 @@ const LocationDining = (props, { navigation }) => {
             latitudeDelta: .01,
             longitudeDelta: .01
         }
+
         setMapRegion(currentRegion)
         console.log("Centering on current location")
     }
@@ -83,7 +84,6 @@ const LocationDining = (props, { navigation }) => {
         setModal(state)
         setTitle(name)
         setMapRegion(region)
-        // console.log(meals(name))
     }
 
     async function saveMealData() {
@@ -96,7 +96,6 @@ const LocationDining = (props, { navigation }) => {
 
     useEffect(() => {
         getCurrentLocation();
-        console.log("UseEffect is working!")
         saveMealData()
     }, [])
 

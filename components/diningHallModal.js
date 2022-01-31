@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import { View, Modal, StyleSheet, Text, Button, Pressable } from "react-native"
 import MealCard from '../components/mealCard'
 import { meals } from "../data/UConnDining/DiningParsing";
+import { HallStatus } from "../data/UConnDining/HallStatus";
 import Card from "./Card";
 
 const ModalDining = props => {
@@ -16,6 +17,7 @@ const ModalDining = props => {
     
 
     async function mealComponent() {
+        console.log(props.status)
         changeData(await meals())
         // console.log(data)
         let mealComponents = [];
@@ -48,7 +50,10 @@ const ModalDining = props => {
             
               <Modal onShow={() => mealComponent()} onRequestClose={() => {cancelModal()}} transparent={true} presentationStyle="overFullScreen" animationType="slide" visible={props.isVisible}>
                 <Card style={styles.modalView}>
-                    <Text style={styles.diningHall}>{props.title}</Text>
+                    <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+                        <Text style={styles.diningHall}>{props.title}</Text>
+                        <Text style={{fontSize: 30}}>  {(HallStatus() === "Open") ? "✅" : "❌"} </Text>
+                    </View>
                     {component}
                     <Button title="Back to maps" onPress={() => cancelModal()} />
                 </Card>

@@ -70,10 +70,10 @@ export function HallStatus(name) {
     let minute =  45//moment().format('m');
     let timeOfDay =  "pm"//moment().format("a")
 
-    function determineStatus(name) {
+    function determineStatus() {
         let statusD;
         let hourDiff = moment("7 pm", "hm a").fromNow();
-        if(hourDiff.split(' ')[1] == 0 || hourDiff.split(' ')[2] != "ago") {
+        if(hourDiff.split(' ')[1] == 0 || hourDiff.split(' ')[2] == "ago") {
             console.log("Closed")
             statusD = "Closed"
         }
