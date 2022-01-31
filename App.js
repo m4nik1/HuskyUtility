@@ -50,7 +50,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Tab.Navigator  
+      <Tab.Navigator
         screenOptions={{ 
           tabBarStyle: { position: 'absolute' }, tabBarBackground: () => (
           <BlurView tint="light" intensity={100} style={StyleSheet.absoluteFill} />), }} 

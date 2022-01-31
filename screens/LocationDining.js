@@ -70,8 +70,8 @@ const LocationDining = (props, { navigation }) => {
         const lat = location["coords"]["latitude"]; // these are current location values
         const long = location["coords"]["longitude"]
         const currentRegion = {
-            latitude: 41.806705735400755, 
-            longitude: -72.25275337289247,
+            latitude: lat, 
+            longitude: long,
             latitudeDelta: .01,
             longitudeDelta: .01
         }
