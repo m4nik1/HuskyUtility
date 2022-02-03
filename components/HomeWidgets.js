@@ -4,6 +4,7 @@ import { View, Text, ScrollView, StyleSheet, FlatList, Pressable } from "react-n
 import Card from "./Card";
 import moment from "moment";
 import { classItems } from "../data/classData";
+import DateSwitch from "./ClassDateSwitch";
 
 const HomeWidgets = props => {
 

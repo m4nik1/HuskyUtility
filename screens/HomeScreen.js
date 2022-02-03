@@ -1,28 +1,53 @@
 import React, { useEffect, useState } from "react";
 
-import { View, Text, ScrollView, StyleSheet, FlatList, Button } from "react-native";
+import { View, Text, ScrollView, StyleSheet, FlatList, Button, Pressable, TouchableOpacity } from "react-native";
 import moment from "moment";
 import ClassCard from "../components/Class";
 import { classItems } from "../data/classData";
+import DateSwitch from "../components/ClassDateSwitch";
 
 
 const Home = props => {
 
+    let dayNumber = moment().format("Do")
+
     const currentMinutes = moment().format("mm");
     const [day, changeDay] = useState(moment().format('dddd'));
     const [data, changeData] = useState();
+    const [dayNum, changeNumber] = useState(dayNumber)
+    const [dayCounter, changeCounter] = useState(1);
 
-    let todaysDate = moment().format("dddd MMM Do"); 
+    let todaysDate = moment().format(" MMM");
+
+    function dayChange() {
+        if(dayCounter < 5){ 
+            changeCounter(dayCounter+1)
+        }
+        changeNumber(moment().add(dayCounter, 'days').format('D'));
+        changeDay(moment().add(dayCounter, 'days').format('dddd'))
+    }
+
+    function backToday() {
+        changeNumber(moment().format("Do"));
+        changeDay(moment().format('dddd'))
+        changeCounter(1)
+    }
+    
 
     useEffect(() => {
         changeData(classItems[day])
-    }, [currentMinutes])
+    }, [currentMinutes, day])
 
         return (
             <View>
                 <View style={styles.classContainer}>
                     <Text style={styles.title}>Classes</Text>
-                    <Text style={styles.date}>{ todaysDate }</Text>
+                    <View style={styles.dateContainer}>
+                        <TouchableOpacity onPress={() => backToday()}>
+                            <Text style={styles.date}>{ day + todaysDate + " " + dayNum }</Text>
+                        </TouchableOpacity>
+                        <Button style={styles.TomorrowBtn} title="Next Day" onPress={() => dayChange()} />
+                    </View>
                     <FlatList
                         keyExtractor={item => item.id}
                         style={styles.scrollView}
@@ -70,8 +95,13 @@ const styles = StyleSheet.create({
         marginTop: 50,
         marginRight: 300
     },
+    dateContainer: {
+        flexDirection: 'row', alignItems: 'center', alignContent: 'center', justifyContent: 'center'
+    },
     date: {
         fontSize: 23
+    },
+    TomorrowBtn: {
     }
 })
 

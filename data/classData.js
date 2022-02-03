@@ -12,5 +12,7 @@ export const classItems = {
     Thursday: [{className: "CSE 4095", time:"11:00am - 12:15pm", profName: "Walter Krawec", location:"Oak Hall 101", hour:11, minute:0 }],
     Friday: [{ className: "POLS 1402", time:"9:05am - 9:55am", profName: "TA", location:"Oak Hall 401", hour:9, minute:5 },
              { className: "CSE 4102", time: "10:10am - 11:00am", profName: "Wei Wei", location:"ITE 336", hour:10, minute:10 },
-             { className:"CSE 3300", time:"2:30pm - 3:20pm", profName: "Bing Wang", location:"Austin Building 163", hour: 2, minute: 30}]
+             { className:"CSE 3300", time:"2:30pm - 3:20pm", profName: "Bing Wang", location:"Austin Building 163", hour: 2, minute: 30}],
+    Saturday: [],
+    Sunday: []
 }
