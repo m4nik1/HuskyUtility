@@ -46,6 +46,7 @@ export default function App() {
   useEffect(() => {
     mealsFetch()
     meals()
+    console.log(moment("2:30 pm", "hm a").fromNow().split(' ')[2])
   }, [])
 
   return (

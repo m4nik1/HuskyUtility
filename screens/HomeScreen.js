@@ -46,7 +46,7 @@ const Home = props => {
                         <TouchableOpacity onPress={() => backToday()}>
                             <Text style={styles.date}>{ day + todaysDate + " " + dayNum }</Text>
                         </TouchableOpacity>
-                        <Button style={styles.TomorrowBtn} title="Next Day" onPress={() => dayChange()} />
+                        <Button style={styles.TomorrowBtn} title="Next" onPress={() => dayChange()} />
                     </View>
                     <FlatList
                         keyExtractor={item => item.id}

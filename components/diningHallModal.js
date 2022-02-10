@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from "react";
 import { View, Modal, StyleSheet, Text, Button, Pressable } from "react-native"
+import { FontAwesome5, Entypo } from '@expo/vector-icons';
 import MealCard from '../components/mealCard'
 import { meals } from "../data/UConnDining/DiningParsing";
 import { HallStatus } from "../data/UConnDining/HallStatus";
 import Card from "./Card";
+import { gettingDirections } from '../data/directions'
 
 const ModalDining = props => {
 
@@ -53,9 +55,13 @@ const ModalDining = props => {
                     <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
                         <Text style={styles.diningHall}>{props.title}</Text>
                         <Text style={{fontSize: 30}}>  {(HallStatus() === "Open") ? "✅" : "❌"} </Text>
+                        <Pressable onPress={() => gettingDirections()} style={{ justifyContent:'center', alignSelf:'center'}}>
+                            <FontAwesome5 name="directions" size={30} color="Black" />
+                        </Pressable>
                     </View>
                     {component}
                     <Button title="Back to maps" onPress={() => cancelModal()} />
+
                 </Card>
             </Modal>
         );
