@@ -36,8 +36,10 @@ export async function meals() {
                 "url_name": "Whitney+Dining+Hall",
                 "url_id": "01"
             },
-
-
+            "Buckley" : {
+                "url_name": "Buckley+Dining+Hall",
+                "url_id": "03"
+            },
         }
         // console.log("THIS IS WHAT IS PICKED" + " " + Halls[diningHall]["url_name"])
     
@@ -108,7 +110,7 @@ export async function meals() {
     
         return foods
     }
-    const H = ["Northwest", "Putnam", "South", "McMahon", "Whitney"]
+    const H = ["Northwest", "Putnam", "South", "McMahon", "Whitney", "Buckley"]
     let dataReturn = {}
     for(var s in H) {
         const func = await diningScrape(H[s])

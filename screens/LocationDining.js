@@ -54,6 +54,13 @@ const LocationDining = (props, { navigation }) => {
         longitudeDelta: .01
     }
 
+    const BuckleyCoords = {
+        latitude: 41.80581989249787, 
+        longitude: -72.24375360780738,
+        latitudeDelta: .01,
+        longitudeDelta: .01 
+    }
+
     
 
     
@@ -130,6 +137,11 @@ const LocationDining = (props, { navigation }) => {
                     <MapView.Marker onPress={() => setMapUtility(true, "Whitney", whitneyCoords)} title={"Whitney Dining Hall"} coordinate={whitneyCoords} description={"Dining hall"}>
                         {markerImage}
                     </MapView.Marker>
+
+                    <MapView.Marker onPress={() => setMapUtility(true, "Buckley", BuckleyCoords)} title={"Buckley Dining Hall"} coordinate={BuckleyCoords} description={"Dining hall"}>
+                        {markerImage}
+                    </MapView.Marker>
+
                 </MapView>
                 <ModalDining menuData={data} title={diningModalTitle} isVisible={modal} modalCancel={() => modalSet(false)} />
             </View>

@@ -20,8 +20,6 @@ const ModalDining = props => {
 
     async function mealComponent() {
         console.log(props.status)
-        changeData(await meals())
-        // console.log(data)
         let mealComponents = [];
 
             for(var i in data[props.title]) {
