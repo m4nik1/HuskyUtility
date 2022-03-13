@@ -10,6 +10,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import TabBar from './components/TabBar'
 import { BlurView } from 'expo-blur'
+import DiningModal from './components/newDiningModal';
 
 
 const Tab = createBottomTabNavigator()

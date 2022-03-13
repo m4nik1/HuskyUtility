@@ -10,8 +10,8 @@ export async function meals() {
 
     async function diningScrape(diningHall) {
         let toScrape;
-        let day = moment().format('D');
-        let month = moment().format('M');
+        let day = 9
+        let month = 3
         let year = moment().format('Y')
         let urlDate = `${month}%2f${day}%2f${year}`
     

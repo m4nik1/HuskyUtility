@@ -5,8 +5,7 @@ import MapView, { Marker } from "react-native-maps";
 import dining from "../assets/dining_icon.png"
 import ModalDining from "../components/diningHallModal";
 import { HallStatus } from "../data/UConnDining/HallStatus";
-
-
+import DiningModal from "../components/newDiningModal";
 
 
 const LocationDining = (props, { navigation }) => {
@@ -61,17 +60,13 @@ const LocationDining = (props, { navigation }) => {
         longitudeDelta: .01 
     }
 
-    
-
-    
-
     async function getCurrentLocation() {
         const { status } = await Location.requestForegroundPermissionsAsync()
         if(status !== 'granted') {
             setErrorMsg("Permission to access location is denied");
             return;
         }
-
+    
         
         let location = await Location.getCurrentPositionAsync({})
         const lat = location["coords"]["latitude"]; // these are current location values
@@ -82,10 +77,11 @@ const LocationDining = (props, { navigation }) => {
             latitudeDelta: .01,
             longitudeDelta: .01
         }
-
+    
         setMapRegion(currentRegion)
         console.log("Centering on current location")
     }
+    
 
     function setMapUtility(state, name, region) {
         setModal(state)
@@ -126,7 +122,7 @@ const LocationDining = (props, { navigation }) => {
                         {markerImage}
                     </MapView.Marker>
 
-                    <MapView.Marker onPress={() => setMapUtility(true, "South", southCoords)} title={"South Dining Hall"} coordinate={southCoords} description={"Dining hall"}>
+                    <MapView.Marker onPress={() => setMapUtility(true, "South Dining Hall", southCoords)} title={"South Dining Hall"} coordinate={southCoords} description={"Dining hall"}>
                         {markerImage}
                     </MapView.Marker>
 
