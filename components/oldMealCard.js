@@ -41,12 +41,10 @@ function MealCard(props) {
     return(
         <View key={props.meal} style={styles.container}>
             <TouchableOpacity style={styles.collpaseList, !open && {height: 30}} onPress={() => collpaseList()}>
-                <View style={{ backgroundColor: "navy" }}>
-                    <Text style={(Platform.OS === 'android') ? styles.mealTitleA : styles.mealTitle}>{props.meal}</Text>
-                </View>
-                {/* {open && (
+                <Text style={(Platform.OS === 'android') ? styles.mealTitleA : styles.mealTitle}>{props.meal}</Text>
+                {open && (
                     [stations()]
-                )} */}
+                )}
             </TouchableOpacity>
         </View>
     )
@@ -57,8 +55,8 @@ function MealCard(props) {
 
 const styles = StyleSheet.create({
     mealTitle: {
+        fontWeight: 'bold',
         fontSize: 25,
-        color: 'white',
         textAlignVertical: 'center'
     },
     stationTitle: {
@@ -80,9 +78,9 @@ const styles = StyleSheet.create({
         overflow: 'scroll'
     },
     mealTitleA: {
+        fontWeight: 'bold',
         fontSize: 20,
-        textAlignVertical: 'center',
-        color: 'white'
+        textAlignVertical: 'center'
     }
 
 })

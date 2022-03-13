@@ -70,9 +70,10 @@ const ModalDining = props => {
                         </Pressable> */}
                     </View>
                     <Text style={{ marginTop:20, fontSize: 25, color: 'navy' }}>Menu</Text>
-                    <View style={{ marginTop: 20 }}>
+                    
+                    {/* <View style={{ marginTop: 20 }}>
                         {component}
-                    </View>
+                    </View> */}
                 </Card>
             </Modal>
         );
