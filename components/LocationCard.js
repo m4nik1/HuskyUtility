@@ -20,6 +20,7 @@ function LocationCard(props) {
             const status = HallStatus(H[d])
             obj[H[d]] = status
             statusData.push(obj)
+            console.log(statusData)
         }
         changeStatusData(statusData)
     }
