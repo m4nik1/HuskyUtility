@@ -1,20 +1,19 @@
 import React, {useState, useEffect} from "react";
 import { View, Modal, StyleSheet, Text, Dimensions, Button, Pressable, Image } from "react-native"
-import { FontAwesome5, Entypo } from '@expo/vector-icons';
 import MealCard from '../components/mealCard'
 import { meals } from "../data/UConnDining/DiningParsing";
-import { HallStatus } from "../data/UConnDining/HallStatus";
 import Card from "./Card";
 import { AntDesign } from '@expo/vector-icons';
-import { gettingDirections } from '../data/directions'
 import South_dining from "../assets/South_dining.jpg"
-import ImageBackground from "react-native/Libraries/Image/ImageBackground";
-import { color } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
+import { Feather } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 
 const ModalDining = props => {
 
     const [component, setComponent] = useState()
     const [data, changeData] = useState()
+    const [isPressed, setPressed] = useState(false);
 
     function cancelModal() {
         props.modalCancel()
@@ -43,17 +42,26 @@ const ModalDining = props => {
         changeData(await m)
     }
 
+    function managePressed() {
+        if(isPressed) {
+            setPressed(false)
+        }
+        else {
+            setPressed(true)
+        }
+    }
+
     useEffect(() => {
         fetchMeals()
         mealComponent()
     }, [])
-    
 
     if(props.isVisible) {
+        console.log(isPressed)
         return (
             
               <Modal onShow={() => mealComponent()} onRequestClose={() => {cancelModal()}} transparent={true} presentationStyle="overFullScreen" animationType="slide" visible={props.isVisible}>
-                <Image source={South_dining}  style={{ width: Dimensions.get('window').width, height: 140, alignSelf: 'center' }} />
+                <Image source={props.image}  style={{ width: Dimensions.get('window').width, height: 140, alignSelf: 'center' }} />
                 <View style={styles.backBtn}>
                     <Pressable onPress={() => cancelModal()}>
                         <AntDesign  name="leftcircle" size={30} color="black" />
@@ -70,7 +78,30 @@ const ModalDining = props => {
                         </Pressable> */}
                     </View>
                     <Text style={{ marginTop:20, fontSize: 25, color: 'navy' }}>Menu</Text>
-                    
+                    <View style={{ flexDirection: 'row' }}>
+                        <View>
+                            <Pressable onPress={() => managePressed()} style={[styles.iconSelect, { backgroundColor:  isPressed ? "#add8e6" : "white", borderRadius: 30, width: 35, height: 35 }]}>
+                                <Feather name="coffee" size={30} color="black" style={{ alignSelf: 'center' }} />
+                            </Pressable>
+                            <Text style={{ marginLeft: 5 }}>Breakfast</Text>
+                        </View>
+
+                        <View style={{ marginLeft: 70 }}>
+                            <Pressable style={[styles.iconSelect, { backgroundColor:  isPressed ? "#add8e6" : "white", borderRadius: 30, width: 35, height: 35 }]}>
+                                <MaterialCommunityIcons name="food-fork-drink" size={30} color="black" />
+                            </Pressable>
+                            <Text style={{ marginLeft: 15 }}>Lunch</Text>
+                        </View>
+
+
+                        <View style={{ marginLeft: 70 }}>
+                            <Pressable style={[styles.iconSelect, { backgroundColor:  isPressed ? "#add8e6" : "white", borderRadius: 30, width: 35, height: 35 }]}>
+                                <MaterialCommunityIcons name="food-steak" size={30} color="black" />
+                            </Pressable>
+                            <Text style={{ marginLeft: 15 }}>Dinner</Text>
+                        </View>
+                    </View>
+
                     {/* <View style={{ marginTop: 20 }}>
                         {component}
                     </View> */}
@@ -110,7 +141,15 @@ const styles= StyleSheet.create({
         height: 30,
         borderRadius: 30,
         backgroundColor: 'white'
-    }
+    },
+    iconSelect: {
+        marginTop: 30,
+        marginLeft: 20
+    },
+    backgroundView: {
+
+        
+    },
 })
 
 export default ModalDining;
