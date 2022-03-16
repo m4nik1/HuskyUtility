@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ButtonStyleSheet, View, StyleSheet } from 'react-native';
+import { ButtonStyleSheet, View, StyleSheet, Button } from 'react-native';
 import Home from './screens/HomeScreen';
 import ClassesCard from './components/ClassCard';
 import moment from "moment";
@@ -33,7 +33,7 @@ export default function App() {
   function MainScreen({ navigation }) {
     return (
       <View style={styles.container}>
-        <ClassesCard navi={navigation} currentDay={day}  /> 
+        <ClassesCard navi={navigation} currentDay={day}  />
         <LocationCard navi={navigation} currentDay={day} />
       </View>
     )
@@ -46,8 +46,6 @@ export default function App() {
 
   useEffect(() => {
     mealsFetch()
-    meals()
-    console.log(moment("3:32 pm", "hm a").fromNow().split(' '))
   }, [])
 
   return (
@@ -56,7 +54,7 @@ export default function App() {
         screenOptions={{ 
           tabBarStyle: { position: 'absolute' }, tabBarBackground: () => (
           <BlurView tint="light" intensity={100} style={StyleSheet.absoluteFill} />), }} 
-        initialRouteName="Home" tabBar={(props) => <TabBar {... props} />} >
+        initialRouteName="Dining-Maps" tabBar={(props) => <TabBar {... props} />} >
         <Tab.Screen name="Home" component={MainScreen} options={ {headerShown: false} } />
         <Tab.Screen name="Dining-Maps" component={LocationDining} options={ {headerShown: false} } />
         <Tab.Screen name="Classes" component={Home} options={ {headerShown: false} } />

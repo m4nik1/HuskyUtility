@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from "react";
-import { View, Modal, StyleSheet, Text, Dimensions, Button, Pressable, Image } from "react-native"
+import { View, Modal, StyleSheet, Text, Dimensions, Button, Pressable, Image, FlatList } from "react-native"
 import MealCard from '../components/mealCard'
 import { meals } from "../data/UConnDining/DiningParsing";
 import Card from "./Card";
 import { AntDesign } from '@expo/vector-icons';
-import South_dining from "../assets/South_dining.jpg"
 import { Feather } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -13,7 +12,9 @@ const ModalDining = props => {
 
     const [component, setComponent] = useState()
     const [data, changeData] = useState()
-    const [isPressed, setPressed] = useState(false);
+    const [isBreaky, setBreaky] = useState(false);
+    const [isLunch, setLunch] = useState(false);
+    const [isDinDin, setDinDin] = useState(false);
 
     function cancelModal() {
         props.modalCancel()
@@ -21,20 +22,30 @@ const ModalDining = props => {
 
     
 
-    async function mealComponent() {
-        console.log(props.status)
+    async function mealComponent(mealTime) {
         let mealComponents = [];
+        let meal = -1;
 
-            for(var i in data[props.title]) {
-                mealComponents.push(
-                    <MealCard
-                        key={data[props.title][i]["mealName"]} 
-                        meal = {data[props.title][i]["mealName"]}
-                        stationTitle = {data[props.title][i]["stations"]}
-                    />
-                )
-            }
-            setComponent(mealComponents);
+        if(mealTime == "Breakfast") {
+            meal = 0
+        }
+        else if(mealTime == "Lunch") {
+            meal = 1;
+        }
+
+        else {
+            meal = 2;
+        }
+
+        // console.log(data[props.title][meal][mealTime])
+
+        mealComponents.push(
+            <MealCard
+                stations={data[props.title][meal][mealTime]}
+            />
+        )
+
+        setComponent(mealComponents);
     }
 
     async function fetchMeals() {
@@ -42,22 +53,50 @@ const ModalDining = props => {
         changeData(await m)
     }
 
-    function managePressed() {
-        if(isPressed) {
-            setPressed(false)
+    function breakyPressed() {
+        if(isBreaky) {
+            setBreaky(false)
         }
         else {
-            setPressed(true)
+            fetchMeals()
+            setLunch(false)
+            setDinDin(false)
+            setBreaky(true)
+            mealComponent("Breakfast")
+        }
+    }
+
+    function lunchPressed() {
+        if(isLunch) {
+            setLunch(false)
+
+        }
+        else {
+            setBreaky(false)
+            setDinDin(false)
+            setLunch(true)
+            mealComponent("Lunch")
+        }
+    }
+
+    function DinDinPressed() {
+        if(isDinDin) {
+            setDinDin(false)
+            
+        }
+        else {
+            setBreaky(false)
+            setLunch(false)
+            setDinDin(true)
+            mealComponent("Dinner")
         }
     }
 
     useEffect(() => {
         fetchMeals()
-        mealComponent()
     }, [])
 
     if(props.isVisible) {
-        console.log(isPressed)
         return (
             
               <Modal onShow={() => mealComponent()} onRequestClose={() => {cancelModal()}} transparent={true} presentationStyle="overFullScreen" animationType="slide" visible={props.isVisible}>
@@ -80,14 +119,14 @@ const ModalDining = props => {
                     <Text style={{ marginTop:20, fontSize: 25, color: 'navy' }}>Menu</Text>
                     <View style={{ flexDirection: 'row' }}>
                         <View>
-                            <Pressable onPress={() => managePressed()} style={[styles.iconSelect, { backgroundColor:  isPressed ? "#add8e6" : "white", borderRadius: 30, width: 35, height: 35 }]}>
+                            <Pressable onPress={() => breakyPressed()} style={[styles.iconSelect, { backgroundColor:  isBreaky ? "#add8e6" : "white", borderRadius: 30, width: 35, height: 35 }]}>
                                 <Feather name="coffee" size={30} color="black" style={{ alignSelf: 'center' }} />
                             </Pressable>
                             <Text style={{ marginLeft: 5 }}>Breakfast</Text>
                         </View>
 
                         <View style={{ marginLeft: 70 }}>
-                            <Pressable style={[styles.iconSelect, { backgroundColor:  isPressed ? "#add8e6" : "white", borderRadius: 30, width: 35, height: 35 }]}>
+                            <Pressable onPress={() => lunchPressed()} style={[styles.iconSelect, { backgroundColor:  isLunch ? "#add8e6" : "white", borderRadius: 30, width: 35, height: 35 }]}>
                                 <MaterialCommunityIcons name="food-fork-drink" size={30} color="black" />
                             </Pressable>
                             <Text style={{ marginLeft: 15 }}>Lunch</Text>
@@ -95,16 +134,16 @@ const ModalDining = props => {
 
 
                         <View style={{ marginLeft: 70 }}>
-                            <Pressable style={[styles.iconSelect, { backgroundColor:  isPressed ? "#add8e6" : "white", borderRadius: 30, width: 35, height: 35 }]}>
+                            <Pressable onPress={() => DinDinPressed()} style={[styles.iconSelect, { backgroundColor:  isDinDin ? "#add8e6" : "white", borderRadius: 30, width: 35, height: 35 }]}>
                                 <MaterialCommunityIcons name="food-steak" size={30} color="black" />
                             </Pressable>
                             <Text style={{ marginLeft: 15 }}>Dinner</Text>
                         </View>
                     </View>
 
-                    {/* <View style={{ marginTop: 20 }}>
+                    <View style={{ marginTop: 20 }}>
                         {component}
-                    </View> */}
+                    </View>
                 </Card>
             </Modal>
         );

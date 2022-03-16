@@ -68,9 +68,15 @@ export async function meals() {
             let mealName;
             if(i > 0) {
                 mealName = mealHtml[i].substring(0, mealHtml[i].indexOf("</div>")) 
-    
-                mealData.push({ "mealName" : mealName, stations: stations(mealHtml[i]) })
-    
+                if(mealName == "Breakfast") {
+                    mealData.push({ "Breakfast" : [{stations: stations(mealHtml[i])}] })
+                }
+                else if(mealName == "Lunch") {
+                    mealData.push({ "Lunch" : [{stations: stations(mealHtml[i])}] })
+                }
+                else {
+                    mealData.push({ "Dinner" : [{stations: stations(mealHtml[i])}] })
+                }
             }
         }
         

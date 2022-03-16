@@ -6,6 +6,8 @@ import dining from "../assets/dining_icon.png"
 import ModalDining from "../components/diningHallModal";
 import { HallStatus } from "../data/UConnDining/HallStatus";
 import DiningModal from "../components/newDiningModal";
+import South_dining from "../assets/South_dining.jpg"
+import { meals } from "../data/UConnDining/DiningParsing";
 
 
 const LocationDining = (props, { navigation }) => {
@@ -122,7 +124,7 @@ const LocationDining = (props, { navigation }) => {
                         {markerImage}
                     </MapView.Marker>
 
-                    <MapView.Marker onPress={() => setMapUtility(true, "South Dining Hall", southCoords)} title={"South Dining Hall"} coordinate={southCoords} description={"Dining hall"}>
+                    <MapView.Marker onPress={() => setMapUtility(true, "South", southCoords)} title={"South Dining Hall"} coordinate={southCoords} description={"Dining hall"}>
                         {markerImage}
                     </MapView.Marker>
 
@@ -139,7 +141,7 @@ const LocationDining = (props, { navigation }) => {
                     </MapView.Marker>
 
                 </MapView>
-                <ModalDining menuData={data} title={diningModalTitle} isVisible={modal} modalCancel={() => modalSet(false)} />
+                <ModalDining image={South_dining} menuData={data} title={diningModalTitle} isVisible={modal} modalCancel={() => modalSet(false)} />
             </View>
         )
 }

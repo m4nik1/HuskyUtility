@@ -1,54 +1,40 @@
 import React, { useEffect, useState } from "react";
 
-import { View, Text, ScrollView, StyleSheet, FlatList, Button, Platform, UIManager, TouchableOpacity, LayoutAnimation } from "react-native";
+import { View, Text, StyleSheet, Button, FlatList } from "react-native";
 
 
 function MealCard(props) {
-    let stationData = props.stationTitle
-
-    if(Platform.OS === 'android') {
-        if(UIManager.setLayoutAnimationEnabledExperimental) {
-            UIManager.setLayoutAnimationEnabledExperimental(true)
-        }
-    }
-
-    const [open, setOpen] = useState(false)
-
-
-    function collpaseList() {
-        LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
-        setOpen(!open)
-    }
+    let stationData = props.stations
 
     function stations() {
-        let stationsTitles = []
+        let stationsObj = []
 
-        for(var j in stationData) {
-            console.log(stationData[j]["Station_Name"])
-            stationsTitles.push(
-                <View style={{overflow: 'scroll'}}>
-                    <Text style={styles.stationTitle}>{stationData[j]["Station_Name"]}</Text>
-                    { stationData[j]["food"].map((foods) => {
-                        return <Text style={styles.menuItems}>  {foods}</Text>
-                    }) }
+        // console.log(stationData)
+        for(var j in stationData[0]["stations"]) {
+            console.log(stationData[0]["stations"][j])
+            stationsObj.push(
+                <View>
+                    <Text style={styles.stationTitle}>{stationData[0]["stations"][j]["Station_Name"]}</Text>
+                    { stationData[0]["stations"][j]["food"].map((foods) => {
+                         return <Text style={styles.menuItems}>{foods}</Text>
+                     }) }
                 </View>
-            )
+             )
         }
-        return stationsTitles;
+
+        return stationsObj;
+        // console.log(stationData[0]["stations"])
     }
 
+    // useEffect(() => {
+        // stations()
+    // }, [])
 
-    return(
-        <View key={props.meal} style={styles.container}>
-            <TouchableOpacity style={styles.collpaseList, !open && {height: 30}} onPress={() => collpaseList()}>
-                <View style={{ backgroundColor: "navy" }}>
-                    <Text style={(Platform.OS === 'android') ? styles.mealTitleA : styles.mealTitle}>{props.meal}</Text>
-                </View>
-                {/* {open && (
-                    [stations()]
-                )} */}
-            </TouchableOpacity>
-        </View>
+    return (
+        <View>
+            <Button title="Press Here" onPress={() => stations()} />
+            {stations()}
+        </View> 
     )
 }
 
@@ -63,8 +49,8 @@ const styles = StyleSheet.create({
     },
     stationTitle: {
         fontWeight: 'bold',
-        fontSize: 17,
-        color: '#7a80e8',
+        fontSize: 20,
+        color: 'black',
     },
     menuItems: {
         fontSize: 13,
