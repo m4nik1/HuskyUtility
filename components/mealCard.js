@@ -10,16 +10,18 @@ function MealCard(props) {
         let stationsObj = []
 
         // console.log(stationData)
-        for(var j in stationData[0]["stations"]) {
-            console.log(stationData[0]["stations"][j])
-            stationsObj.push(
-                <View>
-                    <Text style={styles.stationTitle}>{stationData[0]["stations"][j]["Station_Name"]}</Text>
-                    { stationData[0]["stations"][j]["food"].map((foods) => {
-                         return <Text style={styles.menuItems}>{foods}</Text>
-                     }) }
-                </View>
-             )
+        if(stationData != null) {
+            for(var j in stationData[0]["stations"]) {
+                // console.log(stationData[0]["stations"][j])
+                stationsObj.push(
+                    <View>
+                        <Text style={styles.stationTitle}>{stationData[0]["stations"][j]["Station_Name"]}</Text>
+                        { stationData[0]["stations"][j]["food"].map((foods) => {
+                            return <Text style={styles.menuItems}>     {foods}</Text>
+                        }) }
+                    </View>
+                )
+            }
         }
 
         return stationsObj;
@@ -62,7 +64,6 @@ const styles = StyleSheet.create({
     collpaseList: {
         width: '100%',
         borderWidth: 1,
-        // paddingHorizontal: 20,
         overflow: 'scroll'
     },
     mealTitleA: {

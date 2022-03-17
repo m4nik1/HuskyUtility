@@ -102,6 +102,7 @@ const LocationDining = (props, { navigation }) => {
     useEffect(() => {
         getCurrentLocation();
         saveMealData()
+        meals()
     }, [])
 
         return (
@@ -115,7 +116,7 @@ const LocationDining = (props, { navigation }) => {
                     // zoomEnabled={true}
                     // showsUserLocation={true}
                 >
-                    <MapView.Marker onPress={() => setMapUtility(true, "Northwest Dining Hall", NWCoords)} title={"Northwest Dining hall"} coordinate={NWCoords} description={"Dining hall"}>
+                    <MapView.Marker onPress={() => setMapUtility(true, "Northwest", NWCoords)} title={"Northwest Dining hall"} coordinate={NWCoords} description={"Dining hall"}>
                         {markerImage}
                     </MapView.Marker>
 
@@ -128,15 +129,15 @@ const LocationDining = (props, { navigation }) => {
                         {markerImage}
                     </MapView.Marker>
 
-                    <MapView.Marker onPress={() => setMapUtility(true, "McMahon Dining Hall", McMahonCoords)} title={"McMahon Dining Hall"} coordinate={McMahonCoords} description={"Dining hall"}>
+                    <MapView.Marker onPress={() => setMapUtility(true, "McMahon", McMahonCoords)} title={"McMahon Dining Hall"} coordinate={McMahonCoords} description={"Dining hall"}>
                         {markerImage}
                     </MapView.Marker>
 
-                    <MapView.Marker onPress={() => setMapUtility(true, "Whitney Dining Hall", whitneyCoords)} title={"Whitney Dining Hall"} coordinate={whitneyCoords} description={"Dining hall"}>
+                    <MapView.Marker onPress={() => setMapUtility(true, "Whitney", whitneyCoords)} title={"Whitney Dining Hall"} coordinate={whitneyCoords} description={"Dining hall"}>
                         {markerImage}
                     </MapView.Marker>
 
-                    <MapView.Marker onPress={() => setMapUtility(true, "Buckley Dining Hall", BuckleyCoords)} title={"Buckley Dining Hall"} coordinate={BuckleyCoords} description={"Dining hall"}>
+                    <MapView.Marker onPress={() => setMapUtility(true, "Buckley", BuckleyCoords)} title={"Buckley Dining Hall"} coordinate={BuckleyCoords} description={"Dining hall"}>
                         {markerImage}
                     </MapView.Marker>
 

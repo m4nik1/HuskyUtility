@@ -12,9 +12,10 @@ const ModalDining = props => {
 
     const [component, setComponent] = useState()
     const [data, changeData] = useState()
-    const [isBreaky, setBreaky] = useState(false);
+    const [isBreaky, setBreaky] = useState(true);
     const [isLunch, setLunch] = useState(false);
     const [isDinDin, setDinDin] = useState(false);
+    const [loaded, setLoaded] = useState()
 
     function cancelModal() {
         props.modalCancel()
@@ -37,8 +38,7 @@ const ModalDining = props => {
             meal = 2;
         }
 
-        // console.log(data[props.title][meal][mealTime])
-
+        // console.log(data)
         mealComponents.push(
             <MealCard
                 stations={data[props.title][meal][mealTime]}
@@ -50,6 +50,7 @@ const ModalDining = props => {
 
     async function fetchMeals() {
         let m = await meals()
+        console.log("meals are done being fetched")
         changeData(await m)
     }
 
@@ -58,7 +59,7 @@ const ModalDining = props => {
             setBreaky(false)
         }
         else {
-            fetchMeals()
+            setLoaded(true)
             setLunch(false)
             setDinDin(false)
             setBreaky(true)
@@ -93,8 +94,9 @@ const ModalDining = props => {
     }
 
     useEffect(() => {
+        console.log("meals are being fetched")
         fetchMeals()
-    }, [])
+    }, [isBreaky, isDinDin, isLunch])
 
     if(props.isVisible) {
         return (
@@ -111,22 +113,18 @@ const ModalDining = props => {
                 <Card style={styles.modalView}>
                     <View style={{flexDirection: 'row'}}>
                         <Text style={styles.diningHall}>{props.title}</Text>
-                        {/* <Text style={styles.icons}>  {(HallStatus() === "Open") ? "✅" : "❌"} </Text> */}
-                        {/* <Pressable onPress={() => gettingDirections()} style={{ justifyContent:'center', alignSelf:'center', marginTop: 30}}>
-                            <FontAwesome5 name="directions" size={30} color="Black" />
-                        </Pressable> */}
                     </View>
                     <Text style={{ marginTop:20, fontSize: 25, color: 'navy' }}>Menu</Text>
                     <View style={{ flexDirection: 'row' }}>
                         <View>
-                            <Pressable onPress={() => breakyPressed()} style={[styles.iconSelect, { backgroundColor:  isBreaky ? "#add8e6" : "white", borderRadius: 30, width: 35, height: 35 }]}>
+                            <Pressable onPress={() => breakyPressed()} style={[styles.iconBase, { backgroundColor:  isBreaky ? "#add8e6" : "white", borderRadius: 30, width: 35, height: 35 }]}>
                                 <Feather name="coffee" size={30} color="black" style={{ alignSelf: 'center' }} />
                             </Pressable>
                             <Text style={{ marginLeft: 5 }}>Breakfast</Text>
                         </View>
 
                         <View style={{ marginLeft: 70 }}>
-                            <Pressable onPress={() => lunchPressed()} style={[styles.iconSelect, { backgroundColor:  isLunch ? "#add8e6" : "white", borderRadius: 30, width: 35, height: 35 }]}>
+                            <Pressable onPress={() => lunchPressed()} style={[styles.iconBase, { backgroundColor:  isLunch ? "#add8e6" : "white", borderRadius: 30, width: 35, height: 35 }]}>
                                 <MaterialCommunityIcons name="food-fork-drink" size={30} color="black" />
                             </Pressable>
                             <Text style={{ marginLeft: 15 }}>Lunch</Text>
@@ -134,10 +132,10 @@ const ModalDining = props => {
 
 
                         <View style={{ marginLeft: 70 }}>
-                            <Pressable onPress={() => DinDinPressed()} style={[styles.iconSelect, { backgroundColor:  isDinDin ? "#add8e6" : "white", borderRadius: 30, width: 35, height: 35 }]}>
-                                <MaterialCommunityIcons name="food-steak" size={30} color="black" />
+                            <Pressable onPress={() => DinDinPressed()} style={[styles.iconBase, {alignSelf:'center', backgroundColor:  isDinDin ? "black" : "white", borderRadius: isDinDin ? 10 : 0, width: isDinDin ? 35 : 35, height: isDinDin ? 50  : 35 }]}>
+                                <MaterialCommunityIcons name="food-steak" size={30} color= {isDinDin ? "white": "black"} />
                             </Pressable>
-                            <Text style={{ marginLeft: 15 }}>Dinner</Text>
+                            <Text style={{ marginLeft: 15, color: isDinDin ? "black": "black"}}>Dinner</Text>
                         </View>
                     </View>
 
@@ -181,12 +179,11 @@ const styles= StyleSheet.create({
         borderRadius: 30,
         backgroundColor: 'white'
     },
-    iconSelect: {
+    iconBase: {
         marginTop: 30,
         marginLeft: 20
     },
-    backgroundView: {
-
+    iconSelected: {
         
     },
 })
