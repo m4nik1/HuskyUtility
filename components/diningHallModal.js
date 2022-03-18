@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { View, Modal, StyleSheet, Text, Dimensions, Button, Pressable, Image, FlatList } from "react-native"
+import { View, Modal, StyleSheet, Text, Dimensions, Button, Pressable, Image, ScrollView } from "react-native"
 import MealCard from '../components/mealCard'
 import { meals } from "../data/UConnDining/DiningParsing";
 import Card from "./Card";
@@ -12,19 +12,23 @@ const ModalDining = props => {
 
     const [component, setComponent] = useState()
     const [data, changeData] = useState()
-    const [isBreaky, setBreaky] = useState(true);
+    const [isBreaky, setBreaky] = useState(false);
     const [isLunch, setLunch] = useState(false);
     const [isDinDin, setDinDin] = useState(false);
     const [loaded, setLoaded] = useState()
+    let mealComponents = [];
 
     function cancelModal() {
+        setBreaky(false)
+        setLunch(false)
+        setDinDin(false)
+        setComponent(<View><Text></Text></View>)
         props.modalCancel()
     }
 
     
 
     async function mealComponent(mealTime) {
-        let mealComponents = [];
         let meal = -1;
 
         if(mealTime == "Breakfast") {
@@ -94,7 +98,6 @@ const ModalDining = props => {
     }
 
     useEffect(() => {
-        console.log("meals are being fetched")
         fetchMeals()
     }, [isBreaky, isDinDin, isLunch])
 
@@ -108,42 +111,38 @@ const ModalDining = props => {
                         <AntDesign  name="leftcircle" size={30} color="black" />
                     </Pressable>
                 </View>
-                
-
                 <Card style={styles.modalView}>
-                    <View style={{flexDirection: 'row'}}>
-                        <Text style={styles.diningHall}>{props.title}</Text>
-                    </View>
-                    <Text style={{ marginTop:20, fontSize: 25, color: 'navy' }}>Menu</Text>
-                    <View style={{ flexDirection: 'row' }}>
-                        <View style={{ backgroundColor: isBreaky ? "black" : "white", borderRadius: 10, height: 70, width: 80, marginTop: 20 }} >
-                            <Pressable onPress={() => breakyPressed()}>
-                                <Feather style={{ marginLeft: 25, marginTop: 15 }} name="coffee" size={30} color={isBreaky ? "white": "black"} />
-                            </Pressable>
-                            <Text style={{ marginLeft: 7, color: isBreaky ? "white": "black"}}>Breakfast</Text>
+                    <ScrollView scrollEnabled={true} scrollToOverflowEnabled={true} style={styles.scrollStyle}>
+                        <View style={{flexDirection: 'row'}}>
+                            <Text style={styles.diningHall}>{props.title}</Text>
                         </View>
+                        <Text style={{ marginTop:20, fontSize: 25, color: 'navy' }}>Menu</Text>
+                        <View style={{ flexDirection: 'row' }}>
+                            <View style={{ backgroundColor: isBreaky ? "black" : "white", borderRadius: 10, height: 70, width: 80, marginTop: 20 }} >
+                                <Pressable onPress={() => breakyPressed()}>
+                                    <Feather style={{ marginLeft: 25, marginTop: 15 }} name="coffee" size={30} color={isBreaky ? "white": "black"} />
+                                </Pressable>
+                                <Text style={{ marginLeft: 7, color: isBreaky ? "white": "black"}}>Breakfast</Text>
+                            </View>
 
-                        <View style={{ marginLeft: 50, backgroundColor: isLunch ? "black" : "white", borderRadius: 10, height: 70, width: 80, marginTop: 20 }} >
-                            <Pressable onPress={() => lunchPressed()}>
-                                <MaterialCommunityIcons name="food-fork-drink" style={{ marginLeft: 27, marginTop: 15 }}  size={30} color= {isLunch ? "white": "black"} />
-                            </Pressable>
-                            <Text style={{ marginLeft: 20, color: isLunch ? "white": "black"}}>Lunch</Text>
+                            <View style={{ marginLeft: 50, backgroundColor: isLunch ? "black" : "white", borderRadius: 10, height: 70, width: 80, marginTop: 20 }} >
+                                <Pressable onPress={() => lunchPressed()}>
+                                    <MaterialCommunityIcons name="food-fork-drink" style={{ marginLeft: 27, marginTop: 15 }}  size={30} color= {isLunch ? "white": "black"} />
+                                </Pressable>
+                                <Text style={{ marginLeft: 20, color: isLunch ? "white": "black"}}>Lunch</Text>
+                            </View>
+
+                            <View style={{marginLeft: 50, backgroundColor: isDinDin ? "black" : "white", borderRadius: 10, height: 70, width: 80, marginTop: 20 }} >
+                                <Pressable onPress={() => DinDinPressed()}>
+                                    <MaterialCommunityIcons name="food-steak" style={{ marginLeft: 25, marginTop: 15 }} size={30} color= {isDinDin ? "white": "black"} />
+                                </Pressable>
+                                <Text style={{ marginLeft: 20, color: isDinDin ? "white": "black"}}>Dinner</Text>
+                            </View>
                         </View>
-
-                        <View style={{marginLeft: 50, backgroundColor: isDinDin ? "black" : "white", borderRadius: 10, height: 70, width: 80, marginTop: 20 }} >
-                            <Pressable onPress={() => DinDinPressed()}>
-                                <MaterialCommunityIcons name="food-steak" style={{ marginLeft: 25, marginTop: 15 }} size={30} color= {isDinDin ? "white": "black"} />
-                            </Pressable>
-                            <Text style={{ marginLeft: 20, color: isDinDin ? "white": "black"}}>Dinner</Text>
+                        <View style={{ marginTop: 20 }}>
+                            {component}
                         </View>
-                    
-
-                        
-                    </View>
-
-                    <View style={{ marginTop: 20 }}>
-                        {component}
-                    </View>
+                    </ScrollView>
                 </Card>
             </Modal>
         );
@@ -181,8 +180,9 @@ const styles= StyleSheet.create({
         borderRadius: 30,
         backgroundColor: 'white'
     },
-    iconSelected: {
-        
+    scrollStyle: {
+        height: "90%",
+        width: '100%',
     },
 })
 

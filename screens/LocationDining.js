@@ -7,6 +7,11 @@ import ModalDining from "../components/diningHallModal";
 import { HallStatus } from "../data/UConnDining/HallStatus";
 import DiningModal from "../components/newDiningModal";
 import South_dining from "../assets/South_dining.jpg"
+import Putnam_dining from "../assets/Putnam_dining.jpg"
+import Mcmahon_dining from "../assets/Mcmahon_dining.jpg"
+import Nortwest_dining from "../assets/Northwest_dining.jpg"
+import Whitney_dining from "../assets/Whitney_dining.jpg"
+import Buckley_dining from "../assets/Buckley_Dining.jpg"
 import { meals } from "../data/UConnDining/DiningParsing";
 
 
@@ -16,6 +21,7 @@ const LocationDining = (props, { navigation }) => {
     const [mapRegion, setMapRegion] = useState();
     const [diningModalTitle, setTitle] = useState();
     const [modal, setModal] = useState(false)
+    const [image, setImage] = useState();
     const [data, setData] = useState()
 
     const NWCoords = {
@@ -85,10 +91,11 @@ const LocationDining = (props, { navigation }) => {
     }
     
 
-    function setMapUtility(state, name, region) {
+    function setMapUtility(state, name, region, image) {
         setModal(state)
         setTitle(name)
         setMapRegion(region)
+        setImage(image)
     }
 
     async function saveMealData() {
@@ -116,33 +123,33 @@ const LocationDining = (props, { navigation }) => {
                     // zoomEnabled={true}
                     // showsUserLocation={true}
                 >
-                    <MapView.Marker onPress={() => setMapUtility(true, "Northwest", NWCoords)} title={"Northwest Dining hall"} coordinate={NWCoords} description={"Dining hall"}>
+                    <MapView.Marker onPress={() => setMapUtility(true, "Northwest", NWCoords, Nortwest_dining)} title={"Northwest Dining hall"} coordinate={NWCoords} description={"Dining hall"}>
                         {markerImage}
                     </MapView.Marker>
 
                         
-                    <MapView.Marker onPress={() => setMapUtility(true, "Putnam Dining Hall", putnamCoords)} title={"Putnam Dining Hall"} coordinate={putnamCoords} description={"Dining hall"}>
+                    <MapView.Marker onPress={() => setMapUtility(true, "Putnam Dining Hall", putnamCoords, Putnam_dining)} title={"Putnam Dining Hall"} coordinate={putnamCoords} description={"Dining hall"}>
                         {markerImage}
                     </MapView.Marker>
 
-                    <MapView.Marker onPress={() => setMapUtility(true, "South", southCoords)} title={"South Dining Hall"} coordinate={southCoords} description={"Dining hall"}>
+                    <MapView.Marker onPress={() => setMapUtility(true, "South", southCoords, South_dining)} title={"South Dining Hall"} coordinate={southCoords} description={"Dining hall"}>
                         {markerImage}
                     </MapView.Marker>
 
-                    <MapView.Marker onPress={() => setMapUtility(true, "McMahon", McMahonCoords)} title={"McMahon Dining Hall"} coordinate={McMahonCoords} description={"Dining hall"}>
+                    <MapView.Marker onPress={() => setMapUtility(true, "McMahon", McMahonCoords, Mcmahon_dining)} title={"McMahon Dining Hall"} coordinate={McMahonCoords} description={"Dining hall"}>
                         {markerImage}
                     </MapView.Marker>
 
-                    <MapView.Marker onPress={() => setMapUtility(true, "Whitney", whitneyCoords)} title={"Whitney Dining Hall"} coordinate={whitneyCoords} description={"Dining hall"}>
+                    <MapView.Marker onPress={() => setMapUtility(true, "Whitney", whitneyCoords, Whitney_dining)} title={"Whitney Dining Hall"} coordinate={whitneyCoords} description={"Dining hall"}>
                         {markerImage}
                     </MapView.Marker>
 
-                    <MapView.Marker onPress={() => setMapUtility(true, "Buckley", BuckleyCoords)} title={"Buckley Dining Hall"} coordinate={BuckleyCoords} description={"Dining hall"}>
+                    <MapView.Marker onPress={() => setMapUtility(true, "Buckley", BuckleyCoords, Buckley_dining)} title={"Buckley Dining Hall"} coordinate={BuckleyCoords} description={"Dining hall"}>
                         {markerImage}
                     </MapView.Marker>
 
                 </MapView>
-                <ModalDining image={South_dining} menuData={data} title={diningModalTitle} isVisible={modal} modalCancel={() => modalSet(false)} />
+                <ModalDining image={image} menuData={data} title={diningModalTitle} isVisible={modal} modalCancel={() => modalSet(false)} />
             </View>
         )
 }

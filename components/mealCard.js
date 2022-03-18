@@ -25,16 +25,10 @@ function MealCard(props) {
         }
 
         return stationsObj;
-        // console.log(stationData[0]["stations"])
     }
-
-    // useEffect(() => {
-        // stations()
-    // }, [])
 
     return (
         <View>
-            {/* <Button title="Press Here" onPress={() => stations()} /> */}
             {stations()}
         </View> 
     )
