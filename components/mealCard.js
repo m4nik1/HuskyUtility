@@ -34,7 +34,7 @@ function MealCard(props) {
 
     return (
         <View>
-            <Button title="Press Here" onPress={() => stations()} />
+            {/* <Button title="Press Here" onPress={() => stations()} /> */}
             {stations()}
         </View> 
     )
