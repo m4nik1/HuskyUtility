@@ -54,7 +54,7 @@ export default function App() {
         screenOptions={{ 
           tabBarStyle: { position: 'absolute' }, tabBarBackground: () => (
           <BlurView tint="light" intensity={100} style={StyleSheet.absoluteFill} />), }} 
-        initialRouteName="Dining-Maps" tabBar={(props) => <TabBar {... props} />} >
+        initialRouteName="Home" tabBar={(props) => <TabBar {... props} />} >
         <Tab.Screen name="Home" component={MainScreen} options={ {headerShown: false} } />
         <Tab.Screen name="Dining-Maps" component={LocationDining} options={ {headerShown: false} } />
         <Tab.Screen name="Classes" component={Home} options={ {headerShown: false} } />
