@@ -10,6 +10,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import TabBar from './components/TabBar'
 import { BlurView } from 'expo-blur'
+import * as Location from "expo-location";
 import DiningModal from './components/newDiningModal';
 
 
@@ -20,6 +21,7 @@ export default function App() {
 
   const [screen, setScreen] = useState("home")
   const [data, setData] = useState()
+  const [mapRegion, setMapRegion] = useState();
 
 
 
@@ -34,7 +36,7 @@ export default function App() {
     return (
       <View style={styles.container}>
         <ClassesCard navi={navigation} currentDay={day}  />
-        <LocationCard navi={navigation} currentDay={day} />
+        <LocationCard coords={mapRegion} navi={navigation} currentDay={day} />
       </View>
     )
   }
@@ -44,8 +46,31 @@ export default function App() {
     setData(await meal)
   }
 
+  async function getCurrentLocation() {
+    const { status } = await Location.requestForegroundPermissionsAsync()
+    if(status !== 'granted') {
+        setErrorMsg("Permission to access location is denied");
+        return;
+    }
+
+    
+    let location = await Location.getCurrentPositionAsync({})
+    const lat = location["coords"]["latitude"]; // these are current location values
+    const long = location["coords"]["longitude"]
+    const currentRegion = {
+        latitude: lat, 
+        longitude: long,
+        latitudeDelta: .01,
+        longitudeDelta: .01
+    }
+
+    setMapRegion(currentRegion)
+    console.log("Centered on current location")
+}
+
   useEffect(() => {
     mealsFetch()
+    getCurrentLocation()
   }, [])
 
   return (

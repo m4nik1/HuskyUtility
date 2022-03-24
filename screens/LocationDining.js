@@ -15,10 +15,18 @@ import Buckley_dining from "../assets/Buckley_Dining.jpg"
 import { meals } from "../data/UConnDining/DiningParsing";
 
 
-const LocationDining = (props, { navigation }) => {
+const LocationDining = (props, { route }) => {
 
+    // const { location } = route.params
 
-    const [mapRegion, setMapRegion] = useState();
+    const currentRegion = {
+        latitude: 41.803514290987316, 
+        longitude: -72.25226181074956,
+        latitudeDelta: .01,
+        longitudeDelta: .01
+    }
+
+    const [mapRegion, setMapRegion] = useState(currentRegion);
     const [diningModalTitle, setTitle] = useState();
     const [modal, setModal] = useState(false)
     const [image, setImage] = useState();
@@ -68,27 +76,27 @@ const LocationDining = (props, { navigation }) => {
         longitudeDelta: .01 
     }
 
-    async function getCurrentLocation() {
-        const { status } = await Location.requestForegroundPermissionsAsync()
-        if(status !== 'granted') {
-            setErrorMsg("Permission to access location is denied");
-            return;
-        }
+    // async function getCurrentLocation() {
+    //     const { status } = await Location.requestForegroundPermissionsAsync()
+    //     if(status !== 'granted') {
+    //         setErrorMsg("Permission to access location is denied");
+    //         return;
+    //     }
     
         
-        let location = await Location.getCurrentPositionAsync({})
-        const lat = location["coords"]["latitude"]; // these are current location values
-        const long = location["coords"]["longitude"]
-        const currentRegion = {
-            latitude: lat, 
-            longitude: long,
-            latitudeDelta: .01,
-            longitudeDelta: .01
-        }
+    //     let location = await Location.getCurrentPositionAsync({})
+    //     const lat = location["coords"]["latitude"]; // these are current location values
+    //     const long = location["coords"]["longitude"]
+        // const currentRegion = {
+        //     latitude: lat, 
+        //     longitude: long,
+        //     latitudeDelta: .01,
+        //     longitudeDelta: .01
+        // }
     
-        setMapRegion(currentRegion)
-        console.log("Centering on current location")
-    }
+    //     setMapRegion(currentRegion)
+    //     console.log("Centered on current location")
+    // }
     
 
     function setMapUtility(state, name, region, image) {
@@ -107,7 +115,7 @@ const LocationDining = (props, { navigation }) => {
     }
 
     useEffect(() => {
-        getCurrentLocation();
+        // getCurrentLocation();
         saveMealData()
         meals()
     }, [])

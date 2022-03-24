@@ -44,7 +44,7 @@ function LocationCard(props) {
     }, [currentMinutes, currentSecond])
 
     return (
-            <Pressable onPress={() => props.navi.navigate('Dining-Maps')}>
+            <Pressable onPress={() => props.navi.navigate('Dining-Maps', { location: props.coords })}>
                 <Card style={styles.diningCard}>
                     <View style={styles.nameView}>
                         <Text style={styles.title}>Dining Halls</Text>
