@@ -112,7 +112,7 @@ const ModalDining = props => {
                     </Pressable>
                 </View>
                 <Card style={styles.modalView}>
-                    <ScrollView scrollEnabled={true} scrollToOverflowEnabled={true} style={styles.scrollStyle}>
+                    <ScrollView contentInset={{ bottom: 120 }} scrollEnabled={true} scrollToOverflowEnabled={true} style={styles.scrollStyle}>
                         <View style={{flexDirection: 'row'}}>
                             <Text style={styles.diningHall}>{props.title}</Text>
                         </View>
@@ -166,7 +166,6 @@ const styles= StyleSheet.create({
         marginTop: 30,
     },
     diningHall: {
-        marginTop: 20,
         fontSize: 30,
         fontWeight: '700',
         textAlign: 'left'

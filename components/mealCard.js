@@ -44,12 +44,13 @@ const styles = StyleSheet.create({
         textAlignVertical: 'center'
     },
     stationTitle: {
-        fontWeight: 'bold',
-        fontSize: 20,
+        fontWeight: '500',
+        fontSize: 25,
         color: 'black',
     },
     menuItems: {
-        fontSize: 13,
+        fontSize: 20,
+        fontWeight: "300"
     },
     container: {
         padding: 10,

@@ -128,7 +128,7 @@ const LocationDining = (props, { navigation }) => {
                     </MapView.Marker>
 
                         
-                    <MapView.Marker onPress={() => setMapUtility(true, "Putnam Dining Hall", putnamCoords, Putnam_dining)} title={"Putnam Dining Hall"} coordinate={putnamCoords} description={"Dining hall"}>
+                    <MapView.Marker onPress={() => setMapUtility(true, "Putnam", putnamCoords, Putnam_dining)} title={"Putnam Dining Hall"} coordinate={putnamCoords} description={"Dining hall"}>
                         {markerImage}
                     </MapView.Marker>
 

@@ -84,16 +84,19 @@ export async function meals() {
     
     }
     
+    function upperLower(station_word) {
+        const upperLowerWord = station_word.charAt(0).toUpperCase() + station_word.slice(1).toLowerCase()
+        
+        return upperLowerWord
+    }
     
     function stations(data) {
         const stationHtml = data.split("<div class=\"shortmenucats\"><span style=\"color: #000000\">-- ");
-        
         let stationData = []
     
         for(var s in stationHtml) {
             if(s > 0) {
-                    stationName = stationHtml[s].substring(0, stationHtml[s].indexOf(" --</span></div>"))
-    
+                    stationName = upperLower(stationHtml[s].substring(0, stationHtml[s].indexOf(" --</span></div>")))
                     stationData.push({ "Station_Name" : stationName, "food": food(stationHtml[s]) })
             }
         }
