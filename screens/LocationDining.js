@@ -13,15 +13,15 @@ import Nortwest_dining from "../assets/Northwest_dining.jpg"
 import Whitney_dining from "../assets/Whitney_dining.jpg"
 import Buckley_dining from "../assets/Buckley_Dining.jpg"
 import { meals } from "../data/UConnDining/DiningParsing";
-import { Ionicons } from '@expo/vector-icons'; 
+import { Ionicons } from '@expo/vector-icons';
 
 
-function LocationDining({ props, navigation }) {
+function LocationDining(props, { navigation }) {
 
     // const { location } = route.params
 
     const currentRegion = {
-        latitude: 41.803514290987316, 
+        latitude: 41.803514290987316,
         longitude: -72.25226181074956,
         latitudeDelta: .01,
         longitudeDelta: .01
@@ -57,7 +57,7 @@ function LocationDining({ props, navigation }) {
     }
 
     const McMahonCoords = {
-        latitude: 41.803514290987316, 
+        latitude: 41.803514290987316,
         longitude: -72.25226181074956,
         latitudeDelta: .01,
         longitudeDelta: .01
@@ -71,10 +71,10 @@ function LocationDining({ props, navigation }) {
     }
 
     const BuckleyCoords = {
-        latitude: 41.80581989249787, 
+        latitude: 41.80581989249787,
         longitude: -72.24375360780738,
         latitudeDelta: .01,
-        longitudeDelta: .01 
+        longitudeDelta: .01
     }
 
     // async function getCurrentLocation() {
@@ -83,22 +83,22 @@ function LocationDining({ props, navigation }) {
     //         setErrorMsg("Permission to access location is denied");
     //         return;
     //     }
-    
-        
+
+
     //     let location = await Location.getCurrentPositionAsync({})
     //     const lat = location["coords"]["latitude"]; // these are current location values
     //     const long = location["coords"]["longitude"]
         // const currentRegion = {
-        //     latitude: lat, 
+        //     latitude: lat,
         //     longitude: long,
         //     latitudeDelta: .01,
         //     longitudeDelta: .01
         // }
-    
+
     //     setMapRegion(currentRegion)
     //     console.log("Centered on current location")
     // }
-    
+
 
     function handleBack() {
         navigation.goBack()
@@ -127,7 +127,7 @@ function LocationDining({ props, navigation }) {
 
         return (
             <View>
-                <MapView 
+                <MapView
                     style={styles.map}
                     region={mapRegion}
                     showsUserLocation
@@ -140,7 +140,7 @@ function LocationDining({ props, navigation }) {
                         {markerImage}
                     </MapView.Marker>
 
-                        
+
                     <MapView.Marker onPress={() => setMapUtility(true, "Putnam", putnamCoords, Putnam_dining)} title={"Putnam Dining Hall"} coordinate={putnamCoords} description={"Dining hall"}>
                         {markerImage}
                     </MapView.Marker>
@@ -167,6 +167,10 @@ function LocationDining({ props, navigation }) {
                         <Ionicons style={{ marginLeft: 5 }} name="arrow-back" size={30} color="white" />
                     </TouchableOpacity>
                 </View>
+
+                <View style={styles.bottomContainer}>
+                    <Text style={{ marginBottom: 100 }}>Dining Halls</Text>
+                </View>
                 <ModalDining image={image} menuData={data} title={diningModalTitle} isVisible={modal} modalCancel={() => modalSet(false)} />
             </View>
         )
@@ -179,6 +183,15 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height,
     },
+    bottomContainer: {
+      justifyContent: 'center',
+      position: 'absolute',
+      marginTop: 700,
+      backgroundColor: 'white',
+      width: Dimensions.get('window').width,
+      height: 700,
+      borderRadius: 50
+    }
 })
 
 export default LocationDining;
