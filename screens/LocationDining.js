@@ -16,7 +16,7 @@ import { meals } from "../data/UConnDining/DiningParsing";
 import { Ionicons } from '@expo/vector-icons'; 
 
 
-const LocationDining = (props, { navigation }) => {
+function LocationDining({ props, navigation }) {
 
     // const { location } = route.params
 
@@ -101,7 +101,7 @@ const LocationDining = (props, { navigation }) => {
     
 
     function handleBack() {
-        navigation.back()
+        navigation.goBack()
     }
 
     function setMapUtility(state, name, region, image) {
@@ -163,7 +163,9 @@ const LocationDining = (props, { navigation }) => {
 
                 </MapView>
                 <View style={{ position: 'absolute', marginTop: 60, backgroundColor: 'black', borderRadius: 50, marginLeft: 20, width: 40, height: 40, justifyContent: 'center' }}>
-                    <TouchableOpacity onPress={handleBack}><Ionicons style={{ marginLeft: 5 }} name="arrow-back" size={30} color="white" /></TouchableOpacity>
+                    <TouchableOpacity onPress={() => handleBack()}>
+                        <Ionicons style={{ marginLeft: 5 }} name="arrow-back" size={30} color="white" />
+                    </TouchableOpacity>
                 </View>
                 <ModalDining image={image} menuData={data} title={diningModalTitle} isVisible={modal} modalCancel={() => modalSet(false)} />
             </View>

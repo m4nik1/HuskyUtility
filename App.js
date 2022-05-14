@@ -12,9 +12,10 @@ import TabBar from './components/TabBar'
 import { BlurView } from 'expo-blur'
 import * as Location from "expo-location";
 import DiningModal from './components/newDiningModal';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
-const Tab = createBottomTabNavigator()
+const Stack = createNativeStackNavigator()
 let day = moment().format('dddd');
 
 export default function App() {
@@ -75,15 +76,11 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={{ 
-          tabBarStyle: { position: 'absolute' }, tabBarBackground: () => (
-          <BlurView tint="light" intensity={100} style={StyleSheet.absoluteFill} />), }} 
-        initialRouteName="Home" >
-        <Tab.Screen name="Home" component={MainScreen} options={ {headerShown: false} } />
-        <Tab.Screen name="Dining-Maps" component={LocationDining} options={ {headerShown: false} } />
-        <Tab.Screen name="Classes" component={Home} options={ {headerShown: false} } />
-      </Tab.Navigator>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={MainScreen} options={ {headerShown: false} } />
+        <Stack.Screen name="Dining-Maps" component={LocationDining} options={ {headerShown: false} } />
+        <Stack.Screen name="Classes" component={Home} options={ {headerShown: false} } />
+      </Stack.Navigator>
     </NavigationContainer>
     
   );
