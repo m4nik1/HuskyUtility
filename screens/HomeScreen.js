@@ -20,7 +20,7 @@ const Home = props => {
     let todaysDate = moment().format(" MMM");
 
     function dayChange() {
-        if(dayCounter < 5){ 
+        if(dayCounter < 5){
             changeCounter(dayCounter+1)
         }
         changeNumber(moment().add(dayCounter, 'days').format('D'));
@@ -32,7 +32,7 @@ const Home = props => {
         changeDay(moment().format('dddd'))
         changeCounter(1)
     }
-    
+
 
     useEffect(() => {
         changeData(classItems[day])
