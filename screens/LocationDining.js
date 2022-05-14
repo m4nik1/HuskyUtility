@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Image, View, StyleSheet, Dimensions, SafeAreaView} from "react-native"
+import { Image, View, StyleSheet, Dimensions, SafeAreaView, Text, Button, TouchableOpacity } from "react-native"
 import * as Location from "expo-location";
 import MapView, { Marker } from "react-native-maps";
 import dining from "../assets/dining_icon.png"
@@ -13,9 +13,10 @@ import Nortwest_dining from "../assets/Northwest_dining.jpg"
 import Whitney_dining from "../assets/Whitney_dining.jpg"
 import Buckley_dining from "../assets/Buckley_Dining.jpg"
 import { meals } from "../data/UConnDining/DiningParsing";
+import { Ionicons } from '@expo/vector-icons'; 
 
 
-const LocationDining = (props, { route }) => {
+function LocationDining({ props, navigation }) {
 
     // const { location } = route.params
 
@@ -99,6 +100,10 @@ const LocationDining = (props, { route }) => {
     // }
     
 
+    function handleBack() {
+        navigation.goBack()
+    }
+
     function setMapUtility(state, name, region, image) {
         setModal(state)
         setTitle(name)
@@ -157,6 +162,11 @@ const LocationDining = (props, { route }) => {
                     </MapView.Marker>
 
                 </MapView>
+                <View style={{ position: 'absolute', marginTop: 60, backgroundColor: 'black', borderRadius: 50, marginLeft: 20, width: 40, height: 40, justifyContent: 'center' }}>
+                    <TouchableOpacity onPress={() => handleBack()}>
+                        <Ionicons style={{ marginLeft: 5 }} name="arrow-back" size={30} color="white" />
+                    </TouchableOpacity>
+                </View>
                 <ModalDining image={image} menuData={data} title={diningModalTitle} isVisible={modal} modalCancel={() => modalSet(false)} />
             </View>
         )
@@ -168,7 +178,6 @@ const styles = StyleSheet.create({
     map: {
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height,
-        zIndex: 5
     },
 })
 

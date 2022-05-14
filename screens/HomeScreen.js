@@ -4,10 +4,10 @@ import { View, Text, ScrollView, StyleSheet, FlatList, Button, Pressable, Toucha
 import moment from "moment";
 import ClassCard from "../components/Class";
 import { classItems } from "../data/classData";
-import DateSwitch from "../components/ClassDateSwitch";
+import { Ionicons } from '@expo/vector-icons'; 
 
 
-const Home = props => {
+const Home = ({props, navigation}) => {
 
     let dayNumber = moment().format("Do")
 
@@ -65,6 +65,11 @@ const Home = props => {
                         )}
                     />
                 </View>
+                <View style={{ position: 'absolute', marginTop: 60, backgroundColor: 'black', borderRadius: 50, marginLeft: 20, width: 40, height: 40, justifyContent: 'center', zIndex: 2 }}>
+                    <TouchableOpacity onPress={() => navigation.goBack()}>
+                        <Ionicons style={{ marginLeft: 5 }} name="arrow-back" size={30} color="white" />
+                    </TouchableOpacity>
+                </View>
             </View>
         )
 }
@@ -79,7 +84,7 @@ const styles = StyleSheet.create({
     classContainer:{
         alignContent: "center",
         alignItems: "center",
-        height: "100%"
+        height: "100%",
     },
     title: {
         alignItems:"center",
