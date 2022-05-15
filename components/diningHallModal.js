@@ -112,7 +112,7 @@ const ModalDining = props => {
                     </TouchableOpacity>
                 </View>
                 <Card style={styles.modalView}>
-                    <ScrollView contentInset={{ bottom: 120 }} scrollEnabled={true} scrollToOverflowEnabled={true} style={styles.scrollStyle}>
+                    {/* <ScrollView scrollEnabled={true} style={styles.scrollStyle}> */}
                         <View style={{flexDirection: 'row'}}>
                             <Text style={styles.diningHall}>{props.title}</Text>
                         </View>
@@ -139,10 +139,11 @@ const ModalDining = props => {
                                 <Text style={{ marginLeft: 20, color: isDinDin ? "white": "black"}}>Dinner</Text>
                             </View>
                         </View>
-                        <View style={{ marginTop: 20 }}>
-                            {component}
-                        </View>
-                    </ScrollView>
+                        <ScrollView contentInset={{bottom: 180}}  scrollEnabled={true} style={styles.scrollStyle}>
+                            <View>
+                                {component}
+                            </View>
+                        </ScrollView>
                 </Card>
             </Modal>
         );
@@ -180,8 +181,9 @@ const styles= StyleSheet.create({
         backgroundColor: 'white'
     },
     scrollStyle: {
-        height: "90%",
-        width: '100%',
+        height: "100%",
+        width: "100%",
+        paddingVertical: 20
     },
 })
 

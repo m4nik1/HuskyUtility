@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Image, View, StyleSheet, Dimensions, SafeAreaView, Text, Button, TouchableOpacity } from "react-native"
+import { Image, View, StyleSheet, Dimensions, Text, TouchableOpacity, Modal } from "react-native"
 import * as Location from "expo-location";
 import MapView, { Marker } from "react-native-maps";
 import dining from "../assets/dining_icon.png"
@@ -16,7 +16,7 @@ import { meals } from "../data/UConnDining/DiningParsing";
 import { Ionicons } from '@expo/vector-icons';
 
 
-function LocationDining(props, { navigation }) {
+function LocationDining(props) {
 
     // const { location } = route.params
 
@@ -101,7 +101,7 @@ function LocationDining(props, { navigation }) {
 
 
     function handleBack() {
-        navigation.goBack()
+        props.navigation.goBack()
     }
 
     function setMapUtility(state, name, region, image) {
@@ -167,10 +167,9 @@ function LocationDining(props, { navigation }) {
                         <Ionicons style={{ marginLeft: 5 }} name="arrow-back" size={30} color="white" />
                     </TouchableOpacity>
                 </View>
-
-                <View style={styles.bottomContainer}>
-                    <Text style={{ marginBottom: 100 }}>Dining Halls</Text>
-                </View>
+                {/* <Modal style={styles.bottomContainer}>
+                    <Text style={{ alignSelf: 'center', marginTop: 10 }}>Dining Halls</Text>
+                </Modal> */}
                 <ModalDining image={image} menuData={data} title={diningModalTitle} isVisible={modal} modalCancel={() => modalSet(false)} />
             </View>
         )
@@ -184,13 +183,12 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').height,
     },
     bottomContainer: {
-      justifyContent: 'center',
-      position: 'absolute',
-      marginTop: 700,
-      backgroundColor: 'white',
-      width: Dimensions.get('window').width,
-      height: 700,
-      borderRadius: 50
+    //   position: 'absolute',
+    //   marginTop: 750,
+    //   backgroundColor: 'white',
+    //   width: Dimensions.get('window').width,
+    //   height: 100,
+    //   borderRadius: 50,
     }
 })
 
