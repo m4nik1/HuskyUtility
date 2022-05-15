@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { View, Modal, StyleSheet, Text, Dimensions, Button, Pressable, Image, ScrollView, TouchableOpacity } from "react-native"
+import { View, Modal, StyleSheet, Text, Dimensions, Button, Pressable, Image, ScrollView, TouchableOpacity, StatusBar } from "react-native"
 import MealCard from '../components/mealCard'
 import { meals } from "../data/UConnDining/DiningParsing";
 import Card from "./Card";
@@ -105,7 +105,8 @@ const ModalDining = props => {
         return (
             
               <Modal onShow={() => mealComponent()} onRequestClose={() => {cancelModal()}} transparent={true} presentationStyle="overFullScreen" animationType="slide" visible={props.isVisible}>
-                <Image source={props.image}  style={{ width: Dimensions.get('window').width, height: 140, alignSelf: 'center' }} />
+                <StatusBar hidden />
+                <Image source={props.image} style={{ width: Dimensions.get('window').width, height: 150, alignSelf: 'center' }} />
                 <View style={styles.backBtn}>
                     <TouchableOpacity onPress={() => cancelModal()}>
                         <AntDesign  name="leftcircle" size={30} color="black" />
@@ -160,7 +161,7 @@ const styles= StyleSheet.create({
     modalView: {
         height: Dimensions.get('window').height,
         width: Dimensions.get('window').width,
-        borderRadius: 0
+        // borderRadius: 0
     },
     icons: {
         fontSize: 30,

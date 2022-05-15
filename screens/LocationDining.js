@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react"
-import { Image, View, StyleSheet, Dimensions, Text, TouchableOpacity, Modal } from "react-native"
-import * as Location from "expo-location";
-import MapView, { Marker } from "react-native-maps";
+import { Image, View, StyleSheet, Dimensions, TouchableOpacity, StatusBar } from "react-native"
+import MapView  from "react-native-maps";
 import dining from "../assets/dining_icon.png"
 import ModalDining from "../components/diningHallModal";
-import { HallStatus } from "../data/UConnDining/HallStatus";
-import DiningModal from "../components/newDiningModal";
 import South_dining from "../assets/South_dining.jpg"
 import Putnam_dining from "../assets/Putnam_dining.jpg"
 import Mcmahon_dining from "../assets/Mcmahon_dining.jpg"
@@ -127,6 +124,7 @@ function LocationDining(props) {
 
         return (
             <View>
+                <StatusBar hidden backgroundColor="#61dafb" />
                 <MapView
                     style={styles.map}
                     region={mapRegion}
