@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ButtonStyleSheet, View, StyleSheet, Button } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import Home from './screens/HomeScreen';
 import ClassesCard from './components/ClassCard';
 import moment from "moment";
@@ -7,12 +7,9 @@ import LocationDining from './screens/LocationDining';
 import LocationCard from './components/LocationCard';
 import { meals } from './data/UConnDining/DiningParsing';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import TabBar from './components/TabBar'
-import { BlurView } from 'expo-blur'
 import * as Location from "expo-location";
-import DiningModal from './components/newDiningModal';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { HallStatus } from './data/UConnDining/HallStatus';
 
 
 const Stack = createNativeStackNavigator()
@@ -24,14 +21,6 @@ export default function App() {
   const [data, setData] = useState()
   const [mapRegion, setMapRegion] = useState();
 
-
-
-  const changeScreen = (newScreen) => {
-    if(newScreen === "home" || newScreen === "classes" || newScreen === "Dining") {
-      setScreen(newScreen)
-      mealsFetch()
-    }
-  }
 
   function MainScreen({ navigation }) {
     return (
@@ -45,6 +34,7 @@ export default function App() {
   async function mealsFetch() {
     let meal = await meals()
     setData(await meal)
+    HallStatus()
   }
 
   async function getCurrentLocation() {
@@ -72,6 +62,7 @@ export default function App() {
   useEffect(() => {
     mealsFetch()
     getCurrentLocation()
+    HallStatus()
   }, [])
 
   return (

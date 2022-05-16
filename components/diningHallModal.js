@@ -103,7 +103,6 @@ const ModalDining = props => {
 
     if(props.isVisible) {
         return (
-            
               <Modal onShow={() => mealComponent()} onRequestClose={() => {cancelModal()}} transparent={true} presentationStyle="overFullScreen" animationType="slide" visible={props.isVisible}>
                 <StatusBar hidden />
                 <Image source={props.image} style={{ width: Dimensions.get('window').width, height: 150, alignSelf: 'center' }} />
@@ -132,7 +131,6 @@ const ModalDining = props => {
                                 </Pressable>
                                 <Text style={{ marginLeft: 20, color: isLunch ? "white": "black"}}>Lunch</Text>
                             </View>
-
                             <View style={{marginLeft: 50, backgroundColor: isDinDin ? "black" : "white", borderRadius: 10, height: 70, width: 80, marginTop: 20 }} >
                                 <Pressable onPress={() => DinDinPressed()}>
                                     <MaterialCommunityIcons name="food-steak" style={{ marginLeft: 25, marginTop: 15 }} size={30} color= {isDinDin ? "white": "black"} />
@@ -161,7 +159,7 @@ const styles= StyleSheet.create({
     modalView: {
         height: Dimensions.get('window').height,
         width: Dimensions.get('window').width,
-        // borderRadius: 0
+        borderRadius: 0
     },
     icons: {
         fontSize: 30,

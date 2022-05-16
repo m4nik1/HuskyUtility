@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import { View, Text, ScrollView, StyleSheet, FlatList, Button, Pressable, TouchableOpacity } from "react-native";
+import { View, Text, ScrollView, StyleSheet, FlatList, Button, TouchableOpacity } from "react-native";
+import { StatusBar } from 'expo-status-bar';
 import moment from "moment";
 import ClassCard from "../components/Class";
 import { classItems } from "../data/classData";
@@ -40,6 +41,7 @@ const Home = ({props, navigation}) => {
 
         return (
             <View>
+                <StatusBar  />
                 <View style={styles.classContainer}>
                     <Text style={styles.title}>Classes</Text>
                     <View style={styles.dateContainer}>
