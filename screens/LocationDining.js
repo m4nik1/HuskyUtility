@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Image, View, StyleSheet, Dimensions, TouchableOpacity, StatusBar } from "react-native"
+import { Image, View, StyleSheet, Dimensions, TouchableOpacity, StatusBar, Animated, Text } from "react-native"
 import MapView  from "react-native-maps";
 import dining from "../assets/dining_icon.png"
 import ModalDining from "../components/diningHallModal";
@@ -11,6 +11,7 @@ import Whitney_dining from "../assets/Whitney_dining.jpg"
 import Buckley_dining from "../assets/Buckley_Dining.jpg"
 import { meals } from "../data/UConnDining/DiningParsing";
 import { Ionicons } from '@expo/vector-icons';
+import DiningDrawer from "../components/DiningHallDrawer";
 
 
 function LocationDining(props) {
@@ -165,9 +166,7 @@ function LocationDining(props) {
                         <Ionicons style={{ marginLeft: 5 }} name="arrow-back" size={30} color="white" />
                     </TouchableOpacity>
                 </View>
-                {/* <Modal style={styles.bottomContainer}>
-                    <Text style={{ alignSelf: 'center', marginTop: 10 }}>Dining Halls</Text>
-                </Modal> */}
+                <DiningDrawer />
                 <ModalDining image={image} menuData={data} title={diningModalTitle} isVisible={modal} modalCancel={() => modalSet(false)} />
             </View>
         )
@@ -181,12 +180,12 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').height,
     },
     bottomContainer: {
-    //   position: 'absolute',
-    //   marginTop: 750,
-    //   backgroundColor: 'white',
-    //   width: Dimensions.get('window').width,
-    //   height: 100,
-    //   borderRadius: 50,
+      position: 'absolute',
+      marginTop: 750,
+      backgroundColor: 'white',
+      width: Dimensions.get('window').width,
+      height: 100,
+      borderRadius: 50,
     }
 })
 
