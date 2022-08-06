@@ -1,49 +1,78 @@
 import React, { useState, useEffect } from 'react';
-import { Button, StyleSheet, View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import Home from './screens/HomeScreen';
 import ClassesCard from './components/ClassCard';
 import moment from "moment";
 import LocationDining from './screens/LocationDining';
-import DiningParsing from './data/UConnDining/DiningParsing'
-import ModalDining from './components/diningHallModal';
 import LocationCard from './components/LocationCard';
-import MapBar from './components/MapTabBar';
 import { meals } from './data/UConnDining/DiningParsing';
+import { NavigationContainer } from '@react-navigation/native';
+import * as Location from "expo-location";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HallStatus } from './data/UConnDining/HallStatus';
+
+
+const Stack = createNativeStackNavigator()
+let day = moment().format('dddd');
 
 export default function App() {
 
-  const [screen, setScreen] = useState("Home")
+  const [screen, setScreen] = useState("home")
   const [data, setData] = useState()
+  const [mapRegion, setMapRegion] = useState();
 
-  const day = moment().format('dddd');
 
-  const changeScreen = (newScreen) => {
-    if(newScreen === "home" || newScreen === "classes" || newScreen === "Dining") {
-      setScreen(newScreen)
-      mealsFetch()
-    }
+  function MainScreen({ navigation }) {
+    return (
+      <View style={styles.container}>
+        <ClassesCard navi={navigation} currentDay={day}  />
+        <LocationCard coords={mapRegion} navi={navigation} currentDay={day} />
+      </View>
+    )
   }
 
   async function mealsFetch() {
     let meal = await meals()
     setData(await meal)
+    HallStatus()
   }
+
+  async function getCurrentLocation() {
+    const { status } = await Location.requestForegroundPermissionsAsync()
+    if(status !== 'granted') {
+        setErrorMsg("Permission to access location is denied");
+        return;
+    }
+
+    
+    let location = await Location.getCurrentPositionAsync({})
+    const lat = location["coords"]["latitude"]; // these are current location values
+    const long = location["coords"]["longitude"]
+    const currentRegion = {
+        latitude: lat, 
+        longitude: long,
+        latitudeDelta: .01,
+        longitudeDelta: .01
+    }
+
+    setMapRegion(currentRegion)
+    console.log("Centered on current location")
+}
 
   useEffect(() => {
     mealsFetch()
-    meals()
+    getCurrentLocation()
+    HallStatus()
   }, [])
 
   return (
-    <View style={styles.container}>
-      <Home current_day={day} shouldRengar={screen === "classes"} changeScreen={(screen2) => {changeScreen(screen2)}} />
-      <LocationDining mealsData={data} shouldRengar={screen === "Dining"} changeScreen={(screen2) => {changeScreen(screen2)}} />
-      <ClassesCard currentDay={day} shouldRengar={screen === "home"} changeScreen={(screen2) => {changeScreen(screen2)}} />
-      <LocationCard currentDay={day} changeScreen={(screen2) => {changeScreen(screen2)}} />
-      {/* <Button title='fetchP' onPress={() => setModal(true)} />  */}
-      {/* <ModalDining isVisible={modal}  title="Putnam Dining Hall" menuData={meals("Northwest")} /> */}
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={MainScreen} options={ {headerShown: false} } />
+        <Stack.Screen name="Dining-Maps" component={LocationDining} options={ {headerShown: false} } />
+        <Stack.Screen name="Classes" component={Home} options={ {headerShown: false} } />
+      </Stack.Navigator>
+    </NavigationContainer>
     
   );
 }

@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { View, Modal, StyleSheet, Text, Button, Pressable } from "react-native"
 import Card from "./Card";
+import moment from "moment";
 import { HallStatus } from "../data/UConnDining/HallStatus";
 
-const LocationCard = props => {
+function LocationCard(props) {
 
     const [statusData, changeStatusData] = useState()
-
-    const screenCallback = (screen) => {
-        props.changeScreen(screen)
-    }
+    const currentMinutes = moment().format("mm");
+    const currentSecond = moment().format("ss")
 
 
     const H = ["Northwest", "Putnam", "South", "McMahon", "Whitney"]
@@ -17,11 +16,11 @@ const LocationCard = props => {
     function status() {
         let statusData = []
         for(var d in H) {
-            console.log(H[d])
             const obj = {}
             const status = HallStatus(H[d])
             obj[H[d]] = status
             statusData.push(obj)
+            console.log(statusData)
         }
         changeStatusData(statusData)
     }
@@ -31,9 +30,9 @@ const LocationCard = props => {
 
         for(var s in statusData) {
             statusComponent.push(
-                <View>
-                    <Text>{H[s]}</Text>
-                    <Text style={styles.classTime, (statusData[s][H[s]] === "Open" ? {color: 'green'} : {color:'red'})}>{statusData[s][H[s]]}</Text>
+                <View style={{flexDirection: 'row', width:'100%', flex:1}}>
+                    <Text>{H[s]}:</Text>
+                    <Text style={styles.classTime, (statusData[s][H[s]] === "Open" ? {color: 'green'} : {color:'red'})}> {statusData[s][H[s]]}</Text>
                 </View>
             )
         }
@@ -42,10 +41,10 @@ const LocationCard = props => {
 
     useEffect(() => {
         status()
-    }, [])
+    }, [currentMinutes, currentSecond])
 
     return (
-            <Pressable onPress={() => screenCallback(props.screen)}>
+            <Pressable onPress={() => props.navi.navigate('Dining-Maps', { location: props.coords })}>
                 <Card style={styles.diningCard}>
                     <View style={styles.nameView}>
                         <Text style={styles.title}>Dining Halls</Text>

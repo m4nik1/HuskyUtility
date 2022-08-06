@@ -10,9 +10,9 @@ export async function meals() {
 
     async function diningScrape(diningHall) {
         let toScrape;
-        let day = moment().format('D');
-        let month = moment().format('M');
-        let year = moment().format('Y')
+        let day = 16//moment().format('D');
+        let month = 5 //moment().format('M');
+        let year = 2022//moment().format('Y');
         let urlDate = `${month}%2f${day}%2f${year}`
     
         const Halls = {
@@ -36,8 +36,10 @@ export async function meals() {
                 "url_name": "Whitney+Dining+Hall",
                 "url_id": "01"
             },
-
-
+            "Buckley" : {
+                "url_name": "Buckley+Dining+Hall",
+                "url_id": "03"
+            },
         }
         // console.log("THIS IS WHAT IS PICKED" + " " + Halls[diningHall]["url_name"])
     
@@ -66,9 +68,15 @@ export async function meals() {
             let mealName;
             if(i > 0) {
                 mealName = mealHtml[i].substring(0, mealHtml[i].indexOf("</div>")) 
-    
-                mealData.push({ "mealName" : mealName, stations: stations(mealHtml[i]) })
-    
+                if(mealName == "Breakfast") {
+                    mealData.push({ "Breakfast" : [{stations: stations(mealHtml[i])}] })
+                }
+                else if(mealName == "Lunch") {
+                    mealData.push({ "Lunch" : [{stations: stations(mealHtml[i])}] })
+                }
+                else {
+                    mealData.push({ "Dinner" : [{stations: stations(mealHtml[i])}] })
+                }
             }
         }
         
@@ -76,16 +84,19 @@ export async function meals() {
     
     }
     
+    function upperLower(station_word) {
+        const upperLowerWord = station_word.charAt(0).toUpperCase() + station_word.slice(1).toLowerCase()
+        
+        return upperLowerWord
+    }
     
     function stations(data) {
         const stationHtml = data.split("<div class=\"shortmenucats\"><span style=\"color: #000000\">-- ");
-        
         let stationData = []
     
         for(var s in stationHtml) {
             if(s > 0) {
-                    stationName = stationHtml[s].substring(0, stationHtml[s].indexOf(" --</span></div>"))
-    
+                    stationName = upperLower(stationHtml[s].substring(0, stationHtml[s].indexOf(" --</span></div>")))
                     stationData.push({ "Station_Name" : stationName, "food": food(stationHtml[s]) })
             }
         }
@@ -108,7 +119,7 @@ export async function meals() {
     
         return foods
     }
-    const H = ["Northwest", "Putnam", "South", "McMahon", "Whitney"]
+    const H = ["Northwest", "Putnam", "South", "McMahon", "Whitney", "Buckley"]
     let dataReturn = {}
     for(var s in H) {
         const func = await diningScrape(H[s])

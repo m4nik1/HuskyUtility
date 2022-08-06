@@ -1,52 +1,36 @@
 import React, { useEffect, useState } from "react";
 
-import { View, Text, ScrollView, StyleSheet, FlatList, Button, Platform, UIManager, TouchableOpacity, LayoutAnimation } from "react-native";
+import { View, Text, StyleSheet, Button, FlatList } from "react-native";
 
 
 function MealCard(props) {
-    let stationData = props.stationTitle
-
-    if(Platform.OS === 'android') {
-        if(UIManager.setLayoutAnimationEnabledExperimental) {
-            UIManager.setLayoutAnimationEnabledExperimental(true)
-        }
-    }
-
-    const [open, setOpen] = useState(false)
-
-
-    function collpaseList() {
-        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-        setOpen(!open)
-    }
+    let stationData = props.stations
 
     function stations() {
-        let stationsTitles = []
+        let stationsObj = []
 
-        for(j in stationData) {
-            // console.log(stationData[j])
-            stationsTitles.push(
-                <View>
-                    <Text style={styles.stationTitle}>{stationData[j]["Station_Name"]}</Text>
-                    { stationData[j]["food"].map((foods) => {
-                        return <Text style={styles.menuItems}>  {foods}</Text>
-                    }) }
-                </View>
-            )
+        // console.log(stationData)
+        if(stationData != null) {
+            for(var j in stationData[0]["stations"]) {
+                // console.log(stationData[0]["stations"][j])
+                stationsObj.push(
+                    <View>
+                        <Text style={styles.stationTitle}>{stationData[0]["stations"][j]["Station_Name"]}</Text>
+                        { stationData[0]["stations"][j]["food"].map((foods) => {
+                            return <Text style={styles.menuItems}>     {foods}</Text>
+                        }) }
+                    </View>
+                )
+            }
         }
-        return stationsTitles;
+
+        return stationsObj;
     }
 
-
-    return(
-        <View key={props.meal} style={styles.container}>
-            <TouchableOpacity style={styles.collpaseList, !open && {height:27}} onPress={() => collpaseList()}>
-                <Text style={styles.mealTitle}>{props.meal}</Text>
-                {open && (
-                    [stations()]
-                )}
-            </TouchableOpacity>
-        </View>
+    return (
+        <View>
+            {stations()}
+        </View> 
     )
 }
 
@@ -55,25 +39,32 @@ function MealCard(props) {
 
 const styles = StyleSheet.create({
     mealTitle: {
-        fontWeight: 'bold',
         fontSize: 25,
+        color: 'white',
         textAlignVertical: 'center'
     },
     stationTitle: {
-        fontWeight: 'bold',
-        fontSize: 17,
-        color: '#7a80e8',
+        fontWeight: '500',
+        fontSize: 25,
+        color: 'black',
     },
     menuItems: {
-        fontSize: 13,
+        fontSize: 20,
+        fontWeight: "300"
     },
     container: {
-        padding: 20
+        padding: 10,
+        overflow: 'scroll'
     },
     collpaseList: {
         width: '100%',
         borderWidth: 1,
-        paddingHorizontal: 20,
+        overflow: 'scroll'
+    },
+    mealTitleA: {
+        fontSize: 20,
+        textAlignVertical: 'center',
+        color: 'white'
     }
 
 })
