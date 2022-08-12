@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
-import Home from './screens/HomeScreen';
-import ClassesCard from './components/ClassCard';
+import Home from './screens/ClassesScreen';
 import moment from "moment";
 import LocationDining from './screens/LocationDining';
-import LocationCard from './components/LocationCard';
 import { meals } from './data/UConnDining/DiningParsing';
 import { NavigationContainer } from '@react-navigation/native';
 import * as Location from "expo-location";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HallStatus } from './data/UConnDining/HallStatus';
+import HomeDashboard from './screens/HomeDashboard';
 
 
 const Stack = createNativeStackNavigator()
@@ -22,14 +21,14 @@ export default function App() {
   const [mapRegion, setMapRegion] = useState();
 
 
-  function MainScreen({ navigation }) {
-    return (
-      <View style={styles.container}>
-        <ClassesCard navi={navigation} currentDay={day}  />
-        <LocationCard coords={mapRegion} navi={navigation} currentDay={day} />
-      </View>
-    )
-  }
+  // function MainScreen({ navigation }) {
+  //   return (
+  //     <View style={styles.container}>
+  //        {/* <ClassesCard navi={navigation} currentDay={day}  /> */}
+  //        <LocationCard coords={mapRegion} navi={navigation} currentDay={day} />
+  //     </View>
+  //   )
+  // }
 
   async function mealsFetch() {
     let meal = await meals()
@@ -68,7 +67,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={MainScreen} options={ {headerShown: false} } />
+        <Stack.Screen name="Home" component={HomeDashboard} options={ {headerShown: false} } />
         <Stack.Screen name="Dining-Maps" component={LocationDining} options={ {headerShown: false} } />
         <Stack.Screen name="Classes" component={Home} options={ {headerShown: false} } />
       </Stack.Navigator>
