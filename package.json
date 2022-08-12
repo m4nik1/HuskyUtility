@@ -32,12 +32,23 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-native": "0.68.2",
-    "react-native-maps": "0.30.1",
+    "react-native-maps": "0.30.2",
     "react-native-web": "0.17.7",
     "yarn": "^1.22.19"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
   },
-  "private": true
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m4nik1/personalUconn.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/m4nik1/personalUconn/issues"
+  },
+  "homepage": "https://github.com/m4nik1/personalUconn#readme",
+  "description": ""
 }
