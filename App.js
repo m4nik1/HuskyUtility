@@ -10,6 +10,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HallStatus } from './data/UConnDining/HallStatus';
 import HomeDashboard from './screens/HomeDashboard';
 import DiningDashboard from './screens/DiningDashboard';
+import ClassroomDash from './screens/ClassroomDash';
 
 
 const Stack = createNativeStackNavigator()
@@ -72,6 +73,7 @@ export default function App() {
         <Stack.Screen name="Dining-Maps" component={LocationDining} options={ {headerShown: false} } />
         <Stack.Screen name="Classes" component={Home} options={ {headerShown: false} } />
         <Stack.Screen name="Dining-Dashboard" component={DiningDashboard} options={ {headerShown: false} } />
+        <Stack.Screen name="Classroom-Space" component={ClassroomDash} options={ {headerShown: false} } />
       </Stack.Navigator>
     </NavigationContainer>
     

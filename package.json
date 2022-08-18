@@ -39,5 +39,16 @@
   "devDependencies": {
     "@babel/core": "^7.12.9"
   },
-  "private": true
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m4nik1/personalUconn.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/m4nik1/personalUconn/issues"
+  },
+  "homepage": "https://github.com/m4nik1/personalUconn#readme",
+  "description": ""
 }
